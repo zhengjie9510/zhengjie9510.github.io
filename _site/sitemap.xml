@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>http://localhost:8080/2020/05/03/Python%E5%AE%9E%E7%8E%B0%E8%B0%B7%E6%AD%8C%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE%E5%BD%B1%E5%83%8F%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD.html</loc>
+<lastmod>2020-05-03T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:8080/2020/05/06/ArcGIS-API-for-JavaScript%E4%B9%8B%E8%BF%81%E5%BE%99%E5%9B%BE-Echarts.html</loc>
+<lastmod>2020-05-06T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:8080/2020/05/10/ArcGIS-API-for-Javascript%E4%B9%8BGP%E6%9C%8D%E5%8A%A1-%E7%9F%A2%E9%87%8F.html</loc>
+<lastmod>2020-05-10T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:8080/2020/05/13/ArcGIS-API-for-Javascript%E4%B9%8B%E6%91%84%E5%BD%B1%E5%9C%B0%E5%9B%BE.html</loc>
+<lastmod>2020-05-13T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:8080/about.html</loc>
+</url>
+<url>
+<loc>http://localhost:8080/archive.html</loc>
+</url>
+<url>
+<loc>http://localhost:8080/</loc>
+</url>
+</urlset>
