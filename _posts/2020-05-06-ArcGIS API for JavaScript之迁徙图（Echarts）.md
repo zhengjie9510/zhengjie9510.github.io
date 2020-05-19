@@ -19,5 +19,6 @@ ArcGIS API for JavaScript集成Echarts实现迁徙图
 ## 最终效果
 ![Migration_Map](\assets\images\ArcGIS API for JavaScript之迁徙图（Echarts）\演示效果.gif)  
 ## 代码下载
+[点击这里在线访问Demo](\demo\ArcGIS API for JavaScript Migration Map\index.html)  
 点击[这里](https://github.com/zhengjie9510/ArcGIS-API-for-JavaScript)获取完整代码。  
 如果对您有用的话，别忘了给点个赞哦^_^ ！

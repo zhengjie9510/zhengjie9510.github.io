@@ -140,6 +140,6 @@ function createMarkerSymbol(graphics) {
 ## 最终效果
 ![演示效果](\assets\images\ArcGIS API for JavaScript之摄影地图\演示效果.gif)
 ## 代码下载
-[点击这里在线访问Demo](\demo\ArcGIS API for JavaScript之摄影地图\读取照片坐标创建要素图层.html)  
+[点击这里在线访问Demo](\demo\ArcGIS API for JavaScript Photographic Map\photographic map.html)  
 [点击这里获取完整代码](https://github.com/zhengjie9510/ArcGIS-API-for-JavaScript)  
 如果对您有用的话，别忘了给点个赞哦^_^ ！

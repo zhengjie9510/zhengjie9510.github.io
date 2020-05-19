@@ -1,3 +1,0 @@
-I"<p>WebGIS的开发经常会用到一些空间数据的处理与分析功能，而GP服务是实现这些功能的途径之一。下面以缓冲区分析的GP服务为例，详细介绍如何通过ArcGIS API for Javascript调用GP服务。GP服务的发布可参考<a href="https://blog.csdn.net/lovecarpenter/article/details/52496876">ArcGIS Server之发布GP服务-返回矢量数据</a><br />
-<img src="\assets\images\ArcGIS API for Javascript之GP服务（矢量）\Buffer_结果.gif" alt="Buffer_结果" /></p>
-:ET

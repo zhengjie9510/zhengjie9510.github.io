@@ -25,4 +25,12 @@
 <url>
 <loc>http://localhost:8080/</loc>
 </url>
+<url>
+<loc>http://localhost:8080/demo/ArcGIS%20API%20for%20JavaScript%20Migration%20Map/</loc>
+<lastmod>2020-05-11T17:51:11+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:8080/demo/ArcGIS%20API%20for%20JavaScript%20Photographic%20Map/photographic%20map.html</loc>
+<lastmod>2020-05-19T18:15:23+08:00</lastmod>
+</url>
 </urlset>
