@@ -7,7 +7,6 @@ show_subscribe: false
 license: false
 ---
 WebGIS的开发经常会用到一些空间数据的处理与分析功能，而GP服务是实现这些功能的途径之一。下面以缓冲区分析的GP服务为例，详细介绍如何通过ArcGIS API for Javascript调用GP服务。GP服务的发布可参考[ArcGIS Server之发布GP服务-返回矢量数据](https://blog.csdn.net/lovecarpenter/article/details/52496876)  
-![Buffer_结果](\assets\images\ArcGIS API for Javascript之GP服务（矢量）\Buffer_结果.gif)  
 <!--more-->
 ## 功能  
 鼠标单击地图后在鼠标位置画圆点，并为圆点建立缓冲区。
@@ -18,7 +17,7 @@ WebGIS的开发经常会用到一些空间数据的处理与分析功能，而GP
 
 ## 调用GP服务
 ### GP服务的相关参数
-![GP_Buffer](\assets\images\ArcGIS API for Javascript之GP服务（矢量）\GP_Buffer.PNG)
+![GP_Buffer](\assets\images\ArcGIS API for Javascript之GP服务（矢量）\GP服务参数.PNG)
 ### 主要代码
 * 加载地图
 ```javascript
@@ -147,6 +146,8 @@ WebGIS的开发经常会用到一些空间数据的处理与分析功能，而GP
         });
     }
 ```
+## 最终效果
+![Buffer_结果](\assets\images\ArcGIS API for Javascript之GP服务（矢量）\演示效果.gif)  
 ## 代码下载
 点击[这里](https://github.com/zhengjie9510/ArcGIS-API-for-JavaScript)获取完整代码。  
 如果对您有用的话，别忘了给点个赞哦^_^ ！

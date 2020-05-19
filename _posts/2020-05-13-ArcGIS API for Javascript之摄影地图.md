@@ -7,7 +7,6 @@ show_subscribe: false
 license: false
 ---
 以前有想过将拍摄的照片根据其拍摄地点显示在地图上，刚好最近在学习ArcGIS API for Javascript，于是就考虑使用ArcGIS API for Javascript实现这样的功能。  
-![Demo](\assets\images\ArcGIS API for Javascript之摄影地图\Demo.gif)  
 <!--more-->
 ## 目的
 通过url访问照片，读取坐标创建要素图层，并以照片缩影为图标，在弹出窗口中展示大图。
@@ -138,6 +137,9 @@ function createMarkerSymbol(graphics) {
     return symbles;
 }
 ```
+## 最终效果
+![演示效果](\assets\images\ArcGIS API for JavaScript之摄影地图\演示效果.gif)
 ## 代码下载
-点击[这里](https://github.com/zhengjie9510/ArcGIS-API-for-JavaScript)获取完整代码。  
+[点击这里在线访问Demo](\demo\ArcGIS API for JavaScript之摄影地图\读取照片坐标创建要素图层.html)  
+[点击这里获取完整代码](https://github.com/zhengjie9510/ArcGIS-API-for-JavaScript)  
 如果对您有用的话，别忘了给点个赞哦^_^ ！
