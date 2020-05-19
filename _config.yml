@@ -189,7 +189,6 @@ exclude:
   - Gemfile.lock
   - LICENSE
   - README.md
-  - demo
 
 defaults:
   - scope:
