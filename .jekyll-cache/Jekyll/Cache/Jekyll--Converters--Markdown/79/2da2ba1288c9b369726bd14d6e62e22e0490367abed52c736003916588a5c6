@@ -1,0 +1,17 @@
+I"p<p>温度植被干旱指数TVDI(Temperature Vegetation Dryness Index)是一种基于光学与热红外遥感通道数据进行植被覆盖区域表层土壤水分反演的方法。
+<!--more--></p>
+<h2 id="原理">原理</h2>
+<p>LST-NDVI特征空间<a href="#refer-anchor-1"><sup>1</sup></a>：<br />
+<img src="https://www.mdpi.com/remotesensing/remotesensing-09-00177/article_deploy/html/images/remotesensing-09-00177-g002.png" alt="TVDI" />
+温度植被干旱指数(TVDI)的计算方法为：<br />
+\(TVDI = {LST - LST_{min} \over 2a}\)</p>
+
+<h2 id="参考">参考</h2>
+<div id="refer-anchor-1"></div>
+
+<ul>
+  <li>[1] <a href="https://www.mdpi.com/181788">Du L, Song N, Liu K, et al. Comparison of Two Simulation Methods of the Temperature Vegetation Dryness Index (TVDI) for Drought Monitoring in Semi-Arid Regions of China[J]. Remote Sensing
+, 2017, 9(2): 177.
+</a></li>
+</ul>
+:ET

@@ -19,7 +19,7 @@ show_title: false
 ---
 
 ## 个人信息 
-昵称：zhengjie9510  
-邮箱：<1096318621@qq.com>  
-博客：[https://zhengjie9510.github.io](https://zhengjie9510.github.io)  
-Github：[https://github.com/zhengjie9510](https://github.com/zhengjie9510)  
+- 昵称：zhengjie9510  
+- 邮箱：<1096318621@qq.com>  
+- 博客：[https://zhengjie9510.github.io](https://zhengjie9510.github.io)  
+- Github：[https://github.com/zhengjie9510](https://github.com/zhengjie9510)  
