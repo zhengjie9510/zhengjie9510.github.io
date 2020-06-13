@@ -1,11 +1,10 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Home - ZhengJie's Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Python之谷歌瓦片地图影像批量下载 - ZhengJie's Blog</title>
 
-<meta name="description" content="Zheng Jie's Blog
-">
-<link rel="canonical" href="http://localhost:8080/"><link rel="alternate" type="application/rss+xml" title="ZhengJie's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
+<meta name="description" content="最近在写毕业论文，想用谷歌影像作为底图来展示研究区，然后Google了很多脚本，结果发现输出的影像都不带空间坐标系，所以就想自己写个小工具，通过输入空间范围就可以实现Google地图的下载，并输出为TIFF格式，含WGS 84空间坐标系。">
+<link rel="canonical" href="http://localhost:8080/2020/05/03/Python%E4%B9%8B%E8%B0%B7%E6%AD%8C%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE%E5%BD%B1%E5%83%8F%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD.html"><link rel="alternate" type="application/rss+xml" title="ZhengJie's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
@@ -258,92 +257,28 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
         <div class="header__brand"><a title="Zheng Jie's Blog
 " href="/">ZhengJie's Blog</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
-        <ul><li class="navigation__item navigation__item--active"><a href="/">Home</a></li><li class="navigation__item"><a href="/archive.html">Archive</a></li><li class="navigation__item"><a href="/about.html">About</a></li><li class="navigation__item"><a href="https://github.com/zhengjie9510">Github</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
+        <ul><li class="navigation__item"><a href="/">Home</a></li><li class="navigation__item"><a href="/archive.html">Archive</a></li><li class="navigation__item"><a href="/about.html">About</a></li><li class="navigation__item"><a href="https://github.com/zhengjie9510">Github</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
       </nav></div>
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
-              <div class="col-aside d-print-none js-col-aside"></div>
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
+</aside></div>
 
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>Home</h1></header><meta itemprop="headline" content="Home"><meta itemprop="author" content="郑杰"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2020/06/14/Python%E4%B9%8B%E6%B5%B7%E5%B2%B8%E7%BA%BF%E6%8F%90%E5%8F%96.html"><h2 itemprop="headline" class="item__header">Python之海岸线提取</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody"><p>海岸线提取是找工作时遇到的一道测试题，具体要求是设计一种算法来从给定影像中检测海岸线，并将结果另存为矢量GeoJSON文件。</p>
-</div><p><a href="/2020/06/14/Python%E4%B9%8B%E6%B5%B7%E5%B2%B8%E7%BA%BF%E6%8F%90%E5%8F%96.html">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Python">Python</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%B5%B7%E5%B2%B8%E7%BA%BF">海岸线</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 14, 2020</span>
-            </li></ul></div><meta itemprop="author" content="郑杰"/><meta itemprop="datePublished" content="2020-06-14T00:00:00+08:00">
-    <meta itemprop="keywords" content="Python,海岸线"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2020/06/13/Python%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%B8%A9%E5%BA%A6%E6%A4%8D%E8%A2%AB%E5%B9%B2%E6%97%B1%E6%8C%87%E6%95%B0-TVDI.html"><h2 itemprop="headline" class="item__header">Python之计算温度植被干旱指数（TVDI）</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody"><p>温度植被干旱指数TVDI(Temperature Vegetation Dryness Index)是一种基于光学与热红外遥感通道数据进行植被覆盖区域表层土壤水分反演的方法。</p>
-</div><p><a href="/2020/06/13/Python%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%B8%A9%E5%BA%A6%E6%A4%8D%E8%A2%AB%E5%B9%B2%E6%97%B1%E6%8C%87%E6%95%B0-TVDI.html">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Python">Python</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=TVDI">TVDI</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 13, 2020</span>
-            </li></ul></div><meta itemprop="author" content="郑杰"/><meta itemprop="datePublished" content="2020-06-13T00:00:00+08:00">
-    <meta itemprop="keywords" content="Python,TVDI"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2020/05/13/ArcGIS-API-for-Javascript%E4%B9%8B%E6%91%84%E5%BD%B1%E5%9C%B0%E5%9B%BE.html"><h2 itemprop="headline" class="item__header">ArcGIS API for Javascript之摄影地图</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody"><p>以前有想过将拍摄的照片根据其拍摄地点显示在地图上，刚好最近在学习ArcGIS API for Javascript，于是就考虑使用ArcGIS API for Javascript实现这样的功能。</p>
-</div><p><a href="/2020/05/13/ArcGIS-API-for-Javascript%E4%B9%8B%E6%91%84%E5%BD%B1%E5%9C%B0%E5%9B%BE.html">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ArcGIS+API+for+JavaScript">ArcGIS API for JavaScript</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%A6%81%E7%B4%A0%E5%9B%BE%E5%B1%82">要素图层</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%9B%BE%E5%B1%82%E6%B8%B2%E6%9F%93">图层渲染</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 13, 2020</span>
-            </li></ul></div><meta itemprop="author" content="郑杰"/><meta itemprop="datePublished" content="2020-05-13T00:00:00+08:00">
-    <meta itemprop="keywords" content="ArcGIS API for JavaScript,要素图层,图层渲染"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2020/05/10/ArcGIS-API-for-Javascript%E4%B9%8BGP%E6%9C%8D%E5%8A%A1-%E7%9F%A2%E9%87%8F.html"><h2 itemprop="headline" class="item__header">ArcGIS API for Javascript之GP服务（矢量）</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody"><p>WebGIS的开发经常会用到一些空间数据的处理与分析功能，而GP服务是实现这些功能的途径之一。下面以缓冲区分析的GP服务为例，详细介绍如何通过ArcGIS API for Javascript调用GP服务。GP服务的发布可参考<a href="https://blog.csdn.net/lovecarpenter/article/details/52496876">ArcGIS Server之发布GP服务-返回矢量数据</a></p>
-</div><p><a href="/2020/05/10/ArcGIS-API-for-Javascript%E4%B9%8BGP%E6%9C%8D%E5%8A%A1-%E7%9F%A2%E9%87%8F.html">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ArcGIS+API+for+JavaScript">ArcGIS API for JavaScript</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=GP%E6%9C%8D%E5%8A%A1">GP服务</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 10, 2020</span>
-            </li></ul></div><meta itemprop="author" content="郑杰"/><meta itemprop="datePublished" content="2020-05-10T00:00:00+08:00">
-    <meta itemprop="keywords" content="ArcGIS API for JavaScript,GP服务"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2020/05/06/ArcGIS-API-for-JavaScript%E4%B9%8B%E8%BF%81%E5%BE%99%E5%9B%BE-Echarts.html"><h2 itemprop="headline" class="item__header">ArcGIS API for JavaScript之迁徙图（Echarts）</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody"><p>ArcGIS API for JavaScript集成Echarts实现迁徙图效果的关键问题在于Echarts坐标系与ArcGIS坐标系不一致，需要进行Echarts坐标系与ArcGIS坐标系的转换。</p>
-</div><p><a href="/2020/05/06/ArcGIS-API-for-JavaScript%E4%B9%8B%E8%BF%81%E5%BE%99%E5%9B%BE-Echarts.html">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=ArcGIS+API+for+JavaScript">ArcGIS API for JavaScript</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=Echarts">Echarts</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E8%BF%81%E5%BE%99%E5%9B%BE">迁徙图</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 06, 2020</span>
-            </li></ul></div><meta itemprop="author" content="郑杰"/><meta itemprop="datePublished" content="2020-05-06T00:00:00+08:00">
-    <meta itemprop="keywords" content="ArcGIS API for JavaScript,Echarts,迁徙图"></div>
-      </article><article class="item" itemscope itemtype="http://schema.org/BlogPosting"><div class="item__content">
-          <header><a href="/2020/05/03/Python%E4%B9%8B%E8%B0%B7%E6%AD%8C%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE%E5%BD%B1%E5%83%8F%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD.html"><h2 itemprop="headline" class="item__header">Python之谷歌瓦片地图影像批量下载</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody"><p>最近在写毕业论文，想用谷歌影像作为底图来展示研究区，然后Google了很多脚本，结果发现输出的影像都不带空间坐标系，所以就想自己写个小工具，通过输入空间范围就可以实现Google地图的下载，并输出为<strong>TIFF</strong>格式，含<strong>WGS 84</strong>空间坐标系。</p>
-</div><p><a href="/2020/05/03/Python%E4%B9%8B%E8%B0%B7%E6%AD%8C%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE%E5%BD%B1%E5%83%8F%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD.html">Read more</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Python之谷歌瓦片地图影像批量下载</h1></header><span class="split-space">&nbsp;</span>
+          <a class="edit-on-github"
+            title="Edit on Github"
+            href="https://github.com/zhengjie9510/zhengjie9510.github.io/tree/master/_posts/2020-05-03-Python之谷歌瓦片地图影像批量下载.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="Python之谷歌瓦片地图影像批量下载"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=Python">Python</a>
             </li><li>
@@ -351,16 +286,157 @@
                 href="/archive.html?tag=Google+Map">Google Map</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>May 03, 2020</span>
             </li></ul></div><meta itemprop="author" content="郑杰"/><meta itemprop="datePublished" content="2020-05-03T00:00:00+08:00">
-    <meta itemprop="keywords" content="Python,Google Map"></div>
-      </article></div>
-</div><div class="layout--home"></div>
-<script>/*(function () {
+    <meta itemprop="keywords" content="Python,Google Map"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
 
-})();*/
+<!-- end custom article top snippet -->
+<div class="article__content" itemprop="articleBody"><p>最近在写毕业论文，想用谷歌影像作为底图来展示研究区，然后Google了很多脚本，结果发现输出的影像都不带空间坐标系，所以就想自己写个小工具，通过输入空间范围就可以实现Google地图的下载，并输出为<strong>TIFF</strong>格式，含<strong>WGS 84</strong>空间坐标系。
+<!--more--></p>
+<h2 id="拟解决问题">拟解决问题</h2>
+<p>下载谷歌影像，并输出为带空间坐标系的TIFF格式</p>
+<h2 id="简单说明">简单说明</h2>
+<p>通过多线程、多进程的方式实现快速下载<br />
+下面只给出主要的思路及代码<br />
+您也可以点击<a href="https://github.com/zhengjie9510/Google-Map-Downloader">这里</a>获取完整的代码 <br />
+如果对您有用的话，别忘了给点个赞哦^_^ ！</p>
+<h2 id="主要思路及代码">主要思路及代码</h2>
+<h3 id="计算给定空间范围内的瓦片行列号并返回url">计算给定空间范围内的瓦片行列号，并返回URL</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">MAP_URLS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">"Google"</span><span class="p">:</span> <span class="s">"http://mts0.googleapis.com/vt?lyrs={style}&amp;x={x}&amp;y={y}&amp;z={z}"</span><span class="p">,</span>
+    <span class="s">"Google China"</span><span class="p">:</span> <span class="s">"http://mt2.google.cn/vt/lyrs={style}&amp;hl=zh-CN&amp;gl=CN&amp;src=app&amp;x={x}&amp;y={y}&amp;z={z}"</span><span class="p">}</span>    
+
+<span class="k">def</span> <span class="nf">get_url</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">style</span><span class="p">):</span><span class="c1">#
+</span>    <span class="k">if</span> <span class="n">source</span> <span class="o">==</span> <span class="s">'Google China'</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">MAP_URLS</span><span class="p">[</span><span class="s">"Google China"</span><span class="p">].</span><span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">source</span> <span class="o">==</span> <span class="s">'Google'</span><span class="p">:</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="n">MAP_URLS</span><span class="p">[</span><span class="s">"Google"</span><span class="p">].</span><span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"Unknown Map Source ! "</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">url</span>
+    
+<span class="k">def</span> <span class="nf">get_urls</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="s">'google'</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s">'s'</span><span class="p">):</span>
+    <span class="n">pos1x</span><span class="p">,</span> <span class="n">pos1y</span> <span class="o">=</span> <span class="n">wgs_to_tile</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">pos2x</span><span class="p">,</span> <span class="n">pos2y</span> <span class="o">=</span> <span class="n">wgs_to_tile</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">lenx</span> <span class="o">=</span> <span class="n">pos2x</span> <span class="o">-</span> <span class="n">pos1x</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">leny</span> <span class="o">=</span> <span class="n">pos2y</span> <span class="o">-</span> <span class="n">pos1y</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Total tiles number：{x} X {y}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">lenx</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">leny</span><span class="p">))</span>
+    <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="n">get_url</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">style</span><span class="p">)</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pos1y</span><span class="p">,</span> <span class="n">pos1y</span> <span class="o">+</span> <span class="n">leny</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">pos1x</span><span class="p">,</span> <span class="n">pos1x</span> <span class="o">+</span> <span class="n">lenx</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">urls</span>
+</code></pre></div></div>
+<h3 id="根据上一步得到的url下载瓦片">根据上一步得到的URL下载瓦片</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">download_tiles</span><span class="p">(</span><span class="n">urls</span><span class="p">,</span><span class="n">multi</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">makeupdate</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">up</span><span class="p">():</span>
+            <span class="k">global</span> <span class="n">COUNT</span>
+            <span class="n">COUNT</span><span class="o">+=</span><span class="mi">1</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\r</span><span class="s">DownLoading...[{0}/{1}]"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">COUNT</span><span class="p">,</span><span class="n">s</span><span class="p">),</span><span class="n">end</span><span class="o">=</span><span class="s">''</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">up</span>
+
+    <span class="n">url_len</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">urls</span><span class="p">)</span>
+    <span class="n">datas</span><span class="o">=</span><span class="p">[</span><span class="bp">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">url_len</span>
+    <span class="k">if</span> <span class="n">multi</span> <span class="o">&lt;</span><span class="mi">1</span> <span class="ow">or</span> <span class="n">multi</span> <span class="o">&gt;</span><span class="mi">20</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">multi</span><span class="p">,</span><span class="nb">int</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"multi of Downloader shuold be int and between 1 to 20."</span><span class="p">)</span>
+    <span class="n">tasks</span><span class="o">=</span><span class="p">[</span><span class="n">Downloader</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">multi</span><span class="p">,</span><span class="n">urls</span><span class="p">,</span><span class="n">datas</span><span class="p">,</span><span class="n">makeupdate</span><span class="p">(</span><span class="n">url_len</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">multi</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+        <span class="n">i</span><span class="p">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tasks</span><span class="p">:</span>
+        <span class="n">i</span><span class="p">.</span><span class="n">join</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">datas</span>
+</code></pre></div></div>
+<h3 id="合并瓦片为一张影像">合并瓦片为一张影像</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">merge_tiles</span><span class="p">(</span><span class="n">datas</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="n">pos1x</span><span class="p">,</span> <span class="n">pos1y</span> <span class="o">=</span> <span class="n">wgs_to_tile</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">pos2x</span><span class="p">,</span> <span class="n">pos2y</span> <span class="o">=</span> <span class="n">wgs_to_tile</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">lenx</span> <span class="o">=</span> <span class="n">pos2x</span> <span class="o">-</span> <span class="n">pos1x</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">leny</span> <span class="o">=</span> <span class="n">pos2y</span> <span class="o">-</span> <span class="n">pos1y</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">outpic</span> <span class="o">=</span> <span class="n">pil</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="s">'RGBA'</span><span class="p">,</span> <span class="p">(</span><span class="n">lenx</span> <span class="o">*</span> <span class="mi">256</span><span class="p">,</span> <span class="n">leny</span> <span class="o">*</span> <span class="mi">256</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datas</span><span class="p">):</span>
+        <span class="n">picio</span> <span class="o">=</span> <span class="n">io</span><span class="p">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">small_pic</span> <span class="o">=</span> <span class="n">pil</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">picio</span><span class="p">)</span>
+
+        <span class="n">y</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="n">lenx</span><span class="p">,</span> <span class="n">i</span> <span class="o">%</span> <span class="n">lenx</span>
+        <span class="n">outpic</span><span class="p">.</span><span class="n">paste</span><span class="p">(</span><span class="n">small_pic</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="mi">256</span><span class="p">,</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">256</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'</span><span class="se">\n</span><span class="s">Tiles merge completed'</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">outpic</span>
+</code></pre></div></div>
+<h3 id="计算所下载瓦片的实际空间范围我们需要的是瓦片边缘的经纬度信息">计算所下载瓦片的实际空间范围（我们需要的是瓦片边缘的经纬度信息）</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">getExtent</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span><span class="n">source</span><span class="o">=</span><span class="s">"Google China"</span><span class="p">):</span>
+    <span class="n">pos1x</span><span class="p">,</span> <span class="n">pos1y</span> <span class="o">=</span> <span class="n">wgs_to_tile</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">pos2x</span><span class="p">,</span> <span class="n">pos2y</span> <span class="o">=</span> <span class="n">wgs_to_tile</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+    <span class="n">Xframe</span><span class="o">=</span><span class="n">pixls_to_mercator</span><span class="p">({</span><span class="s">"LT"</span><span class="p">:(</span><span class="n">pos1x</span><span class="p">,</span><span class="n">pos1y</span><span class="p">),</span><span class="s">"RT"</span><span class="p">:(</span><span class="n">pos2x</span><span class="p">,</span><span class="n">pos1y</span><span class="p">),</span><span class="s">"LB"</span><span class="p">:(</span><span class="n">pos1x</span><span class="p">,</span><span class="n">pos2y</span><span class="p">),</span><span class="s">"RB"</span><span class="p">:(</span><span class="n">pos2x</span><span class="p">,</span><span class="n">pos2y</span><span class="p">),</span><span class="s">"z"</span><span class="p">:</span><span class="n">z</span><span class="p">})</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"LT"</span><span class="p">,</span><span class="s">"LB"</span><span class="p">,</span><span class="s">"RT"</span><span class="p">,</span><span class="s">"RB"</span><span class="p">]:</span>
+        <span class="n">Xframe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">mercator_to_wgs</span><span class="p">(</span><span class="o">*</span><span class="n">Xframe</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">if</span> <span class="n">source</span><span class="o">==</span><span class="s">"Google"</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">elif</span> <span class="n">source</span><span class="o">==</span><span class="s">"Google China"</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="s">"LT"</span><span class="p">,</span><span class="s">"LB"</span><span class="p">,</span><span class="s">"RT"</span><span class="p">,</span><span class="s">"RB"</span><span class="p">]:</span>
+                <span class="n">Xframe</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">gcj_to_wgs</span><span class="p">(</span><span class="o">*</span><span class="n">Xframe</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nb">Exception</span><span class="p">(</span><span class="s">"Invalid argument: source."</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="n">Xframe</span>
+</code></pre></div></div>
+<h3 id="最后将结果输出为tiff格式">最后将结果输出为TIFF格式</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">saveTiff</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">g</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">gt</span><span class="p">,</span><span class="n">filePath</span><span class="p">):</span>
+    <span class="n">fname_out</span>   <span class="o">=</span> <span class="n">filePath</span>
+    <span class="n">driver</span>      <span class="o">=</span> <span class="n">gdal</span><span class="p">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s">'GTiff'</span><span class="p">)</span>
+    <span class="c1"># Create a 3-band dataset
+</span>    <span class="n">dset_output</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="n">fname_out</span><span class="p">,</span> <span class="n">r</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">r</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">3</span><span class="p">,</span> <span class="n">gdal</span><span class="p">.</span><span class="n">GDT_UInt16</span><span class="p">)</span>
+    <span class="n">dset_output</span><span class="p">.</span><span class="n">SetGeoTransform</span><span class="p">(</span><span class="n">gt</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">proj</span> <span class="o">=</span> <span class="n">osr</span><span class="p">.</span><span class="n">SpatialReference</span><span class="p">()</span>
+        <span class="n">proj</span><span class="p">.</span><span class="n">ImportFromEPSG</span><span class="p">(</span><span class="mi">4326</span><span class="p">)</span>
+        <span class="n">dset_output</span><span class="p">.</span><span class="n">SetSpatialRef</span><span class="p">(</span><span class="n">proj</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Error: Coordinate system setting failed"</span><span class="p">)</span>
+    <span class="n">dset_output</span><span class="p">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">WriteArray</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+    <span class="n">dset_output</span><span class="p">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">WriteArray</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+    <span class="n">dset_output</span><span class="p">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="n">WriteArray</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="n">dset_output</span><span class="p">.</span><span class="n">FlushCache</span><span class="p">()</span>
+    <span class="n">dset_output</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Image Saved"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>完成！</p>
+</div><section class="article__sharing d-print-none"><!-- start custom sharing snippet -->
+<div class="social-share" data-initialized="true">
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+  </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+<!-- end custom sharing snippet --></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2020-05-03T00:00:00+08:00"><!-- start custom article footer snippet -->
+
+<!-- end custom article footer snippet -->
+</footer>
+<div class="article__section-navigator clearfix"><div class="next"><span>NEXT</span><a href="/2020/05/06/ArcGIS-API-for-JavaScript%E4%B9%8B%E8%BF%81%E5%BE%99%E5%9B%BE-Echarts.html">ArcGIS API for JavaScript之迁徙图（Echarts）</a></div></div></div>
+
+</div>
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
+
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
 </script>
-
-
-
 </div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
@@ -908,6 +984,68 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 /*(function () {
 
 })();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
 </script>
     </div>
     <script>(function () {

@@ -1,0 +1,29 @@
+I"�<p>海岸线提取是找工作时遇到的一道测试题，具体要求是设计一种算法来从给定影像中检测海岸线，并将结果另存为矢量GeoJSON文件。
+<!--more--></p>
+<h2 id="思路">思路</h2>
+<p>这里使用归一化水体指数（NDWI）来区分水体和陆地，然后通过边缘检测提取海岸线。</p>
+<h2 id="步骤">步骤</h2>
+<h3 id="加载必要模块">加载必要模块</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">from</span> <span class="nn">gdalconst</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">ogr</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</code></pre></div></div>
+<h3 id="读取影像数据计算ndwi">读取影像数据，计算NDWI</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 色光波段
+</span><span class="n">green_ds</span><span class="o">=</span><span class="n">gdal</span><span class="p">.</span><span class="n">Open</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\B03.tif'</span><span class="p">,</span><span class="n">GA_ReadOnly</span><span class="p">)</span>
+<span class="n">green_band</span><span class="o">=</span><span class="n">green_ds</span><span class="p">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">green</span><span class="o">=</span><span class="n">green_band</span><span class="p">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+<span class="c1"># 读取原影像信息，用于保存结果
+</span><span class="n">gt</span> <span class="o">=</span> <span class="n">green_ds</span><span class="p">.</span><span class="n">GetGeoTransform</span><span class="p">()</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">green_ds</span><span class="p">.</span><span class="n">GetProjectionRef</span><span class="p">()</span>
+<span class="c1"># 近红外波段
+</span><span class="n">nir_ds</span><span class="o">=</span><span class="n">gdal</span><span class="p">.</span><span class="n">Open</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\B08.tif'</span><span class="p">,</span><span class="n">GA_ReadOnly</span><span class="p">)</span>
+<span class="n">nir_band</span><span class="o">=</span><span class="n">nir_ds</span><span class="p">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nir</span><span class="o">=</span><span class="n">nir_band</span><span class="p">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+</code></pre></div></div>
+<p>###</p>
+:ET

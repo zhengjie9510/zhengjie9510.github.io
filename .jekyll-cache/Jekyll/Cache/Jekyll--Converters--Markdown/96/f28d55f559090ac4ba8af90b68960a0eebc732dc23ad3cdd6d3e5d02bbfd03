@@ -1,0 +1,106 @@
+I"B<p>海岸线提取是找工作时遇到的一道测试题，具体要求是设计一种算法来从给定影像中检测海岸线，并将结果另存为矢量GeoJSON文件。
+<!--more--></p>
+<h2 id="思路">思路</h2>
+<p>这里使用归一化水体指数（NDWI）来区分水体和陆地，然后通过边缘检测提取海岸线。</p>
+<h2 id="步骤">步骤</h2>
+<h3 id="加载必要模块">加载必要模块</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">gdal</span>
+<span class="kn">from</span> <span class="nn">gdalconst</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="nn">ogr</span>
+<span class="kn">import</span> <span class="nn">os</span>
+</code></pre></div></div>
+<h3 id="读取影像数据">读取影像数据</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 色光波段
+</span><span class="n">green_ds</span><span class="o">=</span><span class="n">gdal</span><span class="p">.</span><span class="n">Open</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\B03.tif'</span><span class="p">,</span><span class="n">GA_ReadOnly</span><span class="p">)</span>
+<span class="n">green_band</span><span class="o">=</span><span class="n">green_ds</span><span class="p">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">green</span><span class="o">=</span><span class="n">green_band</span><span class="p">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+<span class="c1"># 读取原影像信息，用于保存结果
+</span><span class="n">gt</span> <span class="o">=</span> <span class="n">green_ds</span><span class="p">.</span><span class="n">GetGeoTransform</span><span class="p">()</span>
+<span class="n">proj</span> <span class="o">=</span> <span class="n">green_ds</span><span class="p">.</span><span class="n">GetProjectionRef</span><span class="p">()</span>
+<span class="c1"># 近红外波段
+</span><span class="n">nir_ds</span><span class="o">=</span><span class="n">gdal</span><span class="p">.</span><span class="n">Open</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\B08.tif'</span><span class="p">,</span><span class="n">GA_ReadOnly</span><span class="p">)</span>
+<span class="n">nir_band</span><span class="o">=</span><span class="n">nir_ds</span><span class="p">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nir</span><span class="o">=</span><span class="n">nir_band</span><span class="p">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+</code></pre></div></div>
+<h3 id="区分陆地和水体">区分陆地和水体</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 计算NDWI，二值化，区分陆地和水面信息
+# 还可以对影像进行处理，如空间滤波去除噪声等。
+</span><span class="n">ndwi</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">((</span><span class="n">green</span><span class="o">-</span><span class="n">nir</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">green</span><span class="o">+</span><span class="n">nir</span><span class="p">))</span>
+<span class="n">ndwi</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">medianBlur</span><span class="p">(</span><span class="n">ndwi</span><span class="p">,</span><span class="mi">9</span><span class="p">)</span>
+<span class="n">ndwi</span><span class="o">=</span><span class="n">cv2</span><span class="p">.</span><span class="n">threshold</span><span class="p">(</span><span class="n">ndwi</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">kernel</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">getStructuringElement</span><span class="p">(</span><span class="n">cv2</span><span class="p">.</span><span class="n">MORPH_RECT</span><span class="p">,(</span><span class="mi">30</span><span class="p">,</span><span class="mi">30</span><span class="p">))</span>
+<span class="n">ndwi</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">dilate</span><span class="p">(</span><span class="n">ndwi</span><span class="p">,</span><span class="n">kernel</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ndwi</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+<p>二值化结果展示：<br />
+<img src="\assets\images\Python之海岸线提取\水体和陆地.png" alt="二值化结果" /></p>
+<h3 id="边缘检测">边缘检测</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># find contours
+</span><span class="n">image</span><span class="p">,</span> <span class="n">contours</span><span class="p">,</span> <span class="n">hierarchy</span><span class="o">=</span><span class="n">cv2</span><span class="p">.</span><span class="n">findContours</span><span class="p">(</span><span class="n">ndwi</span><span class="p">,</span><span class="n">cv2</span><span class="p">.</span><span class="n">RETR_EXTERNAL</span><span class="p">,</span><span class="n">cv2</span><span class="p">.</span><span class="n">CHAIN_APPROX_SIMPLE</span><span class="p">)</span>
+</code></pre></div></div>
+<h3 id="保存为geojson格式">保存为GeoJSON格式</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># save the coastline as GeoJSON
+</span><span class="n">driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="p">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s">'GeoJSON'</span><span class="p">)</span>
+<span class="c1"># create a new data source and layer
+</span><span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\coastline.geojson'</span><span class="p">):</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">DeleteDataSource</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\coastline.geojson'</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">CreateDataSource</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\coastline.geojson'</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">ds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Could not create file'</span><span class="p">)</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">ds</span><span class="p">.</span><span class="n">CreateLayer</span><span class="p">(</span><span class="s">'coastline.geojson'</span><span class="p">,</span> <span class="n">geom_type</span><span class="o">=</span><span class="n">ogr</span><span class="p">.</span><span class="n">wkbLineString</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">contours</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">ogr</span><span class="p">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="p">.</span><span class="n">wkbLineString</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">points</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+        <span class="n">line</span><span class="p">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">gt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="n">gt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># get the FeatureDefn for the output layer
+</span>    <span class="n">featureDefn</span> <span class="o">=</span> <span class="n">layer</span><span class="p">.</span><span class="n">GetLayerDefn</span><span class="p">()</span>
+    <span class="c1"># create a new feature
+</span>    <span class="n">feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="p">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">featureDefn</span><span class="p">)</span>
+    <span class="n">feature</span><span class="p">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="c1"># add the feature to the output layer
+</span>    <span class="n">layer</span><span class="p">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+<span class="c1"># destroy the geometry and feature and close the data source
+</span><span class="n">line</span><span class="p">.</span><span class="n">Destroy</span><span class="p">()</span>
+<span class="n">feature</span><span class="p">.</span><span class="n">Destroy</span><span class="p">()</span>
+<span class="n">ds</span><span class="p">.</span><span class="n">Destroy</span><span class="p">()</span>
+</code></pre></div></div>
+<h3 id="保存为shapefile格式">保存为shapefile格式</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># save the coastline as shapefile
+</span><span class="n">driver</span> <span class="o">=</span> <span class="n">ogr</span><span class="p">.</span><span class="n">GetDriverByName</span><span class="p">(</span><span class="s">'ESRI Shapefile'</span><span class="p">)</span>
+<span class="c1"># create a new data source and layer
+</span><span class="k">if</span> <span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">exists</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\coastline.shp'</span><span class="p">):</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">DeleteDataSource</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\coastline.shp'</span><span class="p">)</span>
+<span class="n">ds</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">CreateDataSource</span><span class="p">(</span><span class="s">r'D:\Documents\sentinel-2\coastline.shp'</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">ds</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">'Could not create file'</span><span class="p">)</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">ds</span><span class="p">.</span><span class="n">CreateLayer</span><span class="p">(</span><span class="s">'coastline'</span><span class="p">,</span> <span class="n">geom_type</span><span class="o">=</span><span class="n">ogr</span><span class="p">.</span><span class="n">wkbLineString</span><span class="p">)</span>
+<span class="c1"># add an id field to the output
+</span><span class="n">fieldDefn</span> <span class="o">=</span> <span class="n">ogr</span><span class="p">.</span><span class="n">FieldDefn</span><span class="p">(</span><span class="s">'id'</span><span class="p">,</span> <span class="n">ogr</span><span class="p">.</span><span class="n">OFTInteger</span><span class="p">)</span>
+<span class="n">layer</span><span class="p">.</span><span class="n">CreateField</span><span class="p">(</span><span class="n">fieldDefn</span><span class="p">)</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">contours</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">ogr</span><span class="p">.</span><span class="n">Geometry</span><span class="p">(</span><span class="n">ogr</span><span class="p">.</span><span class="n">wkbLineString</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">points</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+        <span class="n">line</span><span class="p">.</span><span class="n">AddPoint</span><span class="p">(</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="o">+</span><span class="n">gt</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="n">gt</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">10</span><span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="c1"># get the FeatureDefn for the output layer
+</span>    <span class="n">featureDefn</span> <span class="o">=</span> <span class="n">layer</span><span class="p">.</span><span class="n">GetLayerDefn</span><span class="p">()</span>
+    <span class="c1"># create a new feature
+</span>    <span class="n">feature</span> <span class="o">=</span> <span class="n">ogr</span><span class="p">.</span><span class="n">Feature</span><span class="p">(</span><span class="n">featureDefn</span><span class="p">)</span>
+    <span class="n">feature</span><span class="p">.</span><span class="n">SetGeometry</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+    <span class="n">feature</span><span class="p">.</span><span class="n">SetField</span><span class="p">(</span><span class="s">'id'</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="c1"># add the feature to the output layer
+</span>    <span class="n">layer</span><span class="p">.</span><span class="n">CreateFeature</span><span class="p">(</span><span class="n">feature</span><span class="p">)</span>
+
+<span class="c1"># destroy the geometry and feature and close the data source
+</span><span class="n">line</span><span class="p">.</span><span class="n">Destroy</span><span class="p">()</span>
+<span class="n">feature</span><span class="p">.</span><span class="n">Destroy</span><span class="p">()</span>
+<span class="n">ds</span><span class="p">.</span><span class="n">Destroy</span><span class="p">()</span>
+</code></pre></div></div>
+:ET

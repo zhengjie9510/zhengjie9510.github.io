@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
-<loc>http://localhost:8080/2020/05/03/Python%E5%AE%9E%E7%8E%B0%E8%B0%B7%E6%AD%8C%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE%E5%BD%B1%E5%83%8F%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD.html</loc>
+<loc>http://localhost:8080/2020/05/03/Python%E4%B9%8B%E8%B0%B7%E6%AD%8C%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE%E5%BD%B1%E5%83%8F%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD.html</loc>
 <lastmod>2020-05-03T00:00:00+08:00</lastmod>
 </url>
 <url>
@@ -17,8 +17,12 @@
 <lastmod>2020-05-13T00:00:00+08:00</lastmod>
 </url>
 <url>
-<loc>http://localhost:8080/2020/06/13/Python%E8%AE%A1%E7%AE%97%E6%B8%A9%E5%BA%A6%E6%A4%8D%E8%A2%AB%E5%B9%B2%E6%97%B1%E6%8C%87%E6%95%B0-TVDI.html</loc>
+<loc>http://localhost:8080/2020/06/13/Python%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%B8%A9%E5%BA%A6%E6%A4%8D%E8%A2%AB%E5%B9%B2%E6%97%B1%E6%8C%87%E6%95%B0-TVDI.html</loc>
 <lastmod>2020-06-13T00:00:00+08:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:8080/2020/06/14/Python%E4%B9%8B%E6%B5%B7%E5%B2%B8%E7%BA%BF%E6%8F%90%E5%8F%96.html</loc>
+<lastmod>2020-06-14T00:00:00+08:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:8080/about.html</loc>
