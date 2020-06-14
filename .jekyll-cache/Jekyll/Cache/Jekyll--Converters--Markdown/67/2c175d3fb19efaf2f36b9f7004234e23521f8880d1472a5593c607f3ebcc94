@@ -1,4 +1,4 @@
-I"B<p>海岸线提取是找工作时遇到的一道测试题，具体要求是设计一种算法来从给定影像中检测海岸线，并将结果另存为矢量GeoJSON文件。
+I"C<p>海岸线提取是找工作时遇到的一道测试题，因为时间有限，所以代码简单粗暴。具体要求是设计一种算法来从给定影像中检测海岸线，并将结果另存为矢量GeoJSON文件。
 <!--more--></p>
 <h2 id="思路">思路</h2>
 <p>这里使用归一化水体指数（NDWI）来区分水体和陆地，然后通过边缘检测提取海岸线。</p>
@@ -103,4 +103,7 @@
 <span class="n">feature</span><span class="p">.</span><span class="n">Destroy</span><span class="p">()</span>
 <span class="n">ds</span><span class="p">.</span><span class="n">Destroy</span><span class="p">()</span>
 </code></pre></div></div>
+<h2 id="结果展示">结果展示</h2>
+<p><img src="\assets\images\Python之海岸线提取\海岸线.jpg" alt="海岸线" /><br />
+如果对您有用的话，别忘了给点个赞哦^_^ ！</p>
 :ET
