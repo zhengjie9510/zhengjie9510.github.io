@@ -1,11 +1,10 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Archive - ZhengJie's Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Python之遍历文件夹及其子文件夹中所有文件 - ZhengJie's Blog</title>
 
-<meta name="description" content="Zheng Jie's Blog
-">
-<link rel="canonical" href="http://localhost:8080/archive.html"><link rel="alternate" type="application/rss+xml" title="ZhengJie's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
+<meta name="description" content="使用os.walk()函数遍历文件夹及其子文件夹中的所有文件或文件夹。">
+<link rel="canonical" href="http://localhost:8080/2020/06/20/Python%E4%B9%8B%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8F%8A%E5%85%B6%E5%AD%90%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6.html"><link rel="alternate" type="application/rss+xml" title="ZhengJie's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
@@ -258,216 +257,131 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
         <div class="header__brand"><a title="Zheng Jie's Blog
 " href="/">ZhengJie's Blog</a></div><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></div><nav class="navigation">
-        <ul><li class="navigation__item"><a href="/">Home</a></li><li class="navigation__item navigation__item--active"><a href="/archive.html">Archive</a></li><li class="navigation__item"><a href="/about.html">About</a></li><li class="navigation__item"><a href="https://github.com/zhengjie9510">Github</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
+        <ul><li class="navigation__item"><a href="/">Home</a></li><li class="navigation__item"><a href="/archive.html">Archive</a></li><li class="navigation__item"><a href="/about.html">About</a></li><li class="navigation__item"><a href="https://github.com/zhengjie9510">Github</a></li><li><button class="button button--secondary button--circle search-button js-search-toggle"><i class="fas fa-search"></i></button></li></ul>
       </nav></div>
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
-              <div class="col-aside d-print-none js-col-aside"></div>
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
+</aside></div>
 
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>Archive</h1></header></div><meta itemprop="headline" content="Archive"><meta itemprop="author" content="郑杰"/><div class="js-article-content"><div class="layout--archive js-all"><div class="site-tags js-tags">
-  <ul class="menu">
-    <li>
-      <button type="button" class="button button--secondary button--pill tag-button tag-button--all" data-encode="">
-        Show All<div class="tag-button__count">7</div>
-      </button>
-    </li><li><button type="button" class="button button--pill tag-button tag-button-3" data-encode="ArcGIS+API+for+JavaScript">
-          <span>ArcGIS API for JavaScript</span><div class="tag-button__count">3</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-1" data-encode="Echarts">
-          <span>Echarts</span><div class="tag-button__count">1</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-1" data-encode="GP%E6%9C%8D%E5%8A%A1">
-          <span>GP服务</span><div class="tag-button__count">1</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-1" data-encode="Google+Map">
-          <span>Google Map</span><div class="tag-button__count">1</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-4" data-encode="Python">
-          <span>Python</span><div class="tag-button__count">4</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-1" data-encode="TVDI">
-          <span>TVDI</span><div class="tag-button__count">1</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-1" data-encode="%E5%9B%BE%E5%B1%82%E6%B8%B2%E6%9F%93">
-          <span>图层渲染</span><div class="tag-button__count">1</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-1" data-encode="%E6%B5%B7%E5%B2%B8%E7%BA%BF">
-          <span>海岸线</span><div class="tag-button__count">1</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-1" data-encode="%E8%A6%81%E7%B4%A0%E5%9B%BE%E5%B1%82">
-          <span>要素图层</span><div class="tag-button__count">1</div>
-        </button>
-      </li><li><button type="button" class="button button--pill tag-button tag-button-1" data-encode="%E8%BF%81%E5%BE%99%E5%9B%BE">
-          <span>迁徙图</span><div class="tag-button__count">1</div>
-        </button>
-      </li></ul>
-</div>
-<div class="js-result layout--archive__result d-none"><div class="article-list items"><section><h2 class="article-list__group-header">2020</h2><ul class="items"><li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="Python">
-        <div class="item__content"><span class="item__meta">Jun 20</span><a itemprop="headline" class="item__header" href="/2020/06/20/Python%E4%B9%8B%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8F%8A%E5%85%B6%E5%AD%90%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6.html">Python之遍历文件夹及其子文件夹中所有文件</a></div>
-      </li><li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="Python,%E6%B5%B7%E5%B2%B8%E7%BA%BF">
-        <div class="item__content"><span class="item__meta">Jun 14</span><a itemprop="headline" class="item__header" href="/2020/06/14/Python%E4%B9%8B%E6%B5%B7%E5%B2%B8%E7%BA%BF%E6%8F%90%E5%8F%96.html">Python之海岸线提取</a></div>
-      </li><li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="Python,TVDI">
-        <div class="item__content"><span class="item__meta">Jun 13</span><a itemprop="headline" class="item__header" href="/2020/06/13/Python%E4%B9%8B%E8%AE%A1%E7%AE%97%E6%B8%A9%E5%BA%A6%E6%A4%8D%E8%A2%AB%E5%B9%B2%E6%97%B1%E6%8C%87%E6%95%B0-TVDI.html">Python之计算温度植被干旱指数（TVDI）</a></div>
-      </li><li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="ArcGIS+API+for+JavaScript,%E8%A6%81%E7%B4%A0%E5%9B%BE%E5%B1%82,%E5%9B%BE%E5%B1%82%E6%B8%B2%E6%9F%93">
-        <div class="item__content"><span class="item__meta">May 13</span><a itemprop="headline" class="item__header" href="/2020/05/13/ArcGIS-API-for-Javascript%E4%B9%8B%E6%91%84%E5%BD%B1%E5%9C%B0%E5%9B%BE.html">ArcGIS API for Javascript之摄影地图</a></div>
-      </li><li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="ArcGIS+API+for+JavaScript,GP%E6%9C%8D%E5%8A%A1">
-        <div class="item__content"><span class="item__meta">May 10</span><a itemprop="headline" class="item__header" href="/2020/05/10/ArcGIS-API-for-Javascript%E4%B9%8BGP%E6%9C%8D%E5%8A%A1-%E7%9F%A2%E9%87%8F.html">ArcGIS API for Javascript之GP服务（矢量）</a></div>
-      </li><li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="ArcGIS+API+for+JavaScript,Echarts,%E8%BF%81%E5%BE%99%E5%9B%BE">
-        <div class="item__content"><span class="item__meta">May 06</span><a itemprop="headline" class="item__header" href="/2020/05/06/ArcGIS-API-for-JavaScript%E4%B9%8B%E8%BF%81%E5%BE%99%E5%9B%BE-Echarts.html">ArcGIS API for JavaScript之迁徙图（Echarts）</a></div>
-      </li><li class="item" itemscope itemtype="http://schema.org/BlogPosting" data-tags="Python,Google+Map">
-        <div class="item__content"><span class="item__meta">May 03</span><a itemprop="headline" class="item__header" href="/2020/05/03/Python%E4%B9%8B%E8%B0%B7%E6%AD%8C%E7%93%A6%E7%89%87%E5%9C%B0%E5%9B%BE%E5%BD%B1%E5%83%8F%E6%89%B9%E9%87%8F%E4%B8%8B%E8%BD%BD.html">Python之谷歌瓦片地图影像批量下载</a></div>
-      </li></div>
-</div>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Python之遍历文件夹及其子文件夹中所有文件</h1></header><span class="split-space">&nbsp;</span>
+          <a class="edit-on-github"
+            title="Edit on Github"
+            href="https://github.com/zhengjie9510/zhengjie9510.github.io/tree/master/_posts/2020-06-20-Python之遍历文件夹及其子文件夹中所有文件.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="Python之遍历文件夹及其子文件夹中所有文件"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Python">Python</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jun 20, 2020</span>
+            </li><li><i class="far fa-eye"></i> <span class="js-pageview" data-page-key="Python之遍历文件夹及其子文件夹中所有文件">0</span> views</li></ul></div><meta itemprop="author" content="郑杰"/><meta itemprop="datePublished" content="2020-06-20T00:00:00+08:00">
+    <meta itemprop="keywords" content="Python"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+
+<!-- end custom article top snippet -->
+<div class="article__content" itemprop="articleBody"><p>使用os.walk()函数遍历文件夹及其子文件夹中的所有文件或文件夹。<br />
+<!--more-->
+直接进入正题</p>
+<h2 id="代码">代码</h2>
+<h3 id="oswalk类">OsWalk类</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">class</span> <span class="nc">OsWalk</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">folder_path</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_folder_path</span><span class="o">=</span><span class="n">folder_path</span>
+    
+    <span class="c1"># 文件夹及其子文件夹中的所有文件
+</span>    <span class="k">def</span> <span class="nf">file_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file_list</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span><span class="n">dirs</span><span class="p">,</span><span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_folder_path</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                <span class="n">file_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">file_list</span>
+    
+    <span class="c1"># 文件夹及其子文件夹中的所有文件夹
+</span>    <span class="k">def</span> <span class="nf">folder_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">folder_list</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span><span class="n">dirs</span><span class="p">,</span><span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_folder_path</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+                <span class="n">folder_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">folder_list</span>
+</code></pre></div></div>
+<h3 id="调用方法">调用方法</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">folder_path</span><span class="o">=</span><span class="s">r'D:\Music\iTunes\iTunes Media\Apple Music'</span>
+    <span class="c1"># 输出文件夹及其子文件夹中的所有文件
+</span>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">OsWalk</span><span class="p">(</span><span class="n">folder_path</span><span class="p">).</span><span class="n">file_list</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div></div>
+<p>\Apple Music\Anson Seabra\Can You Feel the Love Tonight - Single\01 Can You Feel the Love Tonight.m4p<br />
+\Apple Music\Beyond\Words &amp; Music Final Live Gold\08 Sky (Introduced by Beyond) [Live].m4p<br />
+\Apple Music\Coldplay\A Head Full of Dreams\04 Everglow.m4p<br />
+\Apple Music\Compilations\25\19 Take Me To Your Heart.m4p<br />
+\Apple Music\Compilations\25\24 Silent Times.m4p<br />
+\Apple Music\Compilations\America, Vol. 10_ Country - The Folk Rev\2-19 Five Hundred Miles.m4p</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">folder_path</span><span class="o">=</span><span class="s">r'D:\Music\iTunes\iTunes Media\Apple Music'</span>
+    <span class="c1"># 输出文件夹及其子文件夹中的所有文件夹
+</span>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">OsWalk</span><span class="p">(</span><span class="n">folder_path</span><span class="p">).</span><span class="n">folder_list</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div></div>
+<p>\Apple Music\Anson Seabra<br />
+\Apple Music\Beyond<br />
+\Apple Music\Coldplay<br />
+\Apple Music\Compilations<br />
+\Apple Music\Eason Chan<br />
+\Apple Music\Fish Leong<br />
+如果对您有用的话，别忘了给点个赞哦^_^ ！</p>
+</div><section class="article__sharing d-print-none"><!-- start custom sharing snippet -->
+<div class="social-share" data-initialized="true">
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
+  </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+<!-- end custom sharing snippet --></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2020-06-20T00:00:00+08:00"><!-- start custom article footer snippet -->
+
+<!-- end custom article footer snippet -->
+</footer>
+<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/2020/06/14/Python%E4%B9%8B%E6%B5%B7%E5%B2%B8%E7%BA%BF%E6%8F%90%E5%8F%96.html">Python之海岸线提取</a></div></div></div>
+
 </div>
 
 <script>(function() {
   var SOURCES = window.TEXT_VARIABLES.sources;
-  function queryString() {
-    // This function is anonymous, is executed immediately and
-    // the return value is assigned to QueryString!
-    var i = 0, queryObj = {}, pair;
-    var queryStr = window.location.search.substring(1);
-    var queryArr = queryStr.split('&');
-    for (i = 0; i < queryArr.length; i++) {
-      pair = queryArr[i].split('=');
-      // If first entry with this name
-      if (typeof queryObj[pair[0]] === 'undefined') {
-        queryObj[pair[0]] = pair[1];
-        // If second entry with this name
-      } else if (typeof queryObj[pair[0]] === 'string') {
-        queryObj[pair[0]] = [queryObj[pair[0]], pair[1]];
-        // If third or later entry with this name
-      } else {
-        queryObj[pair[0]].push(pair[1]);
-      }
-    }
-    return queryObj;
-  }
-
-  var setUrlQuery = (function() {
-    var baseUrl =  window.location.href.split('?')[0];
-    return function(query) {
-      if (typeof query === 'string') {
-        window.history.replaceState(null, '', baseUrl + query);
-      } else {
-        window.history.replaceState(null, '', baseUrl);
-      }
-    };
-  })();
-
   window.Lazyload.js(SOURCES.jquery, function() {
-    var $tags = $('.js-tags');
-    var $articleTags = $tags.find('button');
-    var $tagShowAll = $tags.find('.tag-button--all');
-    var $result = $('.js-result');
-    var $sections = $result.find('section');
-    var sectionArticles = [];
-    var $lastFocusButton = null;
-    var sectionTopArticleIndex = [];
-    var hasInit = false;
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
 
-    $sections.each(function() {
-      sectionArticles.push($(this).find('.item'));
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
     });
-
-    function init() {
-      var i, index = 0;
-      for (i = 0; i < $sections.length; i++) {
-        sectionTopArticleIndex.push(index);
-        index += $sections.eq(i).find('.item').length;
-      }
-      sectionTopArticleIndex.push(index);
-    }
-
-    function searchButtonsByTag(_tag/*raw tag*/) {
-      if (!_tag) {
-        return $tagShowAll;
-      }
-      var _buttons = $articleTags.filter('[data-encode="' + _tag + '"]');
-      if (_buttons.length === 0) {
-        return $tagShowAll;
-      }
-      return _buttons;
-    }
-    function buttonFocus(target) {
-      if (target) {
-        target.addClass('focus');
-        $lastFocusButton && !$lastFocusButton.is(target) && $lastFocusButton.removeClass('focus');
-        $lastFocusButton = target;
-      }
-    }
-
-    function tagSelect (tag/*raw tag*/, target) {
-      var result = {}, $articles;
-      var i, j, k, _tag;
-
-      for (i = 0; i < sectionArticles.length; i++) {
-        $articles = sectionArticles[i];
-        for (j = 0; j < $articles.length; j++) {
-          if (tag === '' || tag === undefined) {
-            result[i] || (result[i] = {});
-            result[i][j] = true;
-          } else {
-            var tags = $articles.eq(j).data('tags').split(',');
-            for (k = 0; k < tags.length; k++) {
-              if (tags[k] === tag) {
-                result[i] || (result[i] = {});
-                result[i][j] = true; break;
-              }
-            }
-          }
-        }
-      }
-
-      for (i = 0; i < sectionArticles.length; i++) {
-        result[i] && $sections.eq(i).removeClass('d-none');
-        result[i] || $sections.eq(i).addClass('d-none');
-        for (j = 0; j < sectionArticles[i].length; j++) {
-          if (result[i] && result[i][j]) {
-            sectionArticles[i].eq(j).removeClass('d-none');
-          } else {
-            sectionArticles[i].eq(j).addClass('d-none');
-          }
-        }
-      }
-
-      hasInit || ($result.removeClass('d-none'), hasInit = true);
-
-
-      if (target) {
-        buttonFocus(target);
-        _tag = target.attr('data-encode');
-        if (_tag === '' || typeof _tag !== 'string') {
-          setUrlQuery();
-        } else {
-          setUrlQuery('?tag=' + _tag);
-        }
-      } else {
-        buttonFocus(searchButtonsByTag(tag));
-      }
-    }
-
-    var query = queryString(), _tag = query.tag;
-    init(); tagSelect(_tag);
-    $tags.on('click', 'button', function() {
-      tagSelect($(this).data('encode'), $(this));
-    });
-
   });
 })();
 </script>
-
-
 </div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
@@ -1015,6 +929,68 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 /*(function () {
 
 })();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
 </script>
     </div>
     <script>(function () {

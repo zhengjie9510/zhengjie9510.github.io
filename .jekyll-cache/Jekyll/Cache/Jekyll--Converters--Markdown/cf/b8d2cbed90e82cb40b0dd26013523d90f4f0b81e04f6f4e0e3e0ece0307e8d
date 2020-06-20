@@ -1,0 +1,55 @@
+I"<p>使用os.walk()函数遍历文件夹及其子文件夹中的所有文件或文件夹。
+<!--more-->
+直接进入正题</p>
+<h2 id="代码">代码</h2>
+<h3 id="oswalk类">OsWalk类</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">class</span> <span class="nc">OsWalk</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">folder_path</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">().</span><span class="n">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">_folder_path</span><span class="o">=</span><span class="n">folder_path</span>
+    
+    <span class="c1"># 文件夹及其子文件夹中的所有文件
+</span>    <span class="k">def</span> <span class="nf">file_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file_list</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span><span class="n">dirs</span><span class="p">,</span><span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_folder_path</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+                <span class="n">file_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">file_list</span>
+    
+    <span class="c1"># 文件夹及其子文件夹中的所有文件夹
+</span>    <span class="k">def</span> <span class="nf">folder_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">folder_list</span><span class="o">=</span><span class="p">[]</span>
+        <span class="k">for</span> <span class="n">root</span><span class="p">,</span><span class="n">dirs</span><span class="p">,</span><span class="n">files</span> <span class="ow">in</span> <span class="n">os</span><span class="p">.</span><span class="n">walk</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">_folder_path</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dirs</span><span class="p">:</span>
+                <span class="n">folder_list</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="p">.</span><span class="n">path</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">folder_list</span>
+</code></pre></div></div>
+<h3 id="调用方法">调用方法</h3>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">folder_path</span><span class="o">=</span><span class="s">r'D:\Music\iTunes\iTunes Media\Apple Music'</span>
+    <span class="c1"># 输出文件夹及其子文件夹中的所有文件
+</span>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">OsWalk</span><span class="p">(</span><span class="n">folder_path</span><span class="p">).</span><span class="n">file_list</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div></div>
+<p>\Apple Music\Anson Seabra\Can You Feel the Love Tonight - Single\01 Can You Feel the Love Tonight.m4p<br />
+\Apple Music\Beyond\Words &amp; Music Final Live Gold\08 Sky (Introduced by Beyond) [Live].m4p<br />
+\Apple Music\Coldplay\A Head Full of Dreams\04 Everglow.m4p<br />
+\Apple Music\Compilations\25\19 Take Me To Your Heart.m4p<br />
+\Apple Music\Compilations\25\24 Silent Times.m4p<br />
+\Apple Music\Compilations\America, Vol. 10_ Country - The Folk Rev\2-19 Five Hundred Miles.m4p</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">"__main__"</span><span class="p">:</span>
+    <span class="n">folder_path</span><span class="o">=</span><span class="s">r'D:\Music\iTunes\iTunes Media\Apple Music'</span>
+    <span class="c1"># 输出文件夹及其子文件夹中的所有文件夹
+</span>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">OsWalk</span><span class="p">(</span><span class="n">folder_path</span><span class="p">).</span><span class="n">folder_list</span><span class="p">():</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div></div>
+<p>\Apple Music\Anson Seabra<br />
+\Apple Music\Beyond<br />
+\Apple Music\Coldplay<br />
+\Apple Music\Compilations<br />
+\Apple Music\Eason Chan<br />
+\Apple Music\Fish Leong<br />
+如果对您有用的话，别忘了给点个赞哦^_^ ！</p>
+:ET
