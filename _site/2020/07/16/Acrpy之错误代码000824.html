@@ -1,11 +1,10 @@
 <!DOCTYPE html><html lang="en">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>404 - ZhengJie's Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Acrpy之错误代码000824 - ZhengJie's Blog</title>
 
-<meta name="description" content="Zheng Jie's Blog
-">
-<link rel="canonical" href="http://localhost:8081/404.html"><link rel="alternate" type="application/rss+xml" title="ZhengJie's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
+<meta name="description" content="今天在利用Arcpy处理数据时出现 000824 错误，通过查找资料了解到这是由于扩展模块工具默认不可用，需要加载扩展模块。">
+<link rel="canonical" href="http://localhost:8081/2020/07/16/Acrpy%E4%B9%8B%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81000824.html"><link rel="alternate" type="application/rss+xml" title="ZhengJie's Blog" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
@@ -258,7 +257,7 @@
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport has-aside cell cell--auto">
 
       <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
@@ -269,19 +268,102 @@
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
-              <div class="col-aside d-print-none js-col-aside"></div>
+              <div class="col-aside d-print-none js-col-aside"><aside class="page__aside js-page-aside"><div class="toc-aside js-toc-root"></div>
+</aside></div>
 
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>404</h1></header><meta itemprop="headline" content="404"><meta itemprop="author" content="郑杰"/><div class="js-article-content"><div class="layout--404">
-  <div class="sign">
-    <h1>404</h1>
-    <p>Page not found :(</p>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Acrpy之错误代码000824</h1></header><span class="split-space">&nbsp;</span>
+          <a class="edit-on-github"
+            title="Edit on Github"
+            href="https://github.com/zhengjie9510/zhengjie9510.github.io/tree/master/_posts/2020-07-16-Acrpy之错误代码000824.md">
+            <i class="far fa-edit"></i></a></div><meta itemprop="headline" content="Acrpy之错误代码000824"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Python">Python</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Arcpy">Arcpy</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>Jul 16, 2020</span>
+            </li><li><i class="far fa-eye"></i> <span class="js-pageview" data-page-key="Acrpy之错误代码000824">0</span> views</li></ul></div><meta itemprop="author" content="郑杰"/><meta itemprop="datePublished" content="2020-07-16T00:00:00+08:00">
+    <meta itemprop="keywords" content="Python,Arcpy"><div class="js-article-content"><div class="layout--article"><!-- start custom article top snippet -->
+
+<!-- end custom article top snippet -->
+<div class="article__content" itemprop="articleBody"><p>今天在利用Arcpy处理数据时出现 000824 错误，通过查找资料了解到这是由于扩展模块工具默认不可用，需要加载扩展模块。<br />
+<!--more--></p>
+<h2 id="错误代码">错误代码</h2>
+<p><img src="\assets\images\Acrpy之错误代码000824\错误提示.jpg" alt="错误提示" /></p>
+<h2 id="解决办法">解决办法</h2>
+<p>通过CheckExtension函数引用模块。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Check out the ArcGIS Spatial Analyst extension license
+</span><span class="n">arcpy</span><span class="p">.</span><span class="n">CheckOutExtension</span><span class="p">(</span><span class="s">"[扩展编码]"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>|扩展模块|扩展编码|
+| —— | —— |
+|ArcGIS 3D Analyst|3D|
+|ArcGIS Data Interoperability 10.5.1 for Desktop|DataInteroperability|
+|ArcGIS Data Reviewer for Desktop|Datareviewer|
+|ArcGIS for Aviation：Airports|Airports|
+|ArcGIS for Aviation：Charting|Aeronautical|
+|ArcGIS for Maritime:Bathymetry|Bathymetry|
+|ArcGIS for Maritime:Charting|Nautical|
+|ArcGIS Geostatistical Analyst|GeoStats|
+|ArcGIS Network Analyst|Network|
+|ArcGIS Spatial Analyst|Spatial|
+|ArcGIS Schematics|Schematics|
+|ArcGIS Tracking Analyst|racking|
+|ArcGIS Workflow Manager for Desktop|JTX|
+|ArcScan|ArcScan|
+|Business Analyst|Business|
+|Esri Defense Mapping|Defense|
+|Esri Production Mapping|Foundation|
+|Esri Roads and Highways|Highways|
+|StreetMap|StreetMap|</p>
+<h2 id="参考链接">参考链接</h2>
+<p><a href="https://blog.xiewei.link/index.php/archives/304/">Arcpy：Error 000824 The tool is not licensed 解决方式</a><br />
+如果对您有用的话，别忘了给点个赞哦^_^ ！</p>
+</div><section class="article__sharing d-print-none"><!-- start custom sharing snippet -->
+<div class="social-share" data-initialized="true">
+    <a href="#" class="social-share-icon icon-wechat"></a>
+    <a href="#" class="social-share-icon icon-weibo"></a>
+    <a href="#" class="social-share-icon icon-qq"></a>
+    <a href="#" class="social-share-icon icon-qzone"></a>
   </div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+<!-- end custom sharing snippet --></section><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2020-07-16T00:00:00+08:00"><!-- start custom article footer snippet -->
+
+<!-- end custom article footer snippet -->
+</footer>
+<div class="article__section-navigator clearfix"><div class="previous"><span>PREVIOUS</span><a href="/2020/06/20/Python%E4%B9%8B%E9%81%8D%E5%8E%86%E6%96%87%E4%BB%B6%E5%A4%B9%E5%8F%8A%E5%85%B6%E5%AD%90%E6%96%87%E4%BB%B6%E5%A4%B9%E4%B8%AD%E6%89%80%E6%9C%89%E6%96%87%E4%BB%B6.html">Python之遍历文件夹及其子文件夹中所有文件</a></div></div></div>
+
 </div>
 
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
 
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
+</script>
 </div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
@@ -829,6 +911,68 @@ window.Lazyload.js([SOURCES.jquery, PAHTS.search_js], function() {
 /*(function () {
 
 })();*/
+</script><script>
+  /* toc must before affix, since affix need to konw toc' height. */(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  var TOC_SELECTOR = window.TEXT_VARIABLES.site.toc.selectors;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window);
+    var $articleContent = $('.js-article-content');
+    var $tocRoot = $('.js-toc-root'), $col2 = $('.js-col-aside');
+    var toc;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+    var hasToc = $articleContent.find(TOC_SELECTOR).length > 0;
+
+    function disabled() {
+      return $col2.css('display') === 'none' || !hasToc;
+    }
+
+    tocDisabled = disabled();
+
+    toc = $tocRoot.toc({
+      selectors: TOC_SELECTOR,
+      container: $articleContent,
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      tocDisabled = disabled();
+      toc && toc.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $window = $(window), $pageFooter = $('.js-page-footer');
+    var $pageAside = $('.js-page-aside');
+    var affix;
+    var tocDisabled = false;
+    var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+
+    affix = $pageAside.affix({
+      offsetBottom: $pageFooter.outerHeight(),
+      scrollTarget: hasSidebar ? '.js-page-main' : null,
+      scroller: hasSidebar ? '.js-page-main' : null,
+      scroll: hasSidebar ? $('.js-page-main').children() : null,
+      disabled: tocDisabled
+    });
+
+    $window.on('resize', window.throttle(function() {
+      affix && affix.setOptions({
+        disabled: tocDisabled
+      });
+    }, 100));
+
+    window.pageAsideAffix = affix;
+  });
+})();
 </script>
     </div>
     <script>(function () {

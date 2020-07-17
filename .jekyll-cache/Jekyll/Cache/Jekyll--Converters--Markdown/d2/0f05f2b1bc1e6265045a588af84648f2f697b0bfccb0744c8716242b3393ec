@@ -1,0 +1,34 @@
+I"�<p>今天在利用Arcpy处理数据时出现 000824 错误，通过查找资料了解到这是由于扩展模块工具默认不可用，需要加载扩展模块。<br />
+<!--more--></p>
+<h2 id="错误代码">错误代码</h2>
+<p><img src="\assets\images\Acrpy之错误代码000824\错误提示.jpg" alt="错误提示" /></p>
+<h2 id="解决办法">解决办法</h2>
+<p>通过CheckExtension函数引用模块。</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Check out the ArcGIS Spatial Analyst extension license
+</span><span class="n">arcpy</span><span class="p">.</span><span class="n">CheckOutExtension</span><span class="p">(</span><span class="s">"[扩展编码]"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>|扩展模块|扩展编码|
+| —— | —— |
+|ArcGIS 3D Analyst|3D|
+|ArcGIS Data Interoperability 10.5.1 for Desktop|DataInteroperability|
+|ArcGIS Data Reviewer for Desktop|Datareviewer|
+|ArcGIS for Aviation：Airports|Airports|
+|ArcGIS for Aviation：Charting|Aeronautical|
+|ArcGIS for Maritime:Bathymetry|Bathymetry|
+|ArcGIS for Maritime:Charting|Nautical|
+|ArcGIS Geostatistical Analyst|GeoStats|
+|ArcGIS Network Analyst|Network|
+|ArcGIS Spatial Analyst|Spatial|
+|ArcGIS Schematics|Schematics|
+|ArcGIS Tracking Analyst|racking|
+|ArcGIS Workflow Manager for Desktop|JTX|
+|ArcScan|ArcScan|
+|Business Analyst|Business|
+|Esri Defense Mapping|Defense|
+|Esri Production Mapping|Foundation|
+|Esri Roads and Highways|Highways|
+|StreetMap|StreetMap|</p>
+<h2 id="参考链接">参考链接</h2>
+<p><a href="https://blog.xiewei.link/index.php/archives/304/">Arcpy：Error 000824 The tool is not licensed 解决方式</a><br />
+如果对您有用的话，别忘了给点个赞哦^_^ ！</p>
+:ET
