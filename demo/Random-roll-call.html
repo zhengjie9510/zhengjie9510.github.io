@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="Zheng Jie">
+<meta charset="UTF-8">
+<title>随机点名</title>
+<style type="text/css">
+td{
+text-align: center;
+}
+</style>
+</head>
+<body>
+<table width="760" border="1" height="560" align="center">
+<h1 align="center">随机点名系统</h1>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</table>
+<div align="center">
+<br/>
+<input type="button" value="快速抽取" onclick="Quickextr();"/>
+<input type="button" value="停止抽取" onclick="Stopextr();"/>
+</div>
+<script type="text/javascript">
+var classMate = ["张三","李四","王五","张三","李四","王五","张三","李四","王五","张三","李四","王五","张三","李四","王五","张三","李四","王五","张三","李四","王五","张三","李四","王五","张三","李四","王五","张三","李四","王五"];
+
+var allTd = document.getElementsByTagName("td");
+
+//给表中每一个单元格赋值
+for (var i = 0; i < classMate.length; i++) {
+allTd[i].innerHTML = classMate[i];
+allTd[i].style.color = "#ff6633";
+allTd[i].style.background = "#ff6633";
+allTd[i].onclick = function (){
+this.style.background = "white";
+}
+}
+
+//快速抽取
+var interId;
+var count = 0;
+//保存已被选出的人
+var myChecked = [];
+var allTd = document.getElementsByTagName("td");
+function Quickextr(){
+if(interId){
+return;
+}
+//把所有的td还原为最初
+for (var i = 0; i < classMate.length; i++) {
+allTd[i].style.background = "#ff6633";
+}
+
+interId = setInterval(function(){
+var rd = parseInt(Math.random()*classMate.length);
+allTd[rd].style.background = "#ff6633";
+allTd[rd].style.background = "white";
+setTimeout(function () {
+allTd[rd].style.background = "#ff6633";
+}, 1);
+},5);
+}
+
+//停止抽取
+function Stopextr(){
+clearInterval(interId);
+interId = undefined;
+var rd = parseInt(Math.random()*classMate.length);
+allTd[rd].style.background = "white";
+}
+
+</script>
+</body>
+</html>
