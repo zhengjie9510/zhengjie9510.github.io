@@ -1,10 +1,7 @@
 ---
-layout: article
 title: ArcGIS API for JavaScript之迁徙图（Echarts）
 tags: ["ArcGIS API for JavaScript", "Echarts","迁徙图"]
 key: ArcGIS API for JavaScript之迁徙图（Echarts）
-show_subscribe: false
-license: false
 ---
 ArcGIS API for JavaScript集成Echarts实现迁徙图效果的关键问题在于Echarts坐标系与ArcGIS坐标系不一致，需要进行Echarts坐标系与ArcGIS坐标系的转换。  
 <!--more-->

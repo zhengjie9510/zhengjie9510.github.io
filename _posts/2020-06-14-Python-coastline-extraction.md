@@ -1,10 +1,7 @@
 ---
-layout: article
 title: Python之海岸线提取
 tags: ["Python","海岸线"]
 key: Python之海岸线提取
-show_subscribe: false
-license: false
 ---
 海岸线提取是找工作时遇到的一道测试题，因为时间有限，所以代码简单粗暴。具体要求是设计一种算法从给定影像中检测海岸线，并将结果另存为矢量GeoJSON文件。
 <!--more-->

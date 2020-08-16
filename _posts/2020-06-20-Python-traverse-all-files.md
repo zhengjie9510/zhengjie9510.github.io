@@ -1,10 +1,7 @@
 ---
-layout: article
 title: Python之遍历文件夹及其子文件夹中所有文件
 tags: ["Python"]
 key: Python之遍历文件夹及其子文件夹中所有文件
-show_subscribe: false
-license: false
 ---
 使用os.walk()函数遍历文件夹及其子文件夹中的所有文件或文件夹。  
 <!--more-->

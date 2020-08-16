@@ -17,6 +17,8 @@ titles:
   ko-KR   : *KO
 show_title: false
 ---
+**Don't aim for success if you want it; just do what you love and believe in, and it will come naturally.**
+<p align="right">—— David Frost</p>
 
 ## 个人信息 
 - 昵称：zhengjie9510  

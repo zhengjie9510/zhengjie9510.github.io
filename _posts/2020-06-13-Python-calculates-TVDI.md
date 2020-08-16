@@ -1,10 +1,7 @@
 ---
-layout: article
 title: Python之计算温度植被干旱指数（TVDI）
 tags: ["Python", "TVDI"]
 key: Python之计算温度植被干旱指数（TVDI）
-show_subscribe: false
-license: false
 mathjax: true
 ---
 温度植被干旱指数TVDI(Temperature Vegetation Dryness Index)是一种基于光学与热红外遥感通道数据进行植被覆盖区域表层土壤水分反演的方法。

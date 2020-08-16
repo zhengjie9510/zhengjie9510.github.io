@@ -1,10 +1,7 @@
 ---
-layout: article
 title: MapGIS 转 ArcGIS ShapeFile 攻略
 tags: ["MapGIS"]
 key: MapGIS 转 ArcGIS ShapeFile 攻略
-show_subscribe: false
-license: false
 ---
 在处理空间数据时，经常会需要将 MapGIS 格式数据转为 ArcGIS 格式，而在这个过程中可能会遇到属性丢失或者空间坐标系设置的问题。一番百度之后找到了一种个人认为比较好的转换方法，在此记录一下，以便日后查看使用。
 <!--more-->

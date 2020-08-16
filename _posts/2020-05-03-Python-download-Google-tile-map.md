@@ -1,10 +1,7 @@
 ---
-layout: article
 title: Python之谷歌瓦片地图影像批量下载
 tags: ["Python", "Google Map"]
 key: Python之谷歌瓦片地图影像批量下载
-show_subscribe: false
-license: false
 ---
 最近在写毕业论文，想用谷歌影像作为底图来展示研究区，然后Google了很多脚本，结果发现输出的影像都不带空间坐标系，所以就想自己写个小工具，通过输入空间范围就可以实现Google地图的下载，并输出为**TIFF**格式，含**WGS 84**空间坐标系。
 <!--more-->

@@ -1,10 +1,7 @@
 ---
-layout: article
 title: ArcGIS API for Javascript之摄影地图
 tags: ["ArcGIS API for JavaScript", "要素图层","图层渲染"]
 key: ArcGIS API for Javascript之摄影地图
-show_subscribe: false
-license: false
 ---
 以前有想过将拍摄的照片根据其拍摄地点显示在地图上，刚好最近在学习ArcGIS API for Javascript，于是就考虑使用ArcGIS API for Javascript实现这样的功能。  
 <!--more-->

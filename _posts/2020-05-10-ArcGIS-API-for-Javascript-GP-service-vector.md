@@ -1,10 +1,7 @@
 ---
-layout: article
 title: ArcGIS API for Javascript之GP服务（矢量）
 tags: ["ArcGIS API for JavaScript", "GP服务"]
 key: ArcGIS API for Javascript之GP服务（矢量）
-show_subscribe: false
-license: false
 ---
 WebGIS的开发经常会用到一些空间数据的处理与分析功能，而GP服务是实现这些功能的途径之一。下面以缓冲区分析的GP服务为例，详细介绍如何通过ArcGIS API for Javascript调用GP服务。GP服务的发布可参考[ArcGIS Server之发布GP服务-返回矢量数据](https://blog.csdn.net/lovecarpenter/article/details/52496876)  
 <!--more-->

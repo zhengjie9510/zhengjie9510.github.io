@@ -1,10 +1,7 @@
 ---
-layout: article
 title: Acrpy之设为空函数
 tags: ["Python","Arcpy"]
 key: Acrpy之设为空函数
-show_subscribe: false
-license: false
 ---
 利用栅格计算器中的SetNull函数将满足条件(值大于100)的像元值设为NoData.
 <!--more-->
