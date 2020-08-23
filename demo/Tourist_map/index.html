@@ -22,10 +22,16 @@
             "esri/Map",
             "esri/views/MapView",
             "esri/layers/CSVLayer",
+            "esri/layers/FeatureLayer",
+            "esri/widgets/BasemapToggle",
+            "esri/widgets/Search",
             ], function(
                 Map,
                 MapView,
                 CSVLayer,
+                FeatureLayer,
+                BasemapToggle,
+                Search,
                 ) {
                 const view = new MapView({
                     map: new Map({
@@ -44,25 +50,61 @@
                     },
                 });
 
-                const url ="coordinate.csv";
+                // 添加行政区划
+                var provinceRenderer = {
+                    type: "simple",
+                    symbol: {
+                        color: "#000000",
+                        type: "simple-line",
+                        style: "solid"
+                    },
+                };
+                // var popupProvince = {
+                //     title: "{省}",
+                //     content:
+                //         "<b>类型:</b> {类型}"
+                // };
+                var provinceLayer = new FeatureLayer({
+                    url:"http://www.arcgisonline.cn/server/rest/services/Hosted/%E4%B8%AD%E5%9B%BD%E7%9C%81%E7%BA%A7%E8%A1%8C%E6%94%BF%E5%8C%BA/FeatureServer/0",
+                    renderer: provinceRenderer,
+                    // outFields: ["省", "类型"],
+                    // popupTemplate: popupProvince
+                });
+                view.map.add(provinceLayer);
 
+                // 添加点图层
+                const url ="coordinate.csv";
                 var pointRenderer = {
                     type: "simple",
                     symbol: {
                         type: "picture-marker",
-                        url: "http://static.arcgis.com/images/Symbols/NPS/npsPictograph_0231b.png",
-                        width: "18px",
-                        height: "18px"
+                        url: "../../assets/favicon.ico",
+                        width: "20px",
+                        height: "20px"
                     }
                 };
-                
                 const csvLayer = new CSVLayer({
                     url: url,
                     copyright: "Zhengjie's Tourist Map",
                     renderer: pointRenderer,
                 });
-
                 view.map.add(csvLayer);
+
+                // 添加地图切换工具
+                var basemapToggle = new BasemapToggle({
+                    view: view,
+                    nextBasemap: "satellite"
+                });
+                view.ui.add(basemapToggle, "bottom-right");
+
+                // 添加搜索工具
+                var searchWidget = new Search({
+                    view: view
+                });
+                view.ui.add(searchWidget, {
+                    position: "top-left",
+                    index: 0
+                });
           });
         </script>
     </head>
