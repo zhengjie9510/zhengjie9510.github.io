@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+        <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon" />
+        <title>旅游地图</title>
+        <style>
+            html,
+            body,
+            #viewDiv {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+        <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css"/>
+        <script src="https://js.arcgis.com/4.15/"></script>
+        <script>
+            require([
+            "esri/Map",
+            "esri/views/MapView",
+            "esri/layers/CSVLayer",
+            ], function(
+                Map,
+                MapView,
+                CSVLayer,
+                ) {
+                const view = new MapView({
+                    map: new Map({
+                        basemap: "streets",
+                    }),
+                    container: "viewDiv",
+                    
+                    extent: {
+                        spatialReference: {
+                            wkid: 4326
+                        },
+                        xmin: 73,
+                        ymin: 4,
+                        xmax: 135,
+                        ymax: 53
+                    },
+                });
+
+                const url ="coordinate.csv";
+
+                var pointRenderer = {
+                    type: "simple",
+                    symbol: {
+                        type: "picture-marker",
+                        url: "http://static.arcgis.com/images/Symbols/NPS/npsPictograph_0231b.png",
+                        width: "18px",
+                        height: "18px"
+                    }
+                };
+                
+                const csvLayer = new CSVLayer({
+                    url: url,
+                    copyright: "Zhengjie's Tourist Map",
+                    renderer: pointRenderer,
+                });
+
+                view.map.add(csvLayer);
+          });
+        </script>
+    </head>
+    <body>
+        <div id="viewDiv"></div>
+    </body>
+</html>
