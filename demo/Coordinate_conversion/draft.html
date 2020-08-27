@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
+        <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon" />
+        <title>坐标转换</title>
+        <style>
+            html,
+            body,
+            #viewDiv {
+                padding: 0;
+                margin: 0;
+                height: 100%;
+                width: 100%;
+            }
+        </style>
+        <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css"/>
+        <script src="https://js.arcgis.com/4.15/"></script>
+        <script> 
+            require([
+            "esri/geometry/SpatialReference",
+            "esri/tasks/GeometryService",
+            "esri/geometry/Point",
+            "esri/tasks/support/ProjectParameters"
+            ],function compute(SpatialReference, GeometryService, Point,ProjectParameters) {
+                var gsvc = new GeometryService({url: "http://sampleserver6.arcgisonline.com/arcgis/rest/services/Utilities/Geometry/GeometryServer"});
+    
+                var PrjParams = new ProjectParameters();
+                PrjParams.outSpatialReference = new SpatialReference({wkid: 4527});//需要输出的坐标系
+                PrjParams.geometries = [];
+
+                var point = new Point({
+                    x: 111111,
+                    y: 1111111,
+                    spatialReference: new SpatialReference({wkid: 32647})
+                });
+                PrjParams.geometries.push(point);
+                gsvc.project(PrjParams).then(displayOutcome);
+
+                function displayOutcome(resolveValue) {
+                    document.getElementById("viewDiv").innerHTML = resolveValue[0].y;
+                };
+            });
+        </script>
+    </head>
+    <body>
+        <div id="viewDiv"></div>
+    </body>
+</html>
