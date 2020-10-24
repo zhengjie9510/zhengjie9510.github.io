@@ -97,7 +97,7 @@ header:
       fr-FR   : *FR
       fr-LU   : *FR
       # @end locale config
-    url: /demo/Tourist_map/index.html
+    url: /demo/tourist_map/index.html
 
   - titles:
       # @start locale config
