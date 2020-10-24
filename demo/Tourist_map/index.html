@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
     <title>旅游地图</title>
     <style>
         html,
@@ -74,12 +74,12 @@
             view.map.add(provinceLayer);
 
             // 添加点图层
-            const url = "coordinate.csv";
+            const url = "assets/coordinate.csv";
             var pointRenderer = {
                 type: "simple",
                 symbol: {
                     type: "picture-marker",
-                    url: "../../assets/favicon.ico",
+                    url: "assets/favicon.ico",
                     width: "20px",
                     height: "20px"
                 }
