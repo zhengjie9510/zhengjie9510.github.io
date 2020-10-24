@@ -1,114 +1,117 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
-        <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon" />
-        <title>旅游地图</title>
-        <style>
-            html,
-            body,
-            #viewDiv {
-                padding: 0;
-                margin: 0;
-                height: 100%;
-                width: 100%;
-            }
-        </style>
-        <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css"/>
-        <script src="https://js.arcgis.com/4.15/"></script>
-        <script>
-            require([
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="icon" href="../../assets/favicon.ico" type="image/x-icon" />
+    <title>旅游地图</title>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.15/"></script>
+    <script>
+        require([
             "esri/Map",
             "esri/views/MapView",
             "esri/layers/CSVLayer",
             "esri/layers/FeatureLayer",
             "esri/widgets/BasemapToggle",
             "esri/widgets/Search",
-            ], function(
-                Map,
-                MapView,
-                CSVLayer,
-                FeatureLayer,
-                BasemapToggle,
-                Search,
-                ) {
-                const view = new MapView({
-                    map: new Map({
-                        basemap: "streets",
-                    }),
-                    container: "viewDiv",
-                    
-                    extent: {
-                        spatialReference: {
-                            wkid: 4326
-                        },
-                        xmin: 73,
-                        ymin: 4,
-                        xmax: 135,
-                        ymax: 53
+        ], function (
+            Map,
+            MapView,
+            CSVLayer,
+            FeatureLayer,
+            BasemapToggle,
+            Search,
+        ) {
+            const view = new MapView({
+                map: new Map({
+                    basemap: "streets",
+                }),
+                container: "viewDiv",
+
+                extent: {
+                    spatialReference: {
+                        wkid: 4326
                     },
-                });
+                    xmin: 73,
+                    ymin: 4,
+                    xmax: 135,
+                    ymax: 53
+                },
+            });
 
-                // 添加行政区划
-                var provinceRenderer = {
-                    type: "simple",
-                    symbol: {
-                        color: "#000000",
-                        type: "simple-line",
-                        style: "solid"
-                    },
-                };
-                // var popupProvince = {
-                //     title: "{省}",
-                //     content:
-                //         "<b>类型:</b> {类型}"
-                // };
-                var provinceLayer = new FeatureLayer({
-                    url:"http://www.arcgisonline.cn/server/rest/services/Hosted/%E4%B8%AD%E5%9B%BD%E7%9C%81%E7%BA%A7%E8%A1%8C%E6%94%BF%E5%8C%BA/FeatureServer/0",
-                    renderer: provinceRenderer,
-                    // outFields: ["省", "类型"],
-                    // popupTemplate: popupProvince
-                });
-                view.map.add(provinceLayer);
+            // 添加行政区划
+            var provinceRenderer = {
+                type: "simple",
+                symbol: {
+                    color: "#000000",
+                    type: "simple-line",
+                    style: "solid"
+                },
+            };
+            // var popupProvince = {
+            //     title: "{省}",
+            //     content:
+            //         "<b>类型:</b> {类型}"
+            // };
+            var provinceLayer = new FeatureLayer({
+                url: "http://www.arcgisonline.cn/server/rest/services/Hosted/%E4%B8%AD%E5%9B%BD%E7%9C%81%E7%BA%A7%E8%A1%8C%E6%94%BF%E5%8C%BA/FeatureServer/0",
+                renderer: provinceRenderer,
+                // outFields: ["省", "类型"],
+                // popupTemplate: popupProvince
+            });
+            view.map.add(provinceLayer);
 
-                // 添加点图层
-                const url ="coordinate.csv";
-                var pointRenderer = {
-                    type: "simple",
-                    symbol: {
-                        type: "picture-marker",
-                        url: "../../assets/favicon.ico",
-                        width: "20px",
-                        height: "20px"
-                    }
-                };
-                const csvLayer = new CSVLayer({
-                    url: url,
-                    copyright: "Zhengjie's Tourist Map",
-                    renderer: pointRenderer,
-                });
-                view.map.add(csvLayer);
+            // 添加点图层
+            const url = "coordinate.csv";
+            var pointRenderer = {
+                type: "simple",
+                symbol: {
+                    type: "picture-marker",
+                    url: "../../assets/favicon.ico",
+                    width: "20px",
+                    height: "20px"
+                }
+            };
+            const csvLayer = new CSVLayer({
+                url: url,
+                copyright: "Zhengjie's Tourist Map",
+                renderer: pointRenderer,
+            });
+            view.map.add(csvLayer);
 
-                // 添加地图切换工具
-                var basemapToggle = new BasemapToggle({
-                    view: view,
-                    nextBasemap: "satellite"
-                });
-                view.ui.add(basemapToggle, "bottom-right");
+            // 添加地图切换工具
+            var basemapToggle = new BasemapToggle({
+                view: view,
+                nextBasemap: "satellite"
+            });
+            view.ui.add(basemapToggle, "bottom-right");
 
-                // 添加搜索工具
-                var searchWidget = new Search({
-                    view: view
-                });
-                view.ui.add(searchWidget, {
-                    position: "top-left",
-                    index: 0
-                });
-          });
-        </script>
-    </head>
-    <body>
-        <div id="viewDiv"></div>
-    </body>
+            // 添加搜索工具
+            var searchWidget = new Search({
+                view: view
+            });
+            view.ui.add(searchWidget, {
+                position: "top-left",
+                index: 0
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div id="viewDiv"></div>
+</body>
+
 </html>
