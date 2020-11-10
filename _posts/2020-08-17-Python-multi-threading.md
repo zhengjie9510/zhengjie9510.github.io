@@ -1,11 +1,10 @@
 ---
-title: Pyhton 之多线程并行计算
-tags: ["Python"]
-key: Pyhton 之多线程并行计算
+layout: post
+title: "Pyhton 之多线程并行计算"
 ---
 Python 中多线程是假的多线程，受 GIL 影响，一次只能运行一个线程，因此只适用于 IO 密集型，不适合 CPU 密集型。
-
 <!--more-->
+
 # 1、Python 中多线程的实现方式
 ```python
 import threading

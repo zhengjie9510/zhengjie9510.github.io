@@ -1,10 +1,10 @@
 ---
-title: Pyhton 之发送电子邮件
-tags: ["Python"]
-key: Pyhton 之发送电子邮件
+layout: post
+title: "Pyhton 之发送电子邮件"
 ---
 在进行大量的数据处理时人不会一直等在电脑前，但如果又想知道程序什么时候运行完成以及是否出错，则可以利用 Python smtplib 模块来发送电子邮件告知程序运行情况。
 <!--more-->
+
 ```python
 # -*- coding: utf-8 -*
 '''

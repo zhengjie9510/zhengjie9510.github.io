@@ -1,10 +1,10 @@
 ---
-title: Pyhton 之读取照片拍摄经纬度
-tags: ["Python"]
-key: Pyhton 之读取照片拍摄经纬度
+layout: post
+title: "Pyhton 之读取照片拍摄经纬度"
 ---
 Python 读取照片的经纬度和时间信息需要 ExifRead 模块。
 <!--more-->
+
 ```python
 # -*- coding: utf-8 -*
 import exifread
