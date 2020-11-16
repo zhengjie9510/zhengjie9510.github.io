@@ -1,14 +1,13 @@
 ---
 title: Python 之计算温度植被干旱指数（TVDI）
 date: 2020-6-14 12:00:00
-# tags: ["Python","Google"]
-categories: ["Python"]
+categories: Python
 mathjax: true
 ---
 温度植被干旱指数TVDI(Temperature Vegetation Dryness Index)是一种基于光学与热红外遥感通道数据进行植被覆盖区域表层土壤水分反演的方法。
 <!--more-->
 
-## 原理
+## 1、原理
 LST-NDVI特征空间[<sup>1</sup>](#refer-anchor-1)：  
 ![TVDI](https://www.mdpi.com/remotesensing/remotesensing-09-00177/article_deploy/html/images/remotesensing-09-00177-g002.png)
 温度植被干旱指数(TVDI)的计算方法为：  
@@ -20,7 +19,7 @@ $$LST_{min} = {a + b \times NDVI}$$
 $$LST_{max} = {c + d \times NDVI}$$  
 
 其中$$a、b、c、d$$为干、湿边拟合系数
-## Python代码
+## 2、Python代码
 ```python
 import gdal
 from gdalconst import *
@@ -193,13 +192,13 @@ if __name__ == '__main__':
 
     main(ndvi_file,lst_file,tvdi_file)
 ```
-## 结果展示
+## 3、结果展示
 LST-NDVI的散点图:  
 ![lst_ndvi_scatter](/assets/image/python-calculate-tvdi/scatter.png)  
 TVDI展示：  
 ![tvdi](/assets/image/python-calculate-tvdi/tvdi.jpg)  
 如果对您有用的话，别忘了给点个赞哦^_^ ！
-## 参考文献
+## 4、参考文献
 <div id="refer-anchor-1"></div>
 
 - [1] [Du L, Song N, Liu K, et al. Comparison of Two Simulation Methods of the Temperature Vegetation Dryness Index (TVDI) for Drought Monitoring in Semi-Arid Regions of China[J]. Remote Sensing

@@ -1,19 +1,18 @@
 ---
 title: Python 之谷歌瓦片地图影像批量下载
 date: 2020-5-3 12:00:00
-# tags: ["Python","Google"]
-categories: ["Python"]
+categories: Python
 ---
 最近在写毕业论文，想用谷歌影像作为底图来展示研究区，然后 Google 了很多脚本，结果发现输出的影像都不带空间坐标系，所以就想自己写个小工具，通过输入空间范围就可以实现 Google 地图的下载，并输出为 **TIFF** 格式，含 **WGS 84** 空间坐标系。
 <!--more-->
-## 拟解决问题
+## 1、拟解决问题
 下载谷歌影像，并输出为带空间坐标系的 TIFF 格式
-## 简单说明
+## 2、简单说明
 通过多线程、多进程的方式实现快速下载  
 下面只给出主要的思路及代码  
 文章末尾提供源码链接
-## 主要思路及代码
-### 计算给定空间范围内的瓦片行列号，并返回URL
+## 3、主要思路及代码
+### 3.1、计算给定空间范围内的瓦片行列号，并返回URL
 ```python
 MAP_URLS = {
     "Google": "http://mts0.googleapis.com/vt?lyrs={style}&x={x}&y={y}&z={z}",
@@ -37,7 +36,7 @@ def get_urls(x1, y1, x2, y2, z, source='google', style='s'):
     urls = [get_url(source, i, j, z, style) for j in range(pos1y, pos1y + leny) for i in range(pos1x, pos1x + lenx)]
     return urls
 ```
-### 根据上一步得到的URL下载瓦片
+### 3.2、根据上一步得到的URL下载瓦片
 ```python
 def download_tiles(urls,multi=10):
     def makeupdate(s):
@@ -58,7 +57,7 @@ def download_tiles(urls,multi=10):
         i.join()
     return datas
 ```
-### 合并瓦片为一张影像
+### 3.3、合并瓦片为一张影像
 ```python
 def merge_tiles(datas,x1, y1, x2, y2, z):
     pos1x, pos1y = wgs_to_tile(x1, y1, z)
@@ -75,7 +74,7 @@ def merge_tiles(datas,x1, y1, x2, y2, z):
     print('\nTiles merge completed')
     return outpic
 ```
-### 计算所下载瓦片的实际空间范围（我们需要的是瓦片边缘的经纬度信息）
+### 3.4、计算所下载瓦片的实际空间范围（我们需要的是瓦片边缘的经纬度信息）
 ```python
 def getExtent(x1, y1, x2, y2, z,source="Google China"):
     pos1x, pos1y = wgs_to_tile(x1, y1, z)
@@ -92,7 +91,7 @@ def getExtent(x1, y1, x2, y2, z,source="Google China"):
         raise Exception("Invalid argument: source.") 
     return Xframe
 ```
-### 最后将结果输出为TIFF格式
+### 3.5、最后将结果输出为TIFF格式
 ```python
 def saveTiff(r,g,b,gt,filePath):
     fname_out   = filePath
