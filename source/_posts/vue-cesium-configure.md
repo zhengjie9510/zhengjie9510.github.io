@@ -7,6 +7,7 @@ categories: JavaScript
 好记性不如烂笔头，对于一个刚接触 Vue、Cesium 的菜鸟来说，Vue + Cesium 集成之路可以说是历经艰辛，因此特意记录一下 Vue + Cesium 的配置过程，以便日后查看。
 <!--more-->
 ## 1、Vue Cli 3.0+
+[https://github.com/zhengjie9510/vue-cesium-template/tree/master](https://github.com/zhengjie9510/vue-cesium-template/tree/master)
 ### 1.1、安装
 ```
 # 全局安装vue-cli 3.x版本
@@ -112,6 +113,7 @@ export default {
 </style>
 ```
 ## 2、Vue Cli 2.X
+[https://github.com/zhengjie9510/vue-cesium-template/tree/vue-cli2.x](https://github.com/zhengjie9510/vue-cesium-template/tree/vue-cli2.x)
 ### 2.1、安装
 ```
 # 全局安装 vue-cli
