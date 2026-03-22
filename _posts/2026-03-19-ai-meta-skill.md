@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "授 AI 以鱼，不如授 AI 以渔：我给 AI 创建了一个"创建技能"的技能"
+title: "授 AI 以鱼，不如授 AI 以渔：我给 AI 创建了一个『创建技能』的技能"
 date: 2026-03-19 21:00:00 +0800
 categories: [ 技术, AI ]
 tags: [ AI Agent, Meta-Skill, Skill, 自动化工具 ]
