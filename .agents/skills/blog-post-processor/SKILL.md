@@ -1,73 +1,104 @@
 ---
 name: blog-post-processor
-description: Process blog posts from URLs or local files for Jekyll blogs. Use when user provides a URL to import, or has new/raw blog files needing formatting. Handles content extraction, image downloading, front matter generation, and Jekyll formatting.
+description: 处理博客文章的技能，支持从 URL 导入或处理本地文件，转换为 Jekyll 格式。包括内容提取、图片下载、front matter 生成和格式化。
 ---
 
-# Blog Post Processor
+# 博客文章处理器
 
-Process blog posts from URLs or local files, converting them to Jekyll-compatible markdown format.
-
-## Input Types
-
-### Type A: URL Import
-User provides a URL (WeChat, CSDN, web article).
-
-### Type B: Local File Processing
-User has already copied/saved a file to `_posts/` directory.
+将 URL 或本地文件转换为 Jekyll 兼容的 markdown 格式。
 
 ---
 
-## Workflow
+## 关键规则：必须处理所有图片
 
-### Step 1: Get Content
+**文章中的每一张图片都必须下载并转换为本地引用。**
 
-**If URL provided:**
-- Use FetchURL tool to retrieve article content
-- Extract metadata from HTML/meta tags
+不许跳过任何图片，不许在最终的 markdown 中保留外部 URL。
 
-**If local file provided:**
-- Read the file directly
-- Extract existing metadata if any
+---
 
-### Step 2: Extract & Confirm Metadata
+## 输入类型
 
-Extract:
-- **Title**: From HTML `<title>`, h1, or article metadata
-- **Date**: 
-  - Ask user if not clearly specified
-  - Check for dates in URL or article header
-- **Description**: Generate 100-character summary
+### 类型 A：URL 导入
+用户提供一个 URL（微信公众号、CSDN、网页文章等）。
 
-**Confirm with user:**
+### 类型 B：本地文件处理
+用户已经将文件保存到 `_posts/` 目录。
+
+---
+
+## 处理流程
+
+### 步骤 1：获取内容
+
+**如果是 URL：**
+- 使用 FetchURL 工具获取文章内容
+- 从 HTML/meta 标签提取元数据
+
+**如果是本地文件：**
+- 直接读取文件
+- 提取已有元数据
+
+### 步骤 2：提取所有图片（关键步骤）
+
+**必须扫描内容中的所有图片：**
+
+1. **Markdown 格式：** `![alt](url)`
+2. **HTML 格式：** `<img src="url">`
+3. **原始 URL：** 任何图片 URL 模式
+
+**提取方法：**
+- 在获取的 HTML/源码中搜索所有图片模式
+- 列出找到的每个图片 URL
+- 建立映射：原始 URL → 本地文件名
+
+**图片命名规范：**
+```
+{slug}-{描述}.png
+```
+
+示例：
+- 第一张/封面图：`{slug}-cover.png`
+- 流程图：`{slug}-workflow.png`
+- 训练曲线：`{slug}-training-curve.png`
+- 图 1、2、3：`{slug}-figure-1.png` 等
+
+### 步骤 3：下载所有图片（必须执行）
+
+**下载每一张图片：**
+
+```bash
+# 对每个找到的 URL 执行：
+curl -L -o "assets/img/posts/{slug}-{描述}.png" "{原始URL}"
+```
+
+**验证下载：**
+```bash
+ls -la assets/img/posts/{slug}-*
+```
+
+**如有需要压缩（特别是大于 500KB 的封面）：**
+```bash
+# 封面图：调整为 1200px 宽度，80% 质量 JPEG
+sips -Z 1200 input.png --out output.jpg -s format jpeg -s formatOptions 80
+```
+
+### 步骤 4：提取并确认元数据
+
+提取：
+- **标题**：从 HTML `<title>`、h1 或文章元数据
+- **日期**：如未明确指定，询问用户
+- **描述**：生成 100 字以内的摘要
+
+**向用户确认：**
 > 检测到文章信息：
 > - 标题：[提取的标题]
+> - 图片数量：[N] 张
 > - 建议日期：[YYYY-MM-DD]
 > 
 > 请确认或修改日期。
 
-### Step 3: Download & Process Images
-
-**Scan for images:**
-- Markdown: `![alt](url)`
-- HTML: `<img src="url">`
-
-**Download external images:**
-```bash
-# Download to assets/img/posts/
-curl -L -o "assets/img/posts/{slug}-{desc}.png" "{url}"
-```
-
-**Image naming:**
-- Format: `{slug}-{description}.{ext}`
-- Cover: `{slug}-cover.{ext}` (first image or user-specified)
-
-**Compress images if needed:**
-```bash
-# Cover images: 1200px width, 80% quality
-sips -Z 1200 input.png --out output.jpg -s format jpeg -s formatOptions 80
-```
-
-### Step 4: Generate Jekyll Front Matter
+### 步骤 5：生成 Jekyll Front Matter
 
 ```yaml
 ---
@@ -77,85 +108,93 @@ date: YYYY-MM-DD HH:MM:SS +0800
 categories: [ 技术, AI ]
 tags: [ tag1, tag2, tag3 ]
 description: "文章摘要"
-image: /assets/img/posts/{slug}-cover.jpg  # Optional
+image: /assets/img/posts/{slug}-cover.jpg  # 如果有封面
 ---
 ```
 
-**Title handling:**
-- Replace quotes with book title marks 『』 to avoid YAML parsing issues
+### 步骤 6：格式化内容并替换图片引用
 
-### Step 5: Format Content
+**清理：**
+- 移除微信/CSDN 推广 HTML
+- 转换表情符号章节标记为 markdown 标题
+- 格式化代码块，添加语言标签
 
-**Clean up:**
-- Remove WeChat/CSDN promotional HTML
-- Convert emoji section markers to markdown headers
-- Format code blocks with language tags
+**必须替换所有图片引用：**
 
-**Insert WeChat QR code** (after front matter):
-```html
-<div align="center" style="margin: 20px 0;">
-    <img src="/assets/img/wechat-qr-white.png" alt="AI在学公众号" style="max-width: 320px; border-radius: 8px;">
-    <p style="color: #888; font-size: 12px; margin-top: 8px;">
-      🔍 微信扫码或搜索「AI在学」关注公众号
-    </p>
-</div>
+替换前：
+```markdown
+![](https://external-url.com/image.png)
 ```
 
-**Heading levels:**
-- Start from `##` (h2), not `#` (h1)
-- h1 is auto-generated from front matter title
-
-**Image alignment:**
+替换后：
 ```markdown
 <div align="center">
-  <img src="/assets/img/posts/{image}" alt="描述" style="max-width: 600px;">
+  <img src="/assets/img/posts/{slug}-{描述}.png" alt="描述" style="max-width: 600px;">
   <p style="color: #888; font-size: 12px; margin-top: 8px;">图注</p>
 </div>
 ```
 
-### Step 6: Save & Cleanup
+**插入公众号二维码**（front matter 之后）：
+```html
+<div align="center" style="margin: 20px 0;">
+    <img src="/assets/img/wechat-qr-white.png" alt="AI在学公众号" style="max-width: 320px; border-radius: 8px;">
+    <p style="color: #888; font-size: 12px; margin-top: 8px;">🔍 微信扫码或搜索「AI在学」关注公众号</p>
+</div>
+```
 
-**Generate filename:**
+**标题层级：**
+- 从 `##`（二级）开始，不要用 `#`（一级）
+
+### 步骤 7：保存并验证
+
+**生成文件名：**
 ```
 _posts/YYYY-MM-DD-{slug}.md
 ```
 
-**After saving:**
-- Delete original file (if name was non-standard)
-- List all changes
+**关键：最终验证清单**
+
+在说完"完成"之前，验证：
+- [ ] 所有图片已下载到 `assets/img/posts/`
+- [ ] 所有外部图片 URL 已替换为本地路径
+- [ ] markdown 中没有剩余的 `http://` 或 `https://` 图片链接
+- [ ] 图片居中并带图注
+- [ ] 文件已重命名为标准格式
+- [ ] 原文件已删除（如适用）
+
+**验证命令：**
+```bash
+# 检查是否还有外部 URL
+grep -E "https?://.*\.(png|jpg|jpeg|gif|webp)" _posts/YYYY-MM-DD-{slug}.md
+# 应该返回空
+```
 
 ---
 
-## Output Checklist
+## 示例
 
-Final post must have:
-- [ ] Correct filename: `YYYY-MM-DD-slug.md`
-- [ ] Valid Jekyll front matter
-- [ ] Local image references only
-- [ ] WeChat QR code inserted
-- [ ] No promotional/external HTML
-- [ ] Proper heading hierarchy (start from ##)
+**带多张图片的 URL 导入：**
+```
+用户："导入这篇文章：https://mp.weixin.qq.com/s/xxxxx"
+→ 获取内容
+→ 从文章中提取全部 4 张图片
+→ 下载：article-cover.png, article-figure-1.png, article-figure-2.png, article-figure-3.png
+→ 询问日期
+→ 创建 2025-05-10-article-title.md，所有图片使用本地引用
+→ 验证：grep 返回空
+```
+
+**要避免的错误：**
+```
+❌ 错误：只下载了 1 张封面图，剩下 3 张图表仍使用外部 URL
+✅ 正确：下载了全部 4 张图片，替换了所有引用
+```
 
 ---
 
-## Examples
+## 常见错误
 
-**URL import:**
-```
-User: "Import this: https://mp.weixin.qq.com/s/xxxxx"
-→ Fetch content
-→ Ask for date
-→ Download images  
-→ Create 2025-05-10-article-title.md
-```
-
-**Local file processing:**
-```
-User: "处理这个新文件: 深度学习基础.md"
-→ Read file
-→ Extract title
-→ Ask for date
-→ Download images
-→ Rename to 2025-12-01-batch-norm-layer-norm.md
-→ Delete original
-```
+1. **以为 FetchURL 会自动提取图片** - 它只提取文本。必须手动扫描图片 URL。
+2. **跳过"装饰性"图片** - 每张图片都重要，包括图表、流程图、截图。
+3. **忘记替换 URL** - 仅下载不够，必须更新 markdown 中的引用。
+4. **不进行验证** - 始终运行 grep 检查确保没有外部 URL 残留。
