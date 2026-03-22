@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AI Agent vs Workflow：让你少踩坑的实战选择法则"
+title: "🤖 AI Agent vs Workflow：让你少踩坑的实战选择法则"
 date: 2026-03-22 14:30:00 +0800
 categories: [ 技术, AI ]
 tags: [ AI Agent, Workflow, 人工智能, 架构设计 ]
