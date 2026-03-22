@@ -44,6 +44,11 @@ description: "研究发现，大语言模型在微调时引入新知识不仅学
 - 一旦强行让它"学会"，**整体性能反而下降**；
 - 严重时，会使模型在其他问题上出现"**自信而错误**"的回答（即幻觉）。
 
+<div align="center">
+  <img src="/assets/img/posts/finetuning-slick-curve.png" alt="不同类别样本的拟合速度对比" style="max-width: 600px;">
+  <p style="color: #888; font-size: 12px; margin-top: 8px;">微调过程中，不同类别样本的拟合速度对比图</p>
+</div>
+
 > 💡 **微调过程中，不同类别样本的拟合速度对比显示：**
 > 
 > 最佳性能出现在模型主要掌握"已知"知识，而**尚未完全学习"未知"样本的阶段**。继续训练下去，反而会导致性能下滑。
@@ -58,6 +63,11 @@ description: "研究发现，大语言模型在微调时引入新知识不仅学
 - 而仅使用模型原本就"可能知道"的样本（MaybeKnown），反而**表现更好**；
 - 若在训练中使用**早停策略（early stopping）**，可有效防止过拟合与幻觉。
 
+<div align="center">
+  <img src="/assets/img/posts/finetuning-unknown-ratio.png" alt="不同未知知识比例下的测试表现" style="max-width: 600px;">
+  <p style="color: #888; font-size: 12px; margin-top: 8px;">不同"未知知识"比例下的测试表现对比图</p>
+</div>
+
 ---
 
 ## ✅ 应对策略：不妨让模型"承认不知道"
@@ -70,6 +80,11 @@ description: "研究发现，大语言模型在微调时引入新知识不仅学
 
 - 模型在"选择回答"的问题上，**准确率反而显著提高**；
 - 并且，在训练时间拉长的情况下，准确率也**更稳定**。
+
+<div align="center">
+  <img src="/assets/img/posts/finetuning-idk-strategy.png" alt="IDK策略效果对比" style="max-width: 600px;">
+  <p style="color: #888; font-size: 12px; margin-top: 8px;">将未知样本标签替换为'我不知道'（IDK）后的结果对比图</p>
+</div>
 
 ---
 
