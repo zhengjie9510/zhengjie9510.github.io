@@ -15,8 +15,8 @@ order: 4
 ### 联系方式
 
 - GitHub: [zhengjie9510](https://github.com/zhengjie9510)
-- 邮箱: your-email@example.com
-- 公众号: 我的公众号
+- 邮箱: zhengjie9510@qq.com
+- 公众号: AI在学
 
 ### 订阅更新
 
