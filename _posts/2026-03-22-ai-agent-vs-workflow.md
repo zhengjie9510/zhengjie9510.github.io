@@ -9,14 +9,9 @@ image: /assets/img/posts/ai-agent-vs-workflow-cover.jpeg
 ---
 
 <div align="center" style="margin: 20px 0;">
-    <p style="color: #07c160; font-size: 14px; margin: 0;">
-      🔍 微信搜索公众号
-    </p>
-    <p style="color: #07c160; font-size: 22px; margin: 6px 0;">
-      <strong>AI在学</strong>
-    </p>
-    <p style="color: #888; font-size: 12px; margin: 8px 0 0 0;">
-      获取最新 AI 技术文章与实战教程
+    <img src="/assets/img/wechat-qr-white.png" alt="AI在学公众号" style="max-width: 320px; border-radius: 8px;">
+    <p style="color: #888; font-size: 12px; margin-top: 8px;">
+      🔍 微信扫码或搜索「AI在学」关注公众号
     </p>
 </div>
 

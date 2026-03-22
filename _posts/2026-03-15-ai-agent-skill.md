@@ -8,6 +8,13 @@ description: "💡 Skill = 预置的 Prompt 模板，一次配置永久复用。
 image: /assets/img/posts/ai-agent-skill-cover.png
 ---
 
+<div align="center" style="margin: 20px 0;">
+    <img src="/assets/img/wechat-qr-white.png" alt="AI在学公众号" style="max-width: 320px; border-radius: 8px;">
+    <p style="color: #888; font-size: 12px; margin-top: 8px;">
+      🔍 微信扫码或搜索「AI在学」关注公众号
+    </p>
+</div>
+
 > 💡 用过 ChatGPT/Claude 的人都有这种经历：每次想让 AI 按特定格式输出，都要打一大段"规矩"。更烦的是，**每次新开对话都要重新交代一遍**。今天介绍的 **Agent Skill**，就是来解决这个问题的。
 
 ---
