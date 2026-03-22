@@ -43,8 +43,6 @@ image: /assets/img/posts/ai-agent-vs-workflow-cover.jpeg
 - ✅ 如何在实战中做出正确选择
 - ✅ 以及如何让它们协同工作
 
-![在这里插入图片描述](https://i-blog.csdnimg.cn/direct/a697d51d88ff4f3586829be972b2cf42.jpeg#pic_center)
-
 ---
 
 ## 🚗 一、Agent：把方向盘交给 AI
