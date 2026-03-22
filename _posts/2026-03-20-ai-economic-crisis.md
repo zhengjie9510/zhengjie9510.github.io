@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AI越成功，经济越危险？一份让华尔街跌800点的"未来报告""
+title: "AI越成功，经济越危险？一份让华尔街跌800点的『未来报告』"
 date: 2026-03-20 22:00:00 +0800
 categories: [ 技术, AI, 经济 ]
 tags: [ AI, 经济危机, CitriniResearch, 未来报告, 就业 ]
