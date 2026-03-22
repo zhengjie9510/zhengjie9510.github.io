@@ -8,6 +8,18 @@ description: "本文深度解析国标级功能点估算法（FPA），将模糊
 image: /assets/img/posts/function-point-analysis-cover.png
 ---
 
+<div align="center" style="margin: 20px 0;">
+    <p style="color: #07c160; font-size: 14px; margin: 0;">
+      🔍 微信搜索公众号
+    </p>
+    <p style="color: #07c160; font-size: 22px; margin: 6px 0;">
+      <strong>AI在学</strong>
+    </p>
+    <p style="color: #888; font-size: 12px; margin: 8px 0 0 0;">
+      获取最新 AI 技术文章与实战教程
+    </p>
+</div>
+
 在软件开发领域，报价混乱往往是供需双方矛盾的根源：甲方担心预算虚高、沦为“冤大头”；乙方则因需求模糊导致成本失控，甚至面临亏损风险。这种乱象的本质，在于双方都在用模糊的“体感”去衡量复杂的“逻辑”。
 
 为了终结这种“拍脑门”定价的盲目性，今天我们要拆解一套国标认可、行业通用的估价利器——功能点估算法（FPA）。它能将无形的软件需求转化为可度量的标准单位，从用户视角出发，让每一分钱的投入都做到有据可依。无论是编制项目预算还是制定投标策略，这套方法都能助你实现精准的价值度量。👇
