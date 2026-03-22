@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "深度拆解 OpenClaw：当 AI 从『只会聊天』进化成『有手有脚』的数字助理"
+title: "🦞深度拆解 OpenClaw：当 AI 从『只会聊天』进化成『有手有脚』的数字助理"
 date: 2026-03-14 21:00:00 +0800
 categories: [ 技术, AI ]
 tags: [ OpenClaw, AI Agent, 数字助理, 工具调用, 开源项目 ]
