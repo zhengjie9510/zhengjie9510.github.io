@@ -25,6 +25,10 @@ description: "用最简单的语言，带你了解大语言模型的核心原理
 
 而它之所以能"猜得准"，是因为它"看过"的文本实在太多了——从百科全书、新闻报道、小说故事，到社交平台的对话，它在训练时读过**海量**的内容。
 
+<div align="center">
+  <img src="/assets/img/posts/llm-works-prediction.png" alt="LLM预测下一个词" style="max-width: 600px;">
+</div>
+
 ---
 
 ## 它是怎么被"训练"出来的？
@@ -37,6 +41,10 @@ description: "用最简单的语言，带你了解大语言模型的核心原理
 
 这一步**并不需要人工标注数据**，只依靠原始文本就能学习语言规律。
 
+<div align="center">
+  <img src="/assets/img/posts/llm-works-pretraining.png" alt="预训练过程" style="max-width: 600px;">
+</div>
+
 ### 🛠 第二步：微调（Fine-tuning）
 
 预训练后，模型拥有了语言"常识"，但并不一定符合实际应用需求。比如，它可能会胡言乱语，或者不理解人类指令。
@@ -45,6 +53,10 @@ description: "用最简单的语言，带你了解大语言模型的核心原理
 - 给模型一个问题，并标注出"最合适"的回答；
 - 或者告诉它哪些回答是不妥的。
 
+<div align="center">
+  <img src="/assets/img/posts/llm-works-finetuning.png" alt="微调过程" style="max-width: 600px;">
+</div>
+
 ### 🏆 第三步：强化学习（Reinforcement Learning from Human Feedback, RLHF）
 
 这个阶段的目标是让模型更"**听人话**"。
@@ -52,6 +64,10 @@ description: "用最简单的语言，带你了解大语言模型的核心原理
 通过人类反馈（比如人类标注员对不同回答进行排序），再利用"**强化学习**"技术来进一步优化模型行为。
 
 这一阶段确保模型不仅会"说话"，还要"**说得得体**"。
+
+<div align="center">
+  <img src="/assets/img/posts/llm-works-rlhf.png" alt="RLHF强化学习" style="max-width: 600px;">
+</div>
 
 ---
 
