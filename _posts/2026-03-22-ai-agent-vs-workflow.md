@@ -4,7 +4,7 @@ title: "AI Agent vs Workflow：让你少踩坑的实战选择法则"
 date: 2026-03-22 14:30:00 +0800
 categories: [ 技术, AI ]
 tags: [ AI Agent, Workflow, 人工智能, 架构设计 ]
-description: "构建 AI 系统时，该让 AI 自由发挥，还是步步为营？这篇文章帮你理清思路。"
+description: "💡 构建 AI 系统时，该让 AI 自由发挥，还是步步为营？这篇文章帮你理清思路。"
 image: /assets/img/posts/ai-agent-vs-workflow-cover.jpeg
 ---
 
@@ -19,12 +19,6 @@ image: /assets/img/posts/ai-agent-vs-workflow-cover.jpeg
       获取最新 AI 技术文章与实战教程
     </p>
 </div>
-
-
-> 💡 构建 AI 系统时，该让 AI 自由发挥，还是步步为营？这篇文章帮你理清思路。
-
-
----
 
 ## 🎯 开篇：一个让人纠结的选择
 
