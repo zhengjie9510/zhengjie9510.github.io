@@ -106,9 +106,6 @@ TSAD 领域的主流方法。
 | 🎨 **Shapelet 异常** | 子序列的形状或模式与正常模式不同 | 股市在特定事件后呈现的异常波动形态  |
 | 🔗 **跨维度异常**       | 多变量序列中变量间相关性被破坏  | CPU使用率与功耗的正相关性突然消失 |
 
-> **配图建议 1**：设计一张信息图，左侧展示时间轴，从上到下依次展示六种异常类型在时间序列上的表现（用红色高亮异常区域）。右侧展示多变量场景：两个子图展示
-> Metric 1 和 Metric 2 的时间序列，用箭头标注它们通常的相关关系，在某区域用红色标注相关性被破坏的部分。整体使用蓝色表示正常，红色表示异常。
-
 ---
 
 ## 3. 深度学习方法分类体系
@@ -146,9 +143,6 @@ TSAD 领域的主流方法。
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-> **配图建议 2**：设计一个思维导图，中心是"深度学习TSAD方法"
-> ，五个主分支分别指向五大类别。每个主分支用不同颜色表示（预测-蓝色、重建-绿色、分类-黄色、表示学习-橙色、混合-紫色），并在分支上简要标注核心思想。
-
 ---
 
 ## 4. 🔵 基于预测的方法
@@ -161,7 +155,8 @@ TSAD 领域的主流方法。
 
 1. 使用历史时间序列窗口 $X_{t-w:t-1}$ 作为输入
 2. 深度预测模型学习正常模式并预测下一时刻值 $\hat{x}_t$
-3. 计算预测误差 $|x_t - \hat{x}_t|$
+3. 计算预测误差
+   $$|x_t - \hat{x}_t|$$
 4. 误差超过阈值则判定为异常
 
 **数学表达：**
@@ -176,13 +171,7 @@ $$AS_t = |x_t - \hat{x}_t| > \text{threshold}$$
 | 单次前向传播即可预测 | 对突发异常响应可能滞后 |
 | 适合周期性强的数据  | 复杂模式学习能力有限  |
 
-> **配图建议 3**：绘制一个对比图，左侧显示模型成功预测正常数据的场景（预测曲线与实际曲线贴合），右侧显示异常发生时预测与实际产生显著偏差（用红色高亮偏差区域）。上方展示预测流程图：输入窗口→预测模型→预测值→与实际值对比。
-
 ### 4.3 代表性论文
-
-📄 **Time-Series Anomaly Detection Service at Microsoft (SR-CNN)**  
-🔗 [https://arxiv.org/abs/1906.03821](https://arxiv.org/abs/1906.03821)  
-💻 [https://github.com/microsoft/anomaly-detector](https://github.com/microsoft/anomaly-detector)
 
 ---
 
@@ -219,9 +208,6 @@ $$AS = ||X - \text{Decoder}(\text{Encoder}(X))||^2$$
 | 利用完整窗口信息，精度高 | 有轻微检测延迟    |
 | 适合变化快速的序列    | 模型通常较复杂    |
 | 可检测子序列异常     | 训练需要更多计算资源 |
-
-> **配图建议 4**：设计一个 Encoder-Decoder 结构示意图。左侧是原始时间序列输入，经过编码器压缩为低维表示（用窄 bottleneck
-> 图形表示），再通过解码器重建。下方展示正常数据重建效果好（误差小，绿色），异常数据重建效果差（误差大，红色）的对比。
 
 ### 5.4 代表性论文
 
@@ -342,11 +328,6 @@ $$\mathcal{L}_{\text{total}} = \lambda_1 \mathcal{L}_{\text{forecast}} + \lambda
 📄 **Multivariate Time-series Anomaly Detection via Graph Attention Network (MTAD-GAT)**  
 🔗 [https://arxiv.org/abs/2009.02040](https://arxiv.org/abs/2009.02040)  
 💻 [https://github.com/ML4ITS/mtad-gat-pytorch](https://github.com/ML4ITS/mtad-gat-pytorch)
-
-📄 **Anomaly Transformer: Time Series Anomaly Detection with Association Discrepancy**  
-🔗 [https://arxiv.org/abs/2110.02642](https://arxiv.org/abs/2110.02642)  
-💻 [https://github.com/thuml/Anomaly-Transformer](https://github.com/thuml/Anomaly-Transformer)
-
 ---
 
 ## 9. 总结
@@ -370,11 +351,8 @@ $$\mathcal{L}_{\text{total}} = \lambda_1 \mathcal{L}_{\text{forecast}} + \lambda
 1. 📄 [Time-Series Anomaly Detection Service at Microsoft (SR-CNN)](https://arxiv.org/abs/1906.03821)
 2. 📄 [LSTM-based Encoder-Decoder for Multi-sensor Anomaly Detection (EncDec-AD)](https://arxiv.org/abs/1607.00148)
 3. 📄 [Deep One-Class Classification (Deep SVDD)](https://proceedings.mlr.press/v80/ruff18a.html)
-4.
-📄 [THOC: Timeseries Anomaly Detection using Temporal Hierarchical One-Class Network](https://proceedings.neurips.cc/paper/2020/hash/97e401a02082021fd24957f852e0e475-Abstract.html)
+4. 📄 [THOC: Timeseries Anomaly Detection using Temporal Hierarchical One-Class Network](https://proceedings.neurips.cc/paper/2020/hash/97e401a02082021fd24957f852e0e475-Abstract.html)
 5. 📄 [TS2Vec: Towards Universal Representation of Time Series](https://arxiv.org/abs/2106.10466)
-6.
-📄 [Multivariate Time-series Anomaly Detection via Graph Attention Network (MTAD-GAT)](https://arxiv.org/abs/2009.02040)
+6. 📄 [Multivariate Time-series Anomaly Detection via Graph Attention Network (MTAD-GAT)](https://arxiv.org/abs/2009.02040)
 7. 📄 [Anomaly Transformer: Time Series Anomaly Detection with Association Discrepancy](https://arxiv.org/abs/2110.02642)
-8.
-📄 [Deep Autoencoding Gaussian Mixture Model for Unsupervised Anomaly Detection (DAGMM)](https://openreview.net/forum?id=BJJLHbb0-)
+8. 📄 [Deep Autoencoding Gaussian Mixture Model for Unsupervised Anomaly Detection (DAGMM)](https://openreview.net/forum?id=BJJLHbb0-)
