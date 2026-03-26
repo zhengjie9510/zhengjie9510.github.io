@@ -268,7 +268,7 @@ $$f(X) = \begin{cases} \text{正常}, & \text{if } X \in \mathcal{N} \\ \text{�
 ### 6.3 代表性论文
 
 📄 **Deep One-Class Classification (Deep SVDD)**  
-🔗 [http://proceedings.mlr.press/v80/ruff18a.html](http://proceedings.mlr.press/v80/ruff18a.html)  
+🔗 [https://proceedings.mlr.press/v80/ruff18a.html](https://proceedings.mlr.press/v80/ruff18a.html)  
 💻 [https://github.com/lukasruff/Deep-SVDD-PyTorch](https://github.com/lukasruff/Deep-SVDD-PyTorch)
 
 ---
@@ -369,7 +369,7 @@ $$\mathcal{L}_{\text{total}} = \lambda_1 \mathcal{L}_{\text{forecast}} + \lambda
 
 1. 📄 [Time-Series Anomaly Detection Service at Microsoft (SR-CNN)](https://arxiv.org/abs/1906.03821)
 2. 📄 [LSTM-based Encoder-Decoder for Multi-sensor Anomaly Detection (EncDec-AD)](https://arxiv.org/abs/1607.00148)
-3. 📄 [Deep One-Class Classification (Deep SVDD)](http://proceedings.mlr.press/v80/ruff18a.html)
+3. 📄 [Deep One-Class Classification (Deep SVDD)](https://proceedings.mlr.press/v80/ruff18a.html)
 4.
 📄 [THOC: Timeseries Anomaly Detection using Temporal Hierarchical One-Class Network](https://proceedings.neurips.cc/paper/2020/hash/97e401a02082021fd24957f852e0e475-Abstract.html)
 5. 📄 [TS2Vec: Towards Universal Representation of Time Series](https://arxiv.org/abs/2106.10466)
