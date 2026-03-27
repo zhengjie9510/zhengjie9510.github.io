@@ -1,9 +1,9 @@
 ---
-title: "深度学习在时间序列异常检测中的应用：分类、原理与论文导读"
+title: "📊 深度学习在时间序列异常检测中的应用：分类、原理与论文导读 🤖🔍"
 date: 2026-03-26 16:00:00 +0800
 categories: [ 机器学习, 时间序列, 综述 ]
 tags: [ 异常检测, 深度学习, 时间序列分析, TSAD, 论文导读 ]
-description: "本文系统梳理了深度学习在时间序列异常检测（TSAD）中的应用，涵盖预测、重建、分类、表示学习和混合方法五大类别，并结合代表论文深入解析各方法的核心原理、优劣势及适用场景。"
+description: "📚 本文系统梳理了深度学习在时间序列异常检测（TSAD）中的应用，涵盖预测、重建、分类、表示学习和混合方法五大类别，并结合代表论文深入解析各方法的核心原理、优劣势及适用场景。⏱️✨"
 image: /assets/img/posts/tsad-cover.png
 math: true
 ---
@@ -75,6 +75,7 @@ MTS 中的变量间往往存在 **spatial dependencies（空间依赖性）**，
 | 🏥 **医疗健康**  | 生理信号监护  | 心律失常检测，生命安全保障 |
 | 🖥️ **智能运维** | 系统性能监控  | 服务异常发现，用户体验保障 |
 | 🔒 **网络安全**  | 流量行为分析  | 入侵攻击检测，信息安全防护 |
+| 🌊 **自然灾害**  | 环境数据监测  | 地震/洪水预警，灾害风险评估 |
 
 ### 1.5 为什么需要深度学习？
 
@@ -157,6 +158,7 @@ $$AS_t = |x_t - \hat{x}_t| > \text{threshold}$$
 
 📄 **DeepAnT: A Deep Learning Approach for Unsupervised Anomaly Detection in Time Series**  
 🔗 [https://www.dfki.de/fileadmin/user_upload/import/10175_DeepAnt.pdf](https://www.dfki.de/fileadmin/user_upload/import/10175_DeepAnt.pdf)
+
 ---
 
 ## 5. 🟢 基于重建的方法
@@ -199,6 +201,7 @@ $$AS = ||X - \text{Decoder}(\text{Encoder}(X))||^2$$
 
 📄 **LSTM-based Encoder-Decoder for Multi-sensor Anomaly Detection (EncDec-AD)**  
 🔗 [https://arxiv.org/abs/1607.00148](https://arxiv.org/abs/1607.00148)
+
 ---
 
 ## 6. 🟡 基于分类的方法
@@ -309,6 +312,7 @@ $$\mathcal{L}_{\text{total}} = \lambda_1 \mathcal{L}_{\text{forecast}} + \lambda
 📄 **Multivariate Time-series Anomaly Detection via Graph Attention Network (MTAD-GAT)**  
 🔗 [https://arxiv.org/abs/2009.02040](https://arxiv.org/abs/2009.02040)  
 💻 [https://github.com/ML4ITS/mtad-gat-pytorch](https://github.com/ML4ITS/mtad-gat-pytorch)
+
 ---
 
 ## 9. 总结
