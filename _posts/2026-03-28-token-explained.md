@@ -8,6 +8,13 @@ description: "国家数据局官方定义：Token 中文名为『词元』。探
 image: /assets/img/posts/token-explained-cover.png
 ---
 
+<div align="center" style="margin: 20px 0;">
+    <img src="/assets/img/wechat-qr-white.png" alt="AI在学公众号" style="max-width: 320px; border-radius: 8px;">
+    <p style="color: #888; font-size: 12px; margin-top: 8px;">
+      🔍 微信扫码或搜索「AI在学」关注公众号
+    </p>
+</div>
+
 > 📢 **官方定调**：3 月下旬，国家数据局在新闻发布会上正式确认——Token 的中文译名为**「词元」**。这个 AI 领域最核心的术语，终于有了官方认可的「身份证」。
 
 ---
