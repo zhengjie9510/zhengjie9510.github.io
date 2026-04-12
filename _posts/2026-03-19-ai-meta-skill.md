@@ -2,7 +2,7 @@
 layout: post
 title: "授 AI 以鱼，不如授 AI 以渔：我给 AI 创建了一个『创建技能』的技能"
 date: 2026-03-19 21:00:00 +0800
-categories: [ 技术, AI ]
+categories: [ AI 技术, Agent 与应用 ]
 tags: [ AI Agent, Meta-Skill, Skill, 自动化工具 ]
 description: "不是给 AI 一万个工具，而是给 AI 造工具的能力。本文详解 Meta-Skill 三层架构：感知、查阅、创造，让 AI 按需自给自足。"
 image: /assets/img/posts/meta-skill-cover.jpeg
