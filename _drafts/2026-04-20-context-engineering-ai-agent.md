@@ -87,11 +87,15 @@ $$
 当内容开始臃肿时，系统会优先执行物理瘦身。
 
 - **压缩（对话总结）**：通过预设规则或模型调用，定期将琐碎的对话历史总结成摘要。例如：当历史对话超过一定长度（如 10 轮）时，系统自动触发总结逻辑，将之前的对话压缩成摘要。其核心目标是在保留关键里程碑的前提下，缩短文本长度。
-![](assets/img/posts/context-engineering-ai-agent-compression.png)
+<div align="center" style="max-width: 640px; margin: 20px auto;">
+    <img src="/assets/img/posts/context-engineering-ai-agent-compression.png" alt="压缩示意图" style="width: 100%; border-radius: 8px;">
+</div>
 
 
 - **替换（结果替换）**：外一个出乎意料的方法是，针对工具返回的冗长结果（如万行日志），直接将其替换为一个占位符："**这里曾经有个 Tool output**"。神奇的是，实验表明这种方式居然能有效维持 LLM 的逻辑连贯性。
-![](assets/img/posts/context-engineering-ai-agent-replacement.png)
+<div align="center" style="max-width: 520px; margin: 20px auto;">
+    <img src="/assets/img/posts/context-engineering-ai-agent-replacement.png" alt="替换示意图" style="width: 100%; border-radius: 8px;">
+</div>
 
 
 当然，这些方法也并非完美无缺。压缩过狠会导致"轨迹延长"——如果关键细节被抹除，LLM 就会因失忆而"忘记"自己已经做过某些动作，从而反复执行同一任务，形成无效循环。
@@ -109,7 +113,9 @@ $$
 - **M (Storage) 长期记忆**：所有需要存储的信息被存储在外部数据库中。
 - **按需加载**：通过预设的检索逻辑，决定何时从长期记忆中取回片段、注入到活跃记忆中。
 
-![](assets/img/posts/context-engineering-ai-agent-memory.png)
+<div align="center" style="max-width: 600px; margin: 20px auto;">
+    <img src="/assets/img/posts/context-engineering-ai-agent-memory.png" alt="多层级记忆架构示意图" style="width: 100%; border-radius: 8px;">
+</div>
 
 在这一架构中，至于如何存、怎么存，也就是如何读、怎么读，是需要研究的一个问题。 这种精细化的管理决定了 Agent 是否能在庞大的历史数据中精准定位到当前任务所需的“那一块”拼图。
 
@@ -158,7 +164,9 @@ $$
 - **委派机制**：主 Agent 派发任务给临时的"子智能体"。子智能体在执行时产生的海量过程 Token 只留在其私有空间。
 - **瞬时清理**：子任务结束后，主 Agent 仅接收一行结果，中间的数千个过程 Token 被瞬间抹除。这会产生显著的锯齿状 Token 效应。
 
-![](assets/img/posts/context-engineering-ai-agent-subagent-token.png)
+<div align="center" style="max-width: 620px; margin: 20px auto;">
+    <img src="/assets/img/posts/context-engineering-ai-agent-subagent-token.png" alt="子智能体 Token 锯齿效应示意图" style="width: 100%; border-radius: 8px;">
+</div>
 
 如上图所示，我们可以观察到明显的 “锯齿状” Token 效应：
 
@@ -174,10 +182,53 @@ $$
 
 ### 4. 智能预过滤与按需加载 (Filtering & On-demand Loading)
 
-在信息进入大语言模型的"视线"之前，系统先行拦截过滤。
+前面提到的压缩、替换、子智能体等手段，本质上都是在信息**已经进入**上下文之后做"事后清理"。但如果我们追问一个更根本的问题：这些臃肿的 context 究竟是从哪里来的？
 
-- **智能读取 (Smart Read)**：改变"全盘读取"的逻辑。通过预设规则，只读取必要内容，例如："只返回文件中包含 'Error' 的那 20 行"。
-- **技能动态加载**：不再预先载入所有工具文档。只给模型看菜单（工具名称和简介），仅当 LLM 决定使用某工具时，才有针对性地读入完整操作说明。
+有研究者对 Agent 对话历史中的 token 来源做了详细分析，发现一个惊人的事实：
+
+- **Action**（模型产生执行工具的指令）仅占约 **6.5%**
+- **Reasoning**（模型自己的思考与输出）仅占约 **9.6%**
+- **Observation**（来自外界的输入，如文件内容、工具返回的日志等）却占据了高达 **84%**
+
+<div align="center" style="max-width: 360px; margin: 20px auto;">
+    <img src="/assets/img/posts/context-engineering-token-distribution.png" alt="Token 来源分布" style="width: 100%; border-radius: 8px;">
+    <p style="color: #888; font-size: 12px; margin-top: 8px;">
+        Token 来源分布（数据来源：<em>When Less is More: On the Cost-Effectiveness of Observation Masking in LLM Agents</em>）
+    </p>
+</div>
+
+另一篇聚焦软件工程场景的论文也得出几乎一致的结论：Agent 仅有约 12% 的 context 花在执行代码、11.8% 花在修改代码，而高达 **76%** 的 context 用于将整个代码仓库读入。这意味着，**真正吞噬上下文窗口的罪魁祸首，不是模型自己的思考，而是那些未经筛选的外界输入。**
+
+既然如此，最有效的策略不是等它们把 context 撑爆后再压缩，而是**在 observation 进入语言模型之前，就先做过滤**。
+
+#### 智能读取 (Smart Read)
+
+传统的读取逻辑往往是：模型说"我要读一份行业研究报告"，`read` 工具就把整份上百页的报告原封不动地塞给模型。资料一庞大，模型很容易被"哽到"。
+
+更聪明的做法是，让模型在发出读取指令时就带上筛选意图，例如："我要读这份报告中关于市场规模预测的部分"。而 `read` 工具本身也不应只是"打开文件"，它还需要具备一定的智能，能够根据指令从海量内容中找出真正相关的段落。这背后的实现可以是一个**小型语言模型**——它接收读取指令，从原始资料中筛选出匹配内容，再传给主 Agent。主 Agent 因此只需聚焦于经过过滤的精华信息。
+
+<div align="center" style="max-width: 560px; margin: 20px auto;">
+    <img src="/assets/img/posts/context-engineering-smart-read.png" alt="智能读取示意图" style="width: 100%; border-radius: 8px;">
+</div>
+
+这种"只取一段"的思路，与 OpenClaw 中 `memory get` 的设计异曲同工。OpenClaw 没有一次性读取整个 memory 文件，而是配合 `memory search` 的结果，通过 `memory get` 指定"从第几行开始读、读多少行"，只从巨大的 memory 中取出所需的一小段。本质上，这也是一种预过滤。
+
+#### 按需加载 (On-demand Loading)
+
+智能预过滤的另一个典型场景，其实就是我在《[别再复制粘贴提示词了！AI Agent Skill 到底是什么？](https://zhengjie9510.github.io/posts/ai-agent-skill/)》中详细讲过的 **Agent Skill** 机制。
+
+在传统做法里，如果你希望 AI 按特定格式写周报、整理会议纪要或生成数据报告，每次都得在对话里手动交代一大段"规矩"。如果把这些"规矩"全部常驻在 system prompt 里，想象一下，当 Agent 集成了几十个 Skill，每个 Skill 的 Prompt 模板都有几千个 token，全部塞进去很容易直接撑爆上下文窗口。
+
+**Skill 的本质，正是按需加载**：把"规矩"写成独立的 Skill 文件，系统只在检测到用户需要某个 Skill 时，才将其对应的 Prompt 模板动态挂载到当前上下文中。平时这些 Skill 的详细内容都存放在外部，不会占用宝贵的上下文空间。
+
+<div align="center" style="max-width: 480px; margin: 20px auto;">
+    <img src="/assets/img/posts/context-engineering-on-demand-loading.png" alt="按需加载示意图" style="width: 100%; border-radius: 8px;">
+</div>
+
+> 关于按需加载与工具动态选择，可参考论文：
+> 
+> MCP-Zero: Active Tool Discovery for Autonomous LLM Agents  
+> https://arxiv.org/abs/2506.01056
 
 ### 5. 自动化上下文工程 (ACE, Agentic Context Engineering)
 
