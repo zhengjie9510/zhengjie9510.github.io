@@ -35,6 +35,8 @@ image: /assets/img/posts/prompt-context-harness-cover.png
 
 如果你还停留在第一层，写出来的 Agent 可能连一个复杂项目都跑不完。今天我们就一层一层往上爬。
 
+> 📝 **TODO：** 后文会补充一节，专门介绍 **什么是 AI Agent**。
+
 ---
 
 ## 📝 第一层：Prompt Engineering —— 单次对话的艺术
