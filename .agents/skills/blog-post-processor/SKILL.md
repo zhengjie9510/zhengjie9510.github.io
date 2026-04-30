@@ -89,8 +89,8 @@ ls -la assets/img/posts/{slug}-*
 
 **如有需要压缩（特别是大于 500KB 的封面）：**
 ```bash
-# 封面图：调整为 1200px 宽度，80% 质量 JPEG
-sips -Z 1200 input.png --out output.jpg -s format jpeg -s formatOptions 80
+# 封面图：调整为 800px 宽度，80% 质量 JPEG
+sips -Z 800 input.png --out output.jpg -s format jpeg -s formatOptions 80
 ```
 
 ### 步骤 4：提取并确认元数据
