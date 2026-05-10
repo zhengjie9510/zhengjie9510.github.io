@@ -37,7 +37,7 @@
 ## 图片命名
 
 - **文章配图必须改成语义化文件名**：不要保留 `图片 1.png`、`img.png`、模型默认生成名这类不可维护的名称。
-- **统一使用“文章名称 slug-序号-语义”格式**：不要包含文件名前面的日期部分；例如 `harness-engineering-01-cover.png`、`harness-engineering-02-three-layers.png`。
+- **统一使用“文章名称 slug-语义”格式**：不要包含文件名前面的日期部分；例如 `harness-engineering-cover.png`、`harness-engineering-three-layers.png`。
 - **语义字段用英文短词**：只保留 2 到 4 个能看懂用途的英文词，使用连字符连接，便于检索和批量处理。
 - **重命名后同步更新正文引用**：修改 Markdown 或 HTML 中的图片路径时，文件名和引用必须同时调整，避免留下失效链接。
 
