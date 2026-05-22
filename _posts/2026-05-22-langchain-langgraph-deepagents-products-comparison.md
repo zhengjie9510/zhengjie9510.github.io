@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "LangChain、LangGraph、Deep Agents：三者核心能力与选型指南"
-date: 2026-04-30 10:00:00 +0800
+date: 2026-05-22 7:00:00
 categories: [ AI 技术, Agent 开发 ]
 tags: [ LangChain, LangGraph, DeepAgents, AI Agent, 框架对比 ]
 description: "基于 LangChain 官方文档，用通俗易懂的方式梳理 LangChain、LangGraph 和 Deep Agents 的核心能力与适用场景"
