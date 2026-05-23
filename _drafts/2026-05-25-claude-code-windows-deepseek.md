@@ -5,7 +5,7 @@ date: 2026-05-25 7:00:00
 categories: [AI工具]
 tags: [Claude Code, DeepSeek, Windows, 教程]
 image:
-description: 完全面向小白的 Claude Code 安装与配置教程，接入 DeepSeek，国内可用，全程约 15 分钟。
+description: 一篇清晰易上手的 Claude Code 安装与配置教程，演示如何在 Windows 上接入 DeepSeek。
 ---
 
 ## Claude Code 是什么？
