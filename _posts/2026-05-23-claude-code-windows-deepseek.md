@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 手把手教你在 Windows 上安装 Claude Code 并接入 DeepSeek
-date: 2026-05-25 7:00:00
+date: 2026-05-23 7:00:00
 categories: [AI工具]
 tags: [Claude Code, DeepSeek, Windows, 教程]
 image:
