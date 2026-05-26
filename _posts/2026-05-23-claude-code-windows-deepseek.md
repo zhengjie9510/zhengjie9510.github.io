@@ -8,6 +8,13 @@ image: assets/img/posts/claude-code-cover.png
 description: 一篇清晰易上手的 Claude Code 安装与配置教程，演示如何在 Windows 上接入 DeepSeek。
 ---
 
+<div align="center" style="margin: 20px 0;">
+    <img src="/assets/img/wechat-qr-white.png" alt="AI在学公众号" style="max-width: 320px; border-radius: 8px;">
+    <p style="color: #888; font-size: 12px; margin-top: 8px;">
+      🔍 微信扫码或搜索「AI在学」关注公众号
+    </p>
+</div>
+
 ## Claude Code 是什么？
 
 **Claude Code 是 Anthropic 推出的命令行智能助手。它和普通智能对话工具最大的区别是：不只是“给建议”，而是真的能直接动手干活。**

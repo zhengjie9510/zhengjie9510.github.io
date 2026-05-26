@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "💡 AI Agent 核心技术：一文读懂 Agent 以及 Prompt Engineering、Context Engineering、Harness Engineering"
-date: 2026-05-25 7:00:00
+date: 2026-05-26 7:00:00
 categories: [ AI 技术, Agent 与应用 ]
 tags: [ AI Agent, Prompt Engineering, Context Engineering, Harness Engineering, LLM ]
 image: /assets/img/posts/agent-prompt-context-harness-system-map.png

@@ -8,6 +8,13 @@ description: "基于 LangChain 官方文档，用通俗易懂的方式梳理 Lan
 image: /assets/img/posts/langchain-langgraph-deepagents-layers.png
 ---
 
+<div align="center" style="margin: 20px 0;">
+    <img src="/assets/img/wechat-qr-white.png" alt="AI在学公众号" style="max-width: 320px; border-radius: 8px;">
+    <p style="color: #888; font-size: 12px; margin-top: 8px;">
+      🔍 微信扫码或搜索「AI在学」关注公众号
+    </p>
+</div>
+
 提到 AI Agent 开发，**LangChain** 是一个绕不过去的名字——它是目前 GitHub 上 stars 数最多的 Agent 开发框架之一（超过 10 万 ⭐），Klarna、Uber、LinkedIn 等大公司都在用它构建生产级应用。
 
 但很多人没意识到的是，LangChain 生态早已不是“一个框架打天下”。在这个生态里，**LangChain**、**LangGraph** 和 **Deep Agents SDK** 扮演着完全不同的角色：LangChain 是 Framework（框架），负责提供开发抽象；LangGraph 是 Runtime（运行时），负责稳定运行和复杂编排；Deep Agents SDK 是 Harness（即“Agent 驾驭框架”），在最上层提供开箱即用的自主能力。三者不是“谁取代谁”的关系，而是**分工协作**——LangGraph 打底 → LangChain 提速 → Deep Agents 封顶。
