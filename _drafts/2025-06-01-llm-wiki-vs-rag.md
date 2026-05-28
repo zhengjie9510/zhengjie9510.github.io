@@ -1,5 +1,11 @@
-# 别再瞎折腾 RAG 了——"LLM Wiki"才是个人知识库的终局
-
+---
+layout: post
+title: "别再瞎折腾 RAG 了：LLM Wiki 才是个人知识库的终局"
+date: 2025-06-01 10:00:00 +0800
+categories: [ AI 技术, 知识管理 ]
+tags: [ RAG, LLM Wiki, Andrej Karpathy, 知识库, 大模型 ]
+description: "Andrej Karpathy 提出的 LLM Wiki 概念，如何降维打击传统 RAG，打造全自动进化的第二大脑"
+---
 每个人都在谈论大模型时代。你可能也像我一样，在微信收藏夹、Notion 或电脑硬盘里，攒了成百上千篇 PDF 论文、行业报告和网页剪藏。
 
 为了消化这些"数字资产"，我们开始折腾 **RAG（一种让 AI 读你的文件来回答问题的技术）**，把文件丢给 ChatGPT、Claude 或 NotebookLM。
