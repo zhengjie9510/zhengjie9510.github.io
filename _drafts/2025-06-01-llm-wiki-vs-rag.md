@@ -5,6 +5,7 @@ date: 2025-06-01 10:00:00 +0800
 categories: [ AI 技术, 知识管理 ]
 tags: [ RAG, LLM Wiki, Andrej Karpathy, 知识库, 大模型 ]
 description: "Andrej Karpathy 提出的 LLM Wiki 概念，如何降维打击传统 RAG，打造全自动进化的知识库"
+image: /assets/img/posts/llm-wiki-vs-rag-cover.png
 ---
 每个人都在谈论大模型时代。你可能也像我一样，在微信收藏夹、Notion 或电脑硬盘里，攒了成百上千篇 PDF 论文、行业报告和网页剪藏。
 
