@@ -5,7 +5,7 @@ date: 2025-05-29 21:00:00 +0800
 categories: [ 思考与观点, AI 与社会 ]
 tags: [ 亚马逊, AI, KPI, 古德哈特定律, 管理 ]
 description: "亚马逊内部 AI 使用排行榜 Kirorank 上线不久即被紧急叫停——员工用 AI 刷无意义任务来堆高 Token 消耗量，把激励机制玩成了薅羊毛大赛。"
-image: /assets/img/posts/Gemini_Generated_Image_dgr90rdgr90rdgr9.png
+image: /assets/img/posts/amazon-kirorank-cover.png
 ---
 
 > 📅 2025年5月29日｜来源：《金融时报》
