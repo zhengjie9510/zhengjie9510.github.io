@@ -26,6 +26,9 @@ package-lock.json
 _sass/vendors
 assets/js/dist
 
+# macOS
+.DS_Store
+
 # Python / uv
 pyproject.toml
 uv.lock
