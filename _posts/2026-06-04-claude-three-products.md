@@ -5,6 +5,7 @@ date: 2026-06-04 19:30:00 +0800
 categories: [AI 工具, 效率提升]
 tags: [Claude, Anthropic, AI工具, 效率提升]
 description: "Anthropic 做了三个产品：Chat、Code、Cowork。同一个 AI，三种完全不同的使用方式——你可能只用了最基础的那个。"
+image: /assets/img/posts/claude-three-products-cover.png
 ---
 
 很多人认识 Claude，是从 claude.ai 开始的——打开网页，输入问题，它回答。但 Anthropic 其实做了三个产品：**Chat、Code、Cowork**。同一个 AI，三种完全不同的使用方式。
