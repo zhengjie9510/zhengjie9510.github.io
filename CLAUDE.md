@@ -1,23 +1,25 @@
 # Global Rules
 
 ## Python 环境
-系统已安装 uv。任何 Python 任务必须遵循以下流程：
+系统已安装 uv。任何涉及 Python 的操作（包括内联命令 `python -c "..."`）**必须**在虚拟环境中执行。
 
-### 第一步：检查虚拟环境
-检查当前目录下是否存在 `.venv` 文件夹：
-- 如果不存在，先执行 `uv venv` 创建虚拟环境
-- 如果存在，跳过此步
+### 强制前置步骤
+每次执行 Python 相关命令前，**必须先确认**：
+1. 当前项目目录下存在 `.venv` 文件夹
+2. 如果不存在，**必须先执行** `uv venv` 创建虚拟环境
+3. **然后再执行**实际的 Python 命令
 
-### 第二步：激活并使用
-所有 Python 操作必须通过 uv 执行：
+### 唯一允许的调用方式
 - 安装包：`uv pip install <package>`
 - 运行脚本：`uv run python script.py`
-- 其他操作：`uv run <command>`
+- 运行内联代码：`uv run python -c "..."`
+- 其他 Python 操作：`uv run <command>`
 
 ### 绝对禁止
-- 禁止直接使用 `python`、`pip`、`python3` 等裸命令
-- 禁止使用 `pip install` 而不通过 uv
-- 禁止在没有虚拟环境的情况下运行 Python
+- 禁止直接使用 `python`、`python3`、`pip`、`pip3` 等裸命令
+- 禁止在没有 `.venv` 的情况下运行任何 Python 代码
+- 禁止使用 `pip install` 而不通过 `uv pip install`
+- 禁止跳过虚拟环境创建步骤
 
 ## Node.js 环境
 1. 项目无 `package.json` 时先执行 `npm init -y`
