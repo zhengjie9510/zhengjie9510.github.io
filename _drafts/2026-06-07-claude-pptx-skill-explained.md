@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "🔍 同样是 AI，Claude 做的 PPT 为什么更好看？PPT Skill 解读"
+title: "🔍 同样是 AI，Claude 做的 PPT 为什么更让你满意"
 date: 2026-06-07 10:00:00 +0800
 categories: [AI工具]
 tags: [Claude, AI, PPT, 技能解读]
