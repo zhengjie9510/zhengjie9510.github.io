@@ -2,8 +2,8 @@
 layout: post
 title: "大语言模型的『翻译秘笈』：一文读懂 Tokens 和 Embeddings"
 date: 2025-02-10 10:00:00 +0800
-categories: [ AI 技术, 大模型基础 ]
-tags: [ Token, Embedding, 分词, 词向量, 大模型原理 ]
+categories: [ AI 基础与原理, 大模型原理 ]
+tags: [ Token, Embedding, 分词, 词向量 ]
 description: "揭秘大语言模型如何『理解』人类语言：Tokens负责『识字』，Embeddings负责『理解含义』"
 ---
 

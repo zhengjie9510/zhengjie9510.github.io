@@ -2,7 +2,7 @@
 layout: post
 title: "构建一个能干活的 AI Agent，真的没你想的那么难！"
 date: 2025-03-15 10:00:00 +0800
-categories: [ AI 技术, Agent 与应用 ]
+categories: [ AI Agent ]
 tags: [ AI Agent, Function Call, LangChain, 会议室预订, 实战 ]
 description: "手把手构建一个 AI Agent，教它自动预订会议室，让它真正帮我们'干活'"
 ---

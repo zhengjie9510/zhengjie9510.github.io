@@ -2,8 +2,8 @@
 layout: post
 title: "数据飞轮时代来了！国家数据局发布《关于推进行业高质量数据集建设行动的实施方案》"
 date: 2026-06-08 10:00:00 +0800
-categories: [AI 与产业, 数据政策]
-tags: [国家数据局, 数据集, 人工智能, 数据要素, 数据标注, 数据资产化, AI训练, 政策解读]
+categories: [ AI 行业观察 ]
+tags: [ 国家数据局, 数据集, 数据要素, 数据标注, 数据资产化, AI 训练, 政策解读 ]
 description: "国家数据局刚发布实施方案，部署强基扩容、标注攻坚、提质增效、应用赋能、管理服务、价值释放六个专项行动，首次把行业高质量数据集的建设路径从供给到变现完整串了起来。"
 image: /assets/img/posts/industry-dataset-action-plan-cover.png
 ---

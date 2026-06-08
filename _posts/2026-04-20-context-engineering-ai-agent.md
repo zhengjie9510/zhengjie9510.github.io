@@ -2,8 +2,8 @@
 layout: post
 title: "💡 AI Agent 核心技术：一文读懂 Context Engineering 及主要做法"
 date: 2026-04-20 22:00:00 +0800
-categories: [ AI 技术, Agent 与应用 ]
-tags: [ Context Engineering, AI Agent, LLM, 上下文管理, Prompt Engineering ]
+categories: [ AI Agent, Agent 开发 ]
+tags: [ Context Engineering, AI Agent, 上下文管理, Prompt Engineering ]
 description: "深入解析 AI Agent 核心技术 Context Engineering：从压缩替换、多层级记忆、子智能体到按需加载，系统性讲解如何在有限上下文窗口中让 LLM 看到最有价值的信息。"
 image: /assets/img/posts/context-engineering-ai-agent-cover.jpg
 ---

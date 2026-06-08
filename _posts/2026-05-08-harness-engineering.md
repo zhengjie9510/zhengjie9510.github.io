@@ -2,7 +2,7 @@
 layout: post
 title: "💡 AI Agent 核心技术：一文读懂 Harness Engineering"
 date: 2026-05-08 22:10:00 +0800
-categories: [ AI 技术, Agent 与应用 ]
+categories: [ AI Agent, Agent 开发 ]
 tags: [ Harness Engineering, AI Agent, Prompt Engineering, Context Engineering ]
 description: "很多时候，智能体做不好，不是因为模型不够聪明，而是因为外部的规则、工具和流程没有搭好。本文用通俗的方式讲清什么是 Harness Engineering，以及它为什么往往比“换更强模型”更值得先做。"
 image: /assets/img/posts/harness-engineering-01-cover.png

@@ -2,8 +2,8 @@
 layout: post
 title: "🔍 为什么你用 AI 做的 PPT 不好看？因为你缺了这份技能"
 date: 2026-06-07 10:00:00 +0800
-categories: [AI工具]
-tags: [Claude, AI, PPT, 技能解读]
+categories: [ AI 工具 ]
+tags: [ Claude, PPT, 技能解读 ]
 description: "同样是 AI，为什么 Claude 做的 PPT 更让你满意？答案藏在它的'内部文件'里。Claude 处理 PPT 任务时，会先读一份专项操作手册——里面不只有流程，还内嵌了完整的设计规范：10套预设配色方案、字号排版规则，以及一份专门列出'AI做PPT最容易犯的毛病'的禁止清单。"
 image: /assets/img/posts/claude-pptx-skill-cover.png
 ---

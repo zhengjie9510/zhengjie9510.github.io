@@ -2,8 +2,8 @@
 layout: post
 title: "一文读懂 RAG 与嵌入模型：大模型如何实现'读文档、答问题'"
 date: 2025-05-10 10:00:00 +0800
-categories: [ AI 技术, Agent 与应用 ]
-tags: [ RAG, Embedding, 检索增强生成, 向量检索, 大模型, 知识库 ]
+categories: [ 深度学习与机器学习 ]
+tags: [ RAG, Embedding, 向量检索, 知识库 ]
 description: "RAG 本质上是给大语言模型'外挂'了一个知识库，而让这个外挂真正运行起来的，正是嵌入模型"
 ---
 

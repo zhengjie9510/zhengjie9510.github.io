@@ -2,8 +2,8 @@
 layout: post
 title: "AI越成功，经济越危险？一份让华尔街跌800点的『未来报告』"
 date: 2026-03-20 22:00:00 +0800
-categories: [ 思考与观点, AI 与社会 ]
-tags: [ AI, 经济危机, CitriniResearch, 未来报告, 就业 ]
+categories: [ AI 行业观察 ]
+tags: [ 经济危机, CitriniResearch, 就业 ]
 description: "当AI乐观预期持续被证明正确，这本身反而可能是利空的。深度解析让道指暴跌800点的《2028全球智能危机》报告：幽灵GDP、人类智能替代螺旋、四波冲击。"
 image: /assets/img/posts/ai-economic-crisis-cover.png
 ---

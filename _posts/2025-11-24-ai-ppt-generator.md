@@ -2,8 +2,8 @@
 layout: post
 title: "我手搓了一个 AI 工具，PPT 全自动生成！"
 date: 2025-11-24 10:00:00 +0800
-categories: [ AI 技术, 工程实践 ]
-tags: [ LangGraph, PPT, 通义千问, 自动化, Python, Agent ]
+categories: [ AI 工具 ]
+tags: [ LangGraph, PPT, 通义千问, 自动化, AI Agent ]
 description: "用 Python 和 LangGraph，配合通义千问大模型，通过'三步法'自动化生成 PPT 初稿"
 
 ---

@@ -2,8 +2,8 @@
 layout: post
 title: "别再复制粘贴提示词了！AI Agent Skill 到底是什么？"
 date: 2026-03-15 20:00:00 +0800
-categories: [ AI 技术, Agent 与应用 ]
-tags: [ AI Agent, Skill, Prompt, 效率工具 ]
+categories: [ AI Agent ]
+tags: [ AI Agent, Skill, Prompt ]
 description: "💡 Skill = 预置的 Prompt 模板，一次配置永久复用。本文详解 Agent Skill 的工作原理和三层加载机制，手把手教你创建自己的 Skill。"
 image: /assets/img/posts/ai-agent-skill-cover.png
 ---

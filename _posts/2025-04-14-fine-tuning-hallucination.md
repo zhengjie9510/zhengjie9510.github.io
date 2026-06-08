@@ -2,8 +2,8 @@
 layout: post
 title: "微调大模型的悖论：引入新知识，可能助长『幻觉』"
 date: 2025-04-14 10:00:00 +0800
-categories: [ AI 技术, 大模型基础 ]
-tags: [ Fine-tuning, 幻觉, Hallucination, 大模型, SliCK, 知识编辑 ]
+categories: [ AI 基础与原理, 大模型原理 ]
+tags: [ 微调, 幻觉, SliCK, 知识编辑 ]
 description: "研究发现，大语言模型在微调时引入新知识不仅学习效率低，还可能导致『幻觉』现象"
 ---
 

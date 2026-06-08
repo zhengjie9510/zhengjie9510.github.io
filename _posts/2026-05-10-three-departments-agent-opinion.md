@@ -2,8 +2,8 @@
 layout: post
 title: "三部门发文，智能体迎来重大利好"
 date: 2026-05-10 11:20:00 +0800
-categories: [ AI 技术, Agent 与应用 ]
-tags: [ 智能体, AI Agent, 人工智能政策, Agent 落地 ]
+categories: [ AI Agent ]
+tags: [ AI Agent, 政策 ]
 description: "国家网信办、国家发展改革委、工业和信息化部联合印发《智能体规范应用与创新发展实施意见》。这不只是一次政策发布，也释放出一个明确信号：智能体正在从概念走向产品、从演示走向治理、从单点能力走向系统能力。"
 image: /assets/img/posts/three-departments-agent-opinion-cover.png
 ---

@@ -2,8 +2,8 @@
 layout: post
 title: "你可能只用了 Claude 三分之一的能力"
 date: 2026-06-04 19:30:00 +0800
-categories: [AI 工具, 效率提升]
-tags: [Claude, Anthropic, AI工具, 效率提升]
+categories: [ AI 工具 ]
+tags: [ Claude, Anthropic, 效率提升 ]
 description: "Anthropic 做了三个产品：Chat、Code、Cowork。同一个 AI，三种完全不同的使用方式——你可能只用了最基础的那个。"
 image: /assets/img/posts/claude-three-products-cover.png
 ---

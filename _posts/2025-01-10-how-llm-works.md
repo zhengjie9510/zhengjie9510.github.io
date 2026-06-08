@@ -2,8 +2,8 @@
 layout: post
 title: "大语言模型究竟是怎么工作的？"
 date: 2025-01-10 10:00:00 +0800
-categories: [ AI 技术, 大模型基础 ]
-tags: [ LLM, 大语言模型, 预训练, 微调, RLHF, Transformer ]
+categories: [ AI 基础与原理, 大模型原理 ]
+tags: [ 大语言模型, 预训练, 微调, RLHF, Transformer ]
 description: "用最简单的语言，带你了解大语言模型的核心原理：从预训练到强化学习"
 ---
 

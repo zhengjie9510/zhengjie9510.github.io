@@ -1,8 +1,8 @@
 ---
 title: "Claude 是怎么帮你写出专业文档的？深入解读 DOCX 技能"
-date: 2026-06-04
-categories: [AI工具]
-tags: [Claude, AI, Word文档, 技能解读]
+date: 2026-06-12
+categories: [ AI 工具 ]
+tags: [ Claude, Word 文档, 技能解读 ]
 ---
 
 你有没有注意到，有些 AI 生成的 Word 文档看起来特别业余——表格错位、分页混乱、格式不一致。但用 Claude 生成的文档却不一样，**格式规范、结构清晰、细节精致。**

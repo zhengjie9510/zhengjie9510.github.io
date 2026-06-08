@@ -2,8 +2,8 @@
 layout: post
 title: "💡 AI Agent 核心技术：一文读懂 Agent 以及 Prompt Engineering、Context Engineering、Harness Engineering"
 date: 2026-05-26 7:00:00
-categories: [ AI 技术, Agent 与应用 ]
-tags: [ AI Agent, Prompt Engineering, Context Engineering, Harness Engineering, LLM ]
+categories: [ AI Agent ]
+tags: [ AI Agent, Prompt Engineering, Context Engineering, Harness Engineering ]
 image: /assets/img/posts/agent-prompt-context-harness-system-map.png
 description: "Agent 不是一段会调用工具的提示词，而是一套围绕大语言模型搭起来的工作系统。本文从同一个框架出发，讲清 Prompt Engineering、Context Engineering、Harness Engineering 分别在解决什么问题，以及它们是怎样共同决定一个 Agent 能不能把事做完的。"
 ---
