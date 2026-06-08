@@ -91,7 +91,11 @@ uv run skills/rss-fetch/rss_fetch.py --sources feeds.txt --days 2 --max 5
 | 最近两天 / last 2 days | `--days 2` |
 | 最新 5 条 / latest 5 | `--top 5` |
 | 最近一周 / last week | `--days 7` |
-| 未给出 URL，只提到话题 | 查阅同目录下的 `rss-sources.md`，推荐订阅源后请用户确认再获取 |
+
+> **URL 决策优先级**
+> 1. 用户直接给出 URL → 立即执行
+> 2. 模型本身就知道该话题对应的 URL → 直接使用
+> 3. 不确定 URL 或话题过于宽泛 → 查阅 `rss-sources.md` 推荐后由用户确认
 
 ## 输出格式
 

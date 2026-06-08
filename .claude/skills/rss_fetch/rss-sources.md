@@ -38,6 +38,19 @@ Curated feeds by category. Use when the user asks for a topic but hasn't provide
 | 知乎日报 | `https://plink.anyfeeder.com/zhihu/daily` |
 | 潮流周刊 | `https://weekly.tw93.fun/rss.xml` |
 
+## 新闻与媒体
+
+| 名称 | URL |
+|------|-----|
+| 半岛电视台 | `https://www.aljazeera.com/xml/rss/all.xml` |
+| Ars Technica 科技 | `https://feeds.arstechnica.com/arstechnica/index` |
+| 美联社 | `https://rsshub.app/apnews/topics/apf-topnews` |
+| BBC 新闻 | `http://feeds.bbci.co.uk/news/rss.xml` |
+| 美国国家公共广播 | `https://feeds.npr.org/1001/rss.xml` |
+| 路透社 | `https://www.reutersagency.com/feed/` |
+| TechCrunch 科技创投 | `https://techcrunch.com/feed/` |
+| 卫报 | `https://www.theguardian.com/world/rss` |
+
 ## Design & Product
 
 | Name | URL |
