@@ -2,7 +2,7 @@
 layout: post
 title: "AI 耗电大家都知道，但水和土地这笔账才刚开始算"
 date: 2026-06-07 10:00:00 +0800
-categories: [ AI 行业观察 ]
+categories: [ AI 行业洞察 ]
 tags: [ AI 能耗, 数据中心, 碳排放, 水资源, 环境代价, 联合国, 杰文斯悖论 ]
 description: "联合国大学刚发布的报告首次把 AI 的碳、水、土地三个环境账放在一起算。最反直觉的发现：从煤电切换到生物质能，碳排放降了七成，耗水量却涨了三十多倍。"
 image: /assets/img/posts/ai-environmental-cost-unu-report-cover.png

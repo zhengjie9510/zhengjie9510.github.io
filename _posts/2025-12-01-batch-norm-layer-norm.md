@@ -2,7 +2,7 @@
 layout: post
 title: "深度学习基础：图解 Batch Norm 与 Layer Norm 的维度切分逻辑"
 date: 2025-12-01 10:00:00 +0800
-categories: [ 深度学习与机器学习 ]
+categories: [ 深度学习 ]
 tags: [ BatchNorm, LayerNorm, 深度学习, 神经网络, 归一化 ]
 description: "从数据结构角度出发，用'班级成绩单'的比喻，彻底搞懂 BN 和 LN 的维度切分逻辑"
 image: /assets/img/posts/batch-norm-layer-norm-cover.png

@@ -2,7 +2,7 @@
 layout: post
 title: "🦞深度拆解 OpenClaw：当 AI 从『只会聊天』进化成『有手有脚』的数字助理"
 date: 2026-03-14 21:00:00 +0800
-categories: [ AI Agent, Agent 开发 ]
+categories: [ AI Agent ]
 tags: [ OpenClaw, AI Agent, 数字助理, Function Call, 开源 ]
 description: "技术圈掀起『养龙虾』热潮！深度拆解 OpenClaw：从灵魂构造（Soul.md）到记忆工程（RAG）、从工具调用到心跳机制，看懂 AI Agent 如何从『黑盒大脑』进化成『有手有脚的数字助理』。"
 image: /assets/img/posts/openclaw-cover.png

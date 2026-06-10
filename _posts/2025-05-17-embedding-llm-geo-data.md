@@ -2,7 +2,7 @@
 layout: post
 title: "Embedding + LLM：用大模型智能清洗地理数据（附代码实战）"
 date: 2025-05-17 10:00:00 +0800
-categories: [ AI 工具 ]
+categories: [ AI 工程实践 ]
 tags: [ Embedding, 大语言模型, 地理数据, LangChain, 向量检索, Qwen ]
 description: "用 Embedding 向量模型自动对齐地名，打造更聪明的数据查询系统"
 ---

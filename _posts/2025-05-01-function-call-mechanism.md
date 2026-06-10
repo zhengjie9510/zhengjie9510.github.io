@@ -2,7 +2,7 @@
 layout: post
 title: "AI Agent 能动手的秘密：Function Call 机制解析"
 date: 2025-05-01 10:00:00 +0800
-categories: [ AI Agent ]
+categories: [ AI 工程实践 ]
 tags: [ Function Call, AI Agent, Qwen ]
 description: "以 Qwen2.5 为例，深入解析大语言模型中的 Function Call 机制，揭示它如何实现工具调用与任务执行"
 ---
