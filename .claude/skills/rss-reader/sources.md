@@ -34,22 +34,22 @@ Curated feeds by category. Use when the user asks for a topic but hasn't provide
 
 | Name | URL |
 |------|-----|
-| 少数派 | `https://sspai.com/feed` |
-| 知乎日报 | `https://plink.anyfeeder.com/zhihu/daily` |
-| 潮流周刊 | `https://weekly.tw93.fun/rss.xml` |
+| 少数派 (sspai) | `https://sspai.com/feed` |
+| 知乎日报 (Zhihu Daily) | `https://plink.anyfeeder.com/zhihu/daily` |
+| 潮流周刊 (Tw93 Weekly) | `https://weekly.tw93.fun/rss.xml` |
 
-## 新闻与媒体
+## News & Media
 
-| 名称 | URL |
+| Name | URL |
 |------|-----|
-| 半岛电视台 | `https://www.aljazeera.com/xml/rss/all.xml` |
-| Ars Technica 科技 | `https://feeds.arstechnica.com/arstechnica/index` |
-| 美联社 | `https://rsshub.app/apnews/topics/apf-topnews` |
-| BBC 新闻 | `http://feeds.bbci.co.uk/news/rss.xml` |
-| 美国国家公共广播 | `https://feeds.npr.org/1001/rss.xml` |
-| 路透社 | `https://www.reutersagency.com/feed/` |
-| TechCrunch 科技创投 | `https://techcrunch.com/feed/` |
-| 卫报 | `https://www.theguardian.com/world/rss` |
+| Al Jazeera | `https://www.aljazeera.com/xml/rss/all.xml` |
+| Ars Technica | `https://feeds.arstechnica.com/arstechnica/index` |
+| Associated Press | `https://rsshub.app/apnews/topics/apf-topnews` |
+| BBC News | `http://feeds.bbci.co.uk/news/rss.xml` |
+| NPR | `https://feeds.npr.org/1001/rss.xml` |
+| Reuters | `https://www.reutersagency.com/feed/` |
+| TechCrunch | `https://techcrunch.com/feed/` |
+| The Guardian | `https://www.theguardian.com/world/rss` |
 
 ## Design & Product
 
@@ -63,22 +63,22 @@ Curated feeds by category. Use when the user asks for a topic but hasn't provide
 |------|-----|
 | Wait But Why | `https://waitbutwhy.com/feed` |
 
-## RSSHub 动态生成模式
+## RSSHub Dynamic Routes
 
-RSSHub 可为没有原生 RSS 的网站生成订阅源：
+RSSHub can generate feeds for sites without native RSS:
 
 ```
 # GitHub releases
 https://rsshub.app/github/releases/<owner>/<repo>
 
-# Telegram 频道
+# Telegram channel
 https://rsshub.app/telegram/channel/<channel_name>
 
-# B 站 UP 主
+# Bilibili user videos
 https://rsshub.app/bilibili/user/video/<uid>
 
-# 微博用户
+# Weibo user
 https://rsshub.app/weibo/user/<uid>
 ```
 
-完整路由列表：https://docs.rsshub.app/routes/
+Full route list: https://docs.rsshub.app/routes/
