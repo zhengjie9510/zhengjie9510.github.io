@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-rss_fetch.py — 抓取 RSS/Atom 源并过滤，输出精简文本供 AI 使用
+rss-fetch.py — 抓取 RSS/Atom 源并过滤，输出精简文本供 AI 使用
 支持 Windows / macOS / Linux，纯标准库，无需安装依赖
 
 用法:
-  python rss_fetch.py <URL> [URL2 ...] [选项]
+  python rss-fetch.py <URL> [URL2 ...] [选项]
 
 过滤选项（不传则返回最近 10 条）:
   --days  N       返回最近 N 天内的条目
@@ -17,10 +17,10 @@ rss_fetch.py — 抓取 RSS/Atom 源并过滤，输出精简文本供 AI 使用
   --no-content    只输出标题+链接+时间，不含正文摘要
 
 示例:
-  python rss_fetch.py https://openai.com/blog/rss.xml --days 1
-  python rss_fetch.py https://hnrss.org/frontpage --top 5
-  python rss_fetch.py --sources feeds.txt --hours 12 --max 10
-  python rss_fetch.py https://sspai.com/feed --days 2 --no-content
+  python rss-fetch.py https://openai.com/blog/rss.xml --days 1
+  python rss-fetch.py https://hnrss.org/frontpage --top 5
+  python rss-fetch.py --sources feeds.txt --hours 12 --max 10
+  python rss-fetch.py https://sspai.com/feed --days 2 --no-content
 """
 
 import sys

@@ -29,35 +29,35 @@ skills/rss-fetch/rss_fetch.py
 
 ```bash
 # 最近 1 天
-uv run skills/rss-fetch/rss_fetch.py <URL> --days 1
+uv run skills/rss-fetch/rss-fetch.py <URL> --days 1
 
 # 最近 2 天
-uv run skills/rss-fetch/rss_fetch.py <URL> --days 2
+uv run skills/rss-fetch/rss-fetch.py <URL> --days 2
 
 # 最近 12 小时
-uv run skills/rss-fetch/rss_fetch.py <URL> --hours 12
+uv run skills/rss-fetch/rss-fetch.py <URL> --hours 12
 ```
 
 ### 按数量过滤
 
 ```bash
 # 最新 5 条（不限时间）
-uv run skills/rss-fetch/rss_fetch.py <URL> --top 5
+uv run skills/rss-fetch/rss-fetch.py <URL> --top 5
 
 # 最新 10 条（不传参数时的默认行为）
-uv run skills/rss-fetch/rss_fetch.py <URL>
+uv run skills/rss-fetch/rss-fetch.py <URL>
 ```
 
 ### 多个订阅源
 
 ```bash
-uv run skills/rss-fetch/rss_fetch.py <URL1> <URL2> <URL3> --days 1
+uv run skills/rss-fetch/rss-fetch.py <URL1> <URL2> <URL3> --days 1
 ```
 
 ### 从源文件读取
 
 ```bash
-uv run skills/rss-fetch/rss_fetch.py --sources feeds.txt --days 1
+uv run skills/rss-fetch/rss-fetch.py --sources feeds.txt --days 1
 ```
 
 `feeds.txt` 格式——每行一个 URL，`#` 开头为注释：
@@ -74,13 +74,13 @@ https://hnrss.org/frontpage
 ### 只输出标题和链接（节省 token）
 
 ```bash
-uv run skills/rss-fetch/rss_fetch.py <URL> --days 1 --no-content
+uv run skills/rss-fetch/rss-fetch.py <URL> --days 1 --no-content
 ```
 
 ### 限制每个源的最大条数
 
 ```bash
-uv run skills/rss-fetch/rss_fetch.py --sources feeds.txt --days 2 --max 5
+uv run skills/rss-fetch/rss-fetch.py --sources feeds.txt --days 2 --max 5
 ```
 
 ## 参数选择速查
