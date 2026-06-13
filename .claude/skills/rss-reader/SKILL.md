@@ -3,18 +3,18 @@ name: rss-reader
 description: >
   Use this skill to read RSS/Atom feeds and get a summary of recent articles.
   Trigger when the user wants to check, fetch, or see recent/new/latest content
-  from a source — a feed URL, a website name, a blog, or a feeds.txt file.
+  from a source — a feed URL, a website name, or a blog.
   Common patterns: "what's new on X", "get today's papers from arXiv",
   "check HN front page", "recent posts from this blog",
-  "last N days/hours of updates", "latest N articles", "read my feeds.txt".
+  "last N days/hours of updates", "latest N articles".
   Covers: time-based filtering (today, last N days/hours), quantity filtering
-  (latest N), reading feed lists from files, multi-source aggregation.
+  (latest N), multi-source aggregation.
   中文触发词：获取 RSS、看最新资讯、读取订阅源、查看更新、
   获取最近 N 天/小时的文章、显示最新 N 条。
   Do NOT use for: general web scraping, creating/generating RSS feeds,
-  OPML import/export, or subscription management.
+  OPML import/export.
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # RSS Reader Skill
@@ -34,74 +34,47 @@ skills/rss-reader/reader.py
 If `feedparser` is not installed:
 
 ```bash
-pip3 install feedparser
+pip install feedparser
 ```
 
-> Use `pip3` on macOS/Linux, `pip` on Windows. If neither is found, try `python3 -m pip install feedparser`.
-
 ## Usage
-
-Replace `python3` with `python` on Windows.
 
 ### Filter by Time
 
 ```bash
 # Last 24 hours
-python3 skills/rss-reader/reader.py <URL> --days 1
+python skills/rss-reader/reader.py <URL> --days 1
 
 # Last 12 hours
-python3 skills/rss-reader/reader.py <URL> --hours 12
+python skills/rss-reader/reader.py <URL> --hours 12
 ```
 
 ### Filter by Count
 
 ```bash
 # Latest 5 articles (no time limit)
-python3 skills/rss-reader/reader.py <URL> --top 5
+python skills/rss-reader/reader.py <URL> --top 5
 
 # Default: latest 10 articles
-python3 skills/rss-reader/reader.py <URL>
+python skills/rss-reader/reader.py <URL>
 ```
 
 ### Multiple Feeds
 
 ```bash
-python3 skills/rss-reader/reader.py <URL1> <URL2> <URL3> --days 1
-```
-
-### Read from a Sources File
-
-```bash
-python3 skills/rss-reader/reader.py --sources feeds.txt --days 1
-```
-
-`feeds.txt` format — one URL per line, `#` for comments:
-
-```
-# AI
-https://openai.com/blog/rss.xml
-https://www.anthropic.com/news/rss.xml
-
-# Tech
-https://hnrss.org/frontpage
+python skills/rss-reader/reader.py <URL1> <URL2> <URL3> --days 1
 ```
 
 ### Titles and Links Only (saves tokens)
 
 ```bash
-python3 skills/rss-reader/reader.py <URL> --days 1 --no-content
-```
-
-### Limit Max Items per Feed
-
-```bash
-python3 skills/rss-reader/reader.py --sources feeds.txt --days 2 --max 5
+python skills/rss-reader/reader.py <URL> --days 1 --no-content
 ```
 
 ### JSON Output (for programmatic use)
 
 ```bash
-python3 skills/rss-reader/reader.py <URL> --top 5 --json
+python skills/rss-reader/reader.py <URL> --top 5 --json
 ```
 
 ## Parameter Quick Reference
@@ -113,11 +86,30 @@ python3 skills/rss-reader/reader.py <URL> --top 5 --json
 | latest 5 | `--top 5` |
 | last week | `--days 7` |
 
-## URL Resolution Priority
+## URL Resolution
 
-1. User provides a URL directly → use it immediately
-2. The model knows the URL for the topic → use it directly
-3. Uncertain URL or broad topic → consult `sources.md` for suggestions, then confirm with user
+The script requires explicit URLs — it does not read from files. When the user asks about a topic:
+
+1. **Known URL** → use it directly
+2. **Unknown URL** → consult `sources.md` for suggestions, confirm with user, then pass the URL to the script
+3. **User says "my feeds"** → read `sources.md`, extract the URLs, and pass them as arguments
+
+`sources.md` is a reference file for the model, not input for the script.
+
+## Managing Sources (sources.md)
+
+When the user wants to add or remove RSS feeds, manage `skills/rss-reader/sources.md`.
+
+**Add a feed** — verify the URL first:
+
+```bash
+python skills/rss-reader/reader.py <URL> --top 1
+```
+
+- Returns articles → append to `sources.md` under the appropriate category. Create the category if it doesn't exist.
+- Fails → tell the user the URL isn't a valid RSS/Atom feed.
+
+**Never add a feed without testing it first.**
 
 ## Output Format
 

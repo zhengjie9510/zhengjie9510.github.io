@@ -11,7 +11,6 @@ Filter options (defaults to latest 10 if none specified):
   --top   N       Latest N articles (no time limit)
 
 Other options:
-  --sources FILE  Read URLs from a file (one per line, # for comments)
   --max N         Max items per feed (default: 20)
   --no-content    Output titles + links + dates only, no summary
   --json          Output JSON (for programmatic use)
@@ -19,10 +18,11 @@ Other options:
 Examples:
   python reader.py https://openai.com/blog/rss.xml --days 1
   python reader.py https://hnrss.org/frontpage --top 5
-  python reader.py --sources feeds.txt --hours 12 --max 10
+  python reader.py https://example.com/feed1 https://example.com/feed2 --hours 12
 """
 
 import sys
+import re
 import argparse
 import json
 import urllib.request
@@ -50,8 +50,7 @@ def parse_args():
         description="RSS/Atom feed fetcher and filter",
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    p.add_argument("urls", nargs="*", help="RSS/Atom feed URLs")
-    p.add_argument("--sources", help="Read URLs from file (one per line, # for comments)")
+    p.add_argument("urls", nargs="+", help="RSS/Atom feed URLs")
     p.add_argument("--days", type=float, help="Articles from the last N days")
     p.add_argument("--hours", type=float, help="Articles from the last N hours")
     p.add_argument("--top", type=int, help="Latest N articles (no time limit)")
@@ -75,7 +74,6 @@ def read_feed(url, timeout=15):
     # Detect encoding
     encoding = "utf-8"
     content_type = resp.headers.get("Content-Type", "")
-    import re
     m = re.search(r"charset=([^\s;]+)", content_type, re.IGNORECASE)
     if m:
         encoding = m.group(1).strip('"\'')
@@ -193,34 +191,9 @@ def render_json(feed_title, items, url):
 
 # ── Main ─────────────────────────────────────────────────────────────────────
 
-def load_urls(args):
-    """Collect all URLs from args and sources file."""
-    urls = list(args.urls)
-    if args.sources:
-        try:
-            try:
-                with open(args.sources, encoding="utf-8") as f:
-                    lines = f.readlines()
-            except UnicodeDecodeError:
-                with open(args.sources, encoding="gbk", errors="replace") as f:
-                    lines = f.readlines()
-            for line in lines:
-                line = line.strip()
-                if line and not line.startswith("#"):
-                    urls.append(line)
-        except FileNotFoundError:
-            print(f"[Error] File not found: {args.sources}", file=sys.stderr)
-            sys.exit(1)
-    return urls
-
-
 def main():
     args = parse_args()
-    urls = load_urls(args)
-
-    if not urls:
-        print("[Error] Provide at least one RSS/Atom URL, or use --sources FILE", file=sys.stderr)
-        sys.exit(1)
+    urls = args.urls
 
     # Filter description
     if args.days:
