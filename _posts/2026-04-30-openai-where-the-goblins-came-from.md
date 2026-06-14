@@ -1,7 +1,7 @@
 ---
 title: "OpenAI 的 AI，为什么满嘴“哥布林”？"
 date: 2026-04-30 14:00:00 +0800
-categories: [ AI 基础原理 ]
+categories: [ AI 基础 ]
 tags: [ OpenAI, GPT-5, 强化学习, 模型行为, AI 安全 ]
 description: "OpenAI 的 AI 突然染上满嘴'哥布林'的口头禅，问题竟出在评分机制的意外扭曲——一个关于 AI 行为漂移的典型案例"
 image: /assets/img/posts/goblins-cover.png

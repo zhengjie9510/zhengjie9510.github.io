@@ -2,7 +2,7 @@
 layout: post
 title: "我用 Claude 做 PPT 踩了很多坑，最后总结出这五步"
 date: 2026-06-13 10:00:00 +0800
-categories: [ AI 工程实践 ]
+categories: [ AI 应用 ]
 tags: [ Claude, PPT, 实操教程 ]
 description: "上一篇我们拆解了 Claude 做 PPT 背后的‘操作手册’，知道了它为什么不会犯低级错误。这一篇换一个角度——从用户视角出发，手把手走一遍完整流程：提需求、磨大纲、填内容、生成文件、验收修改。"
 image: /assets/img/posts/claude-pptx-practical-guide-cover.png

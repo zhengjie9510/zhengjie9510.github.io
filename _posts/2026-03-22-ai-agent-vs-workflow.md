@@ -2,7 +2,7 @@
 layout: post
 title: "🤖 AI Agent vs Workflow：让你少踩坑的实战选择法则"
 date: 2026-03-22 14:30:00 +0800
-categories: [ AI 工程实践 ]
+categories: [ AI Agent ]
 tags: [ AI Agent, Workflow, 架构设计 ]
 description: "💡 构建 AI 系统时，该让 AI 自由发挥，还是步步为营？这篇文章帮你理清思路。"
 image: /assets/img/posts/ai-agent-vs-workflow-cover.jpeg

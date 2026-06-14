@@ -2,7 +2,7 @@
 layout: post
 title: "一文搞懂软件项目「功能点估算法」（附价格计算实例）"
 date: 2026-03-22 00:00:00 +0800
-categories: [ AI 工程实践 ]
+categories: [ AI 行业 ]
 tags: [功能点估算, FPA, 软件成本, 项目报价]
 description: "本文深度解析国标级功能点估算法（FPA），将模糊的需求拆解为可度量的五大功能类型。从规模调整到工作量折算，手把手教你构建科学的项目造价模型。"
 image: /assets/img/posts/function-point-analysis-cover.png

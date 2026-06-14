@@ -2,7 +2,7 @@
 layout: post
 title: "从 0 到 1 复现 AI 绘画：手把手教你写一个能用的 Diffusion 脚本"
 date: 2025-12-31 10:00:00 +0800
-categories: [ 深度学习 ]
+categories: [ AI 基础 ]
 tags: [ Diffusion, 生成模型, MNIST, 去噪, 神经网络 ]
 description: "基于 MNIST 数据集，从代码逻辑层面解析扩散模型的核心——'加噪'与'去噪'过程"
 image: /assets/img/posts/diffusion-mnist-cover.jpg

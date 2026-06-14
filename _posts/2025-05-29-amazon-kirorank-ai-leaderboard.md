@@ -2,7 +2,7 @@
 layout: post
 title: "亚马逊紧急叫停AI排行榜：一场由 KPI 逼出来的“AI 表演秀”"
 date: 2025-05-29 21:00:00 +0800
-categories: [ AI 行业洞察 ]
+categories: [ AI 行业 ]
 tags: [ 亚马逊, KPI, 古德哈特定律, 管理 ]
 description: "亚马逊内部 AI 使用排行榜 Kirorank 上线不久即被紧急叫停——员工用 AI 刷无意义任务来堆高 Token 消耗量，把激励机制玩成了薅羊毛大赛。"
 image: /assets/img/posts/amazon-kirorank-cover.png

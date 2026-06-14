@@ -2,7 +2,7 @@
 layout: post
 title: "👉 彻底搞懂时间序列异常检测：深度学习五大流派与核心论文盘点"
 date: 2026-04-10 16:00:00 +0800
-categories: [ 深度学习 ]
+categories: [ AI 基础 ]
 tags: [ 异常检测, 深度学习, 时间序列, TSAD, 论文导读 ]
 description: "📚 本文系统梳理了深度学习在时间序列异常检测（TSAD）中的应用，涵盖预测、重建、分类、表示学习和混合方法五大类别，并结合代表论文深入解析各方法的核心原理、优劣势及适用场景。⏱️✨"
 image: /assets/img/posts/tsad-cover.png

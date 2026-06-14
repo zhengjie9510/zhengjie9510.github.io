@@ -2,7 +2,7 @@
 layout: post
 title: "Token 有了中文名『词元』：AI 时代的度量衡"
 date: 2026-03-28 11:00:00 +0800
-categories: [ AI 基础原理 ]
+categories: [ AI 基础 ]
 tags: [ Token, 词元, AI 经济学, 算力 ]
 description: "国家数据局官方定义：Token 中文名为『词元』。探索词元的技术本质与经济学意义，理解 AI 时代的『新能源』"
 image: /assets/img/posts/token-explained-cover.png

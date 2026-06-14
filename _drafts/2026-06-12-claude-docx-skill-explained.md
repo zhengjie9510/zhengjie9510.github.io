@@ -1,7 +1,7 @@
 ---
 title: "Claude 是怎么帮你写出专业文档的？深入解读 DOCX 技能"
 date: 2026-06-12
-categories: [ AI 工程实践 ]
+categories: [ AI 应用 ]
 layout: post
 tags: [ Claude, Word 文档, 技能解读 ]
 ---
