@@ -20,7 +20,7 @@ image: /assets/img/posts/claude-pptx-practical-guide-cover.png
 
 整个过程分成五步：
 
-![PPT制作流程](assets/img/posts/claude-pptx-practical-guide-workflow1.png)
+![PPT制作流程](assets/img/posts/claude-pptx-practical-guide-workflow.png)
 
 看起来简单，但每一步都有讲究。下面逐步拆开说。
 
