@@ -123,7 +123,7 @@ tags: [标签1, 标签2]
 
 **压缩命令（macOS `sips`）：**
 ```bash
-sips -Z 800 input.png --out output.png -s format png
+sips -Z 1200 input.png --out output.png -s format png
 ```
 
 ### 图片命名
