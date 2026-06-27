@@ -176,6 +176,8 @@ python reader.py <新URL> --top 1
 
 Claude 翻开 SKILL.md → 查 `sources.md` 找到两个源对应的 URL → 执行 `reader.py <URL1> <URL2> --days 3` → Markdown 格式输出，按源分组、按时间排列，每个条目带标题、链接、200 字摘要。
 
+![RSS Reader 获取 AI 新闻的实际效果](/assets/img/posts/rss-reader-ai-news-demo.png)
+
 ### 场景二：全量巡检
 
 > "把我所有订阅源的最新 5 篇都拉出来"
