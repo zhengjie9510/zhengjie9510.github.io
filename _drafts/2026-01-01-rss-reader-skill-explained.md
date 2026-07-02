@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "🔍 如何让你的 AI，帮你盯着热点新闻"
-date: 2026-06-24 10:00:00 +0800
+date: 2026-07-01 10:00:00 +0800
 categories: [ AI 应用 ]
 tags: [ Claude, RSS, 技能解读, 信息获取 ]
 image: /assets/img/posts/rss-reader-skill-explained-cover.png
