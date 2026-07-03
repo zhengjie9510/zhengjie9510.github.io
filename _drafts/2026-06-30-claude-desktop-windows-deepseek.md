@@ -1,32 +1,32 @@
 ---
 layout: post
-title: "给你的大模型装上手脚：Windows 安装 Claude Desktop 教程"
+title: "让 AI 真正帮你干活：借 Claude Desktop 的壳，给 DeepSeek 装上手脚"
 date: 2026-06-30
 categories: [ AI 应用 ]
 tags: [Claude Desktop, DeepSeek, Windows, 教程]
-description: "大模型本身只有脑子没有手脚，Claude Desktop 帮它补齐了——装上之后，AI 能直接操作你的文件，不用再复制粘贴。"
+description: "大模型本身只有脑子没有手脚，Claude Desktop 补齐了这双手脚——配上 DeepSeek 当大脑，AI 能直接操作你的文件，不用再复制粘贴。"
 image: /assets/img/posts/claude-desktop-cover.png
 ---
 
-桌面上有个文件夹，里面塞了几个数据表。我对 Claude Desktop 说了一句话：
+桌面上有个文件夹，躺着几张一直没空整理的数据表。我把它扔给 Claude Desktop，只说了一句话：
 
 > 帮我分析一下这个文档里面的数据，并帮我绘制统计分析图。
 
-然后就不用管了。它自己读取文件、跑统计、画图表——描述性统计、趋势分析、相关性检验一口气做完，柱状图、折线图、热力图全在对话窗口里渲染出来。
+然后就没我什么事了。它自己翻开文件、跑统计、画图——描述性统计、趋势分析、相关性检验一口气做完，柱状图、折线图、热力图接连冒在对话框里。
 
-整个过程我没打开 Excel，没写一行公式，也没调过任何图表样式。
+整个过程我没打开过 Excel，没写一行公式，连图表样式都没碰过。
 
 <p align="center">
   <img src="/assets/img/posts/claude-desktop-data-analysis.png" alt="Claude Desktop 数据分析实战截图" style="max-width: 640px;">
 </p>
 
-一份数据分析报告，就这么一句话的事。
+一份数据分析报告，就这么被一句话打发了。
 
 ---
 
-这就是 Claude Desktop 配上 DeepSeek 的效果——大模型不再困在浏览器聊天框里，而是能直接在你的电脑上干活：做 PPT、写报告、整表格、理文件、画图表。类似思路的工具还有 Open Claw（小龙虾）、腾讯 WorkBuddy 等。
+这就是 Claude Desktop 配上 DeepSeek 之后的样子——大模型不再困在浏览器的聊天框里出不来，而是能伸手在你的电脑上干活：做 PPT、写报告、整表格、理文件、画图表。类似的思路，Open Claw（小龙虾）、腾讯 WorkBuddy 也都在做。
 
-下面用 Windows 示范，怎么把这套「大脑 + 手脚」装起来。
+下面就在 Windows 上，把这套「大脑 + 手脚」的组合装起来。
 
 ---
 
@@ -62,17 +62,17 @@ Add-AppxPackage -Path "文件路径\Claude.msix"
 
 打开 Claude Desktop 你会看到两个标签：**Cowork** 和 **Code**。
 
-**Cowork** 在沙盒的虚拟桌面里工作，跟你的电脑隔离开，AI 在里面操作自己的文件系统和浏览器；**Code** 直接在你的电脑上工作，能读写本地文件、执行命令。写代码、做 PPT、整理文件这些它俩都能干，看你想让 AI 在你电脑上干还是在沙盒里干。
+**Cowork** 像是给 AI 单独辟出一间虚拟房间，它在里面自己捣鼓文件和浏览器，跟你的真实电脑没有关系；**Code** 则直接站到你的电脑跟前，能读写本地文件、执行命令。写代码、做 PPT、整理文件这些它俩都能干，区别只是你想让 AI 在你电脑上动手，还是在自己的房间里跑。
 
 > 💡 第一次打开 Code 标签需要装 Git for Windows，没装的话会提示你，装完重启一下 Claude 就行。
 >
-> ⚠️ 不管是 Claude Desktop、Open Claw（小龙虾），还是腾讯 WorkBuddy，这类工具本质上都是让 AI 操控你的电脑。务必保持人为审核，涉及删除、移动文件等操作时确认一下再放行，别让它全自动跑。
+> ⚠️ 不管是 Claude Desktop、Open Claw（小龙虾），还是腾讯 WorkBuddy，这类工具本质上都是让 AI 操控你的电脑。手脚是它的，方向盘还得握在你手里——涉及删除、移动文件等操作，确认一下再放行，别撒手让它自己跑。
 
 ---
 
 ## 四、🔗 接入 DeepSeek
 
-Anthropic 不对大陆提供服务，所以需要把模型换成 DeepSeek。Claude Desktop 自带一个图形化的切换入口，不用改系统环境变量。
+Anthropic 不对大陆提供服务，这套「手脚」原装的脑子用不了，得换成 DeepSeek。好在 Claude Desktop 自带一个图形化的切换入口，不用碰系统环境变量这类麻烦事。
 
 **1. 申请 DeepSeek API Key**
 
@@ -110,6 +110,6 @@ Anthropic 不对大陆提供服务，所以需要把模型换成 DeepSeek。Clau
 
 ## 写在最后
 
-Claude Desktop 免费下载使用，接入 DeepSeek 之后按量计费，不用订阅 Claude 的付费计划。日常用 Code 标签处理文件，分析数据、写报告、做 PPT，基本就够了。
+Claude Desktop 本身免费下载，接入 DeepSeek 之后按量计费，不用订阅 Claude 的付费计划。日常用 Code 标签处理文件、分析数据、写报告、做 PPT，基本够用了。
 
-装好之后，你也能像我一样，一句话让 AI 帮你把活干了 🚀
+装好这套「手脚」，剩下的事，一句话就能打发给 AI 🚀
