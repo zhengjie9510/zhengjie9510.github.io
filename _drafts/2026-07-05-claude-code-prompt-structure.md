@@ -118,20 +118,20 @@ Claude Code 里工具的数量不少，涵盖读写文件（`Read`、`Write`、`
 
 ```
 messages = [
-  messages[0]  role: user       →  { (a) System Reminder, (b) 用户的真实提问 }
-  messages[1]  role: system     →  (c) Agent / Skill 信息
-  messages[2]  role: assistant  →  (d) 模型的回复
-  messages[3]  role: user       →  (e) 用户接下来的新问题
+  messages[0]  role: user       →  System Reminder + 用户的真实提问
+  messages[1]  role: system     →  Agent / Skill 信息
+  messages[2]  role: assistant  →  模型的回复
+  messages[3]  role: user       →  用户接下来的新问题
   ...
 ]
 ```
 
 逐条看一下每一项装的是什么：
 
-- **messages[0]（role: user）**：内部两个 block。(a) 是 System Reminder，由 Claude Code 的 harness（也就是客户端本身）在用户的问题之前抢先塞进去的运行时上下文，相当于“在你开口之前，先帮你把当前项目的一些背景信息交代给模型”；(b) 才是你真正打出来的那句话，紧跟在 (a) 后面。两者共享同一个 role（`user`），只是拆成了两个 content block，这是整个数组里唯一一处“一条消息、两层内容”的嵌套。
-- **messages[1]（role: system）**：独立的一条消息，装的是环境说明性质的信息——当前有哪些 Agent 类型可以调用、有哪些 Skill 可以使用，让模型清楚自己手头除了 Tools 里那些基础工具外，还有哪些更高阶的能力可以调度。（严格来说 Messages API 只认 `user`/`assistant` 两种角色，这里标 `system` 只是为了突出它的功能定位。）
-- **messages[2]（role: assistant）**：模型对 (b) 那个问题的实际回答。
-- **messages[3]（role: user）**：又一条独立的 user 消息，开启下一轮对话。
+- **messages[0]（role: user）**：内部两部分。第一部分是 System Reminder，由 Claude Code 的 harness（也就是客户端本身）在用户的问题之前抢先塞进去的运行时上下文，比如 CLAUDE.md 里的项目规则、当前时间这些信息；第二部分才是你真正打出来的那句话，紧跟在后面。两者共享同一个 role（`user`）。
+- **messages[1]（role: system）**：装的是当前可用的 Agent 类型和 Skill 列表，让模型知道除了 Tools 里的基础工具，还能调度哪些更高级的能力。
+- **messages[2]（role: assistant）**：模型对上一个问题的实际回答。
+- **messages[3]（role: user）**：你的下一句话，开启下一轮对话。
 
 把这几条消息拼成 JSON，大致是这样 *（示意，非原文）*：
 
@@ -165,10 +165,6 @@ messages = [
   }
 ]
 ```
-
-对照着看会更直观：`messages[0]` 一条消息里塞了两个 block（(a)(b)），从 `messages[1]` 开始，不管是环境说明、模型的回复，还是用户的下一轮提问，都是数组里彼此独立、依次排列的元素，跟第一条消息处在完全相同的层级上，区别只是索引顺序和 role 不同。
-
-> 说到底：messages 数组里只有第一条消息藏着两层内容，其余都是摊开来的独立个体。
 
 ---
 
