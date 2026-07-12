@@ -2,7 +2,7 @@
 layout: post
 title: "用 grep 打败向量搜索？这篇论文让 AI 圈重新审视一个 40 年前的老命令"
 date: 2026-05-29 07:00:00
-categories: [ AI 应用 ]
+categories: [ AI 开发 ]
 tags: [ AI Agent, RAG, grep, 向量检索 ]
 description: "大家都在卷嵌入模型、卷向量库、卷重排序，但一篇新论文告诉你：在 AI Agent 里，那个古老的 grep 可能才是隐藏王者。"
 image: /assets/img/posts/grep-vs-vector-cover.png

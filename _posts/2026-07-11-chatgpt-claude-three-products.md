@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "ChatGPT、Claude 都在做三个产品——聊天、工作、编程"
-categories: [ AI 应用 ]
+categories: [ AI 工具 ]
 tags: [ Claude, Anthropic, OpenAI, ChatGPT, Codex ]
 description: "OpenAI 和 Anthropic 最近不约而同，都把自己的产品收敛成了三个模块。聊天、写代码、托管执行——这背后其实是 AI 目前能落地的三种通用模式。模式越来越多，能力越来越强，但有一件事始终没变：结果对不对，还得你自己判断。"
 image: /assets/img/posts/chatgpt-claude-three-products-cover.png

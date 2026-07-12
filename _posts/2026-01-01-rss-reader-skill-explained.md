@@ -2,7 +2,7 @@
 layout: post
 title: "🔍 如何让你的 AI，帮你盯着热点新闻"
 date: 2026-07-01 10:00:00 +0800
-categories: [ AI 应用 ]
+categories: [ AI 工具 ]
 tags: [ Claude, RSS, 技能解读, 信息获取 ]
 image: /assets/img/posts/rss-reader-skill-explained-cover.png
 description: "你有没有遇到过——让 AI 去看看某个网站发了什么，结果对方根本「不给看」。其实那些网站给机器留了条专用通道，叫 RSS。这篇拆解一份 RSS 阅读技能，看看它是怎么走这条通道把资讯拿回来的，看完摘要就能让 AI 帮你打开原文。"

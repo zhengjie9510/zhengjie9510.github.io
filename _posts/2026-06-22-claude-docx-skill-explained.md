@@ -2,7 +2,7 @@
 layout: post
 title: "🔍 为什么你用AI写的Word文档排版混乱？因为你缺了这份技能"
 date: 2026-06-22
-categories: [ AI 应用 ]
+categories: [ AI 工具 ]
 tags: [ Claude, Word 文档, 技能解读 ]
 description: "你有没有遇到过，让 AI 写一个 Word 文档，结果排版乱七八糟的情况？这篇说说 Claude 靠一份‘内部手册’，让它不管是新写还是改文档，排版都能稳得住。"
 image: /assets/img/posts/claude-docx-skill-explained-cover.png

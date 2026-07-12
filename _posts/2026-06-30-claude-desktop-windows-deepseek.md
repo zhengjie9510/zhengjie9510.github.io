@@ -2,7 +2,7 @@
 layout: post
 title: "让 AI 真正帮你干活：借 Claude Desktop 的壳，给 DeepSeek 装上手脚"
 date: 2026-06-30
-categories: [ AI 应用 ]
+categories: [ AI 工具 ]
 tags: [Claude Desktop, DeepSeek, Windows, 教程]
 description: "大模型本身只有脑子没有手脚，Claude Desktop 补齐了这双手脚——配上 DeepSeek 当大脑，AI 能直接操作你的文件，不用再复制粘贴。"
 image: /assets/img/posts/claude-desktop-cover.png

@@ -2,7 +2,7 @@
 layout: post
 title: " 🤖 板块暴跌之后，宇树科技明天冲刺科创板：机器人赛道怎么走？"
 date: 2026-05-31 10:00:00 +0800
-categories: [ AI 行业 ]
+categories: [ AI 观察 ]
 tags: [ 宇树科技, 机器人, IPO, 科创板, 人形机器人 ]
 description: "机器人板块刚经历暴跌，宇树科技就将在6月1日迎来科创板上会审议。42亿募资、全球出货量第一、毛利率超60%——这家公司的上市，对板块意味着什么？"
 image: /assets/img/posts/yushu-tech-ipo-cover.png

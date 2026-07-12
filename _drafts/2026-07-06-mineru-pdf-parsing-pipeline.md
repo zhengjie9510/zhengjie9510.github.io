@@ -2,7 +2,7 @@
 layout: post
 title: "拆解 MinerU：一个开源 PDF 解析工具，如何把花样百出的 PDF 变成干净的 Markdown？"
 date: 2026-07-06 10:00:00 +0800
-categories: [ AI 技术 ]
+categories: [ AI 开发 ]
 tags: [ MinerU, PDF 解析, 文档解析, RAG, 开源工具 ]
 description: "从论文 PDF 到考研试卷，各种格式的文档都能认出标题、正文、公式、表格……MinerU 是怎么做到的？本文拆解它的四阶段流水线，讲清模型与规则如何分工协作。"
 image: /assets/img/posts/mineru-pipeline-overview.png

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Chat Completions vs Responses vs Messages：三套大模型接口，你该怎么选？"
-categories: [AI]
+categories: [ AI 原理 ]
 tags: [OpenAI, Anthropic, API, Chat Completions, Responses, Messages, 大模型]
 description: "深入对比 Chat Completions、Responses 和 Messages 三套大模型接口的设计哲学、适用场景与取舍逻辑"
 image: /assets/img/posts/three-apis-comparison-cover.png

@@ -2,7 +2,7 @@
 layout: post
 title: "AI时代还在手动打字？阿里千问输入法上线：最快300字/分，还能自动润色"
 date: 2026-06-27
-categories: [ AI 应用 ]
+categories: [ AI 工具 ]
 tags: [ 通义千问, 输入法, 语音输入, AI 工具 ]
 description: "从「指尖」到「声带」，阿里、字节、讯飞纷纷加码语音输入。这不只是输入法的升级，更是一场生产力质变。"
 image: /assets/img/posts/qianwen-input-method-cover.png

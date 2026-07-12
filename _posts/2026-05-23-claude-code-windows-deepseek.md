@@ -2,7 +2,7 @@
 layout: post
 title: 普通人也能用的 AI 助手，我花了 20 分钟装好了
 date: 2026-05-23 7:00:00
-categories: [ AI 应用 ]
+categories: [ AI 工具 ]
 tags: [Claude Code, DeepSeek, Windows, 教程]
 description: 一篇清晰易上手的 Claude Code 安装与配置教程，演示如何在 Windows 上接入 DeepSeek。
 image: assets/img/posts/claude-code-cover.png
