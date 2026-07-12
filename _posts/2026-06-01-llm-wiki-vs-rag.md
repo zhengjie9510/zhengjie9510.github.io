@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "别再瞎折腾 RAG 了：LLM Wiki 才是个人知识库的终局"
-date: 2025-06-01 10:00:00 +0800
+date: 2026-06-01 10:00:00 +0800
 categories: [ AI 基础 ]
 tags: [ RAG, LLM Wiki, Andrej Karpathy, 知识库 ]
 description: "Andrej Karpathy 提出的 LLM Wiki 概念，如何降维打击传统 RAG，打造全自动进化的知识库"
