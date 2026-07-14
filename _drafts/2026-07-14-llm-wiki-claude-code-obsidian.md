@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "把体力活留给 AI，把思考留给自己：LLM Wiki 搭建实录"
-date: 2026-07-14 10:00:00 +0800
 categories: [ AI 工具 ]
 tags: [ LLM Wiki, Claude Code, Obsidian, 知识库 ]
 description: "Claude Code + Obsidian，零代码搭建一个会自动进化的 AI 知识库"
