@@ -98,3 +98,7 @@ image: /assets/img/posts/sandbox-agent-digital-body-cover.png
 第一条路人审模式，安全但慢，智能体每走一步都在等你点“允许”，自主性被彻底阉割。第二条路沙箱模式，用隔离换自由——智能体获得了不受控制的绝对权限，而人类获得了绝对安全。
 
 通过在本地环境遭遇的危险与审核枷锁，智能体最终与 Sandbox 结合。沙箱用一种“温柔的欺骗”，给了智能体最渴望的自由，也只有在这种自由下，真正的通用智能体时代才可能到来。
+
+---
+
+想把文中的沙箱方案用起来？试试 [langchain-docker-backend](https://pypi.org/project/langchain-docker-backend/)，开箱即用。
