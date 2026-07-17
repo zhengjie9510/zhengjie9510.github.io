@@ -1,7 +1,6 @@
 ---
 layout: post
 title: "拆解 Claude Code：它发给模型的请求，到底长什么样？"
-date: 2026-07-05 10:00:00 +0800
 categories: [ AI Agent ]
 tags: [ Claude Code, Prompt Engineering, System Prompt, Messages API ]
 description: "每次你在终端里敲下一句话，Claude Code 到底往模型那边发了什么？这篇拆开它的请求体，看清 System、Tools、Messages 这三块跟提示词直接相关的内容分别装了什么，又是按什么顺序拼在一起喂给模型的。"
@@ -61,7 +60,6 @@ image: /assets/img/posts/claude-code-prompt-structure-cover.png
 
 ```json
 "system": [
-  { "type": "text", "text": "x-anthropic-billing-header: cc_version=2.1.181; ..." },
   { "type": "text", "text": "You are Claude Code, Anthropic's official CLI for Claude." },
   { "type": "text", "text": "# Harness\n- 输出的文本会以 Markdown 形式展示在终端里\n- 优先用专用工具而不是 shell 命令\n- ...（安全边界、代码风格偏好、当前 git 状态等）" }
 ]
@@ -75,7 +73,7 @@ image: /assets/img/posts/claude-code-prompt-structure-cover.png
 
 `tools` 同样是独立于对话之外的一个字段，装的是模型可以调用的工具定义，本质上就是一份 JSON Schema 清单。
 
-Claude Code 里工具的数量不少，涵盖读写文件（`Read`、`Write`、`Edit`）、执行命令（`Bash`）、联网（`WebFetch`、`WebSearch`）、任务管理（`TaskCreate`/`TaskList`/`TaskUpdate` 等）、子代理调度（`Agent`）、技能调用（`Skill`），二十多个工具打底。
+Claude Code 里工具的数量不少，涵盖读写文件（`Read`、`Write`、`Edit`）、执行命令（`Bash`）、联网（`WebFetch`、`WebSearch`）、任务管理（`TaskCreate`/`TaskList`/`TaskUpdate` 等）、子代理调度（`Agent`）、技能调用（`Skill`），二十多个工具打底。如果接了 MCP 服务，这些外部工具的定义同样混在这个字段里一起发给模型。
 
 挑两个出来，示意一下大致结构 *（示意，非原文）*：
 
@@ -207,3 +205,15 @@ messages = [
 ---
 
 > 这种排布方式，某种程度上也是 Claude Code 提示词工程的一个缩影：真正决定它表现如何的，往往不是你敲下的那句话本身，而是那些在你按下回车之前就已经写好、静默生效的结构。
+
+---
+
+## 五、💡 对智能体开发的启示
+
+拆完这套结构，自己做 Agent 时有三个点值得参考：
+
+**三层分离，各司其职。** System 装角色设定和规则，Tools 装能力清单，Messages 装对话流——正交拆开，后续改哪个都不容易踩到别的。
+
+**稳定的放前面。** Tools → System → Messages 这个顺序是为 prompt caching 优化的：越不变越靠前，缓存命中率越高，省钱也省延迟。
+
+**动态上下文别往 System 里塞。** 这是 Claude Code 最巧妙的做法之一：像 git 状态、项目规则这些每轮都在变的内容，不挂在 System 末尾（会破坏缓存），而是包成 `<system-reminder>` 注入到 user message 头部。自己做 Agent 也一样——需要模型知道的“活信息”，走 user message，别动 System。
