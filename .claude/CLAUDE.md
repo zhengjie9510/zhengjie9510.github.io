@@ -48,7 +48,7 @@ tags: [标签1, 标签2]
 ## 图片规范
 
 - 存放路径：`assets/img/posts/`
-- 宽度不超过 1200px，单张不超过 1MB
+- 宽度不超过 1200px
 - 文件名用语义化英文，格式为 `文章-slug-语义.png`（如 `context-engineering-cover.png`），不要保留 `图片 1.png` 这类原始名
 - 重命名后同步更新正文中的图片引用路径
 
