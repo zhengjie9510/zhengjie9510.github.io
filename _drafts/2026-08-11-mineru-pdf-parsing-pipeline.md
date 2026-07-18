@@ -4,14 +4,14 @@ title: "拆解 MinerU：一个开源 PDF 解析工具，如何把花样百出的
 categories: [ AI 开发 ]
 tags: [ MinerU, PDF 解析, 文档解析, RAG, 开源工具 ]
 description: "从论文 PDF 到考研试卷，各种格式的文档都能认出标题、正文、公式、表格……MinerU 是怎么做到的？本文拆解它的四阶段流水线，讲清模型与规则如何分工协作。"
-image: /assets/img/posts/mineru-pipeline-overview.png
+image: /assets/img/posts/mineru-pdf-parsing-pipeline-cover.png
 ---
 
 如果你做过 RAG，或者试过把 PDF 喂给大模型，大概率遇到过这些翻车现场：
 
-> 🔥 论文里的公式变成了乱码
-> 🔥 表格被拆成一行一行的碎片文字
-> 🔥 双栏排版的文章，读到一半突然跳到右边那栏
+> 🔥 论文里的公式变成了乱码  
+> 🔥 表格被拆成一行一行的碎片文字  
+> 🔥 双栏排版的文章，读到一半突然跳到右边那栏  
 > 🔥 扫描版 PDF 和电子版 PDF，得用完全不同的方式处理
 
 这些问题的根源只有一个——
@@ -171,15 +171,7 @@ MinerU 把公式分成两类处理：
 [footnote]
 ```
 
-MagicModel 基于空间位置和阅读顺序，把 caption 和 footnote 归属到正确的 image/table/chart block 下：
-
-```
-IMAGE                           TABLE
-├─ IMAGE_BODY     (图片本身)    ├─ TABLE_BODY      (表格本身)
-├─ IMAGE_CAPTION  (图注)        ├─ TABLE_CAPTION   (表注)
-└─ IMAGE_FOOTNOTE (图脚注)      └─ TABLE_FOOTNOTE  (表脚注)
-```
-
+MagicModel 基于空间位置和阅读顺序，把 caption 和 footnote 归属到正确的 image/table/chart block 下。
 找不到归属的 caption 会被降级为普通 text，避免错乱。
 
 **2. 过滤与清洗**
@@ -249,48 +241,7 @@ MinerU 支持四种输出模式：
 
 ---
 
-## 六、💎 整个架构里，最值得细品的三个设计
-
-### ❶ 模型负责检测，规则负责理解
-
-这是 MinerU 最核心的设计原则：
-
-> **模型做的是“哪里有什么”** —— Layout Detection 找区域，Formula Recognition 认公式，Table Recognition 建表。都是检测和识别。
->
-> **规则做的是“它们之间什么关系”** —— 块的归属分类、段落拆分合并、阅读顺序排序。全是启发式规则。
-
-为什么这样分工？模型擅长模式匹配但缺乏全局理解，规则恰好反过来。把模型输出当作“建材”，再用规则来“盖房子”，工程上可控得多。
-
-### ❷ 扫描件和数字 PDF 的分与合
-
-两条路径的差异，本质上就一个问题：**正文文字何时、从何而来。**
-
-- 扫描件在内容解析阶段由 OCR 提供
-- 数字 PDF 要等到后处理阶段，才从 PDF 文本层读取
-
-但只要文字一到手，后面的处理逻辑就完全统一——不需要维护两套后处理代码。
-
-| 阶段 | 扫描件 | 数字 PDF |
-|---|---|---|
-| 预处理 | 判定为 OCR 类型 | 判定为 txt 类型 |
-| 内容解析 | OCR 全文识别 | 只 OCR 表格/印章 |
-| 后处理-入口 | 从 OCR 结果取文字 | 从 PDF 文本层提取 |
-| **后处理-汇合** | **↓ MagicModel ↓** | **↓ MagicModel ↓** |
-| 后处理及之后 | **✅ 完全一致** | **✅ 完全一致** |
-
-### ❸ 中间格式（middle JSON）作为内部契约
-
-`middle_json` 里三个字段 —— `preproc_blocks`、`discarded_blocks`、`para_blocks` —— 把整条管线切成了三段解耦的工序：
-
-> 📦 Content Parsing → 产出 `layout_dets`
-> 🔧 MagicModel + para_split → 产出 `middle_json`
-> 🎁 Format Conversion → 消费 `middle_json`
-
-每一段可以独立迭代：模型升级只影响第一段，段落算法改进只影响第二段，输出格式新增只影响第三段。
-
----
-
-## 七、✨ 总结
+## 六、✨ 总结
 
 MinerU 做对了几件事：
 
@@ -308,7 +259,7 @@ MinerU 做对了几件事：
 
 但这些局限不影响它代表的工程思路——
 
-> 🎯 **用专业模型处理各自擅长的问题，用规则把结果缝合起来。**
+> 🎯 **用专业模型处理各自擅长的问题，用规则把结果缝合起来。**  
 > 🎯 **不要指望一个“通吃”的模型解决一切。**
 
 对于做 RAG 或文档处理的同学来说，理解 MinerU 的管线设计，比自己从头踩一遍坑划算得多。
