@@ -3,6 +3,8 @@ layout: post
 title: "Loop Engineering 的艺术，详解智能体落地的四种循环"
 categories: [AI Agent]
 tags: [Agent, 循环工程, 智能体架构, Loop Engineering]
+description: "大模型决定了智能体的下限，而“外部工作框架”决定了它的上限。本文深度拆解智能体落地的四层核心循环，教你如何通过叠加循环，构建真正可靠、能干活的 AI 自动化应用。"
+image: /assets/img/posts/loop-engineering-cover.png
 ---
 
 智能体之所以有用，是因为它们能在现实世界中采取行动，帮我们把工作自动化。但要让智能体可靠地执行真正有价值的任务，光有一个好模型还不够——它需要一套精心设计的**外部工作框架（Harness）**，并且这套框架必须与具体的任务场景相匹配。
