@@ -40,6 +40,8 @@ layout: post
 title: "文章标题"
 categories: [分类]
 tags: [标签1, 标签2]
+description: "文章摘要，一句话说明这篇文章讲什么"
+image: /assets/img/posts/文章-slug-cover.png  # 可选：有封面图时填写
 ---
 ```
 
@@ -51,12 +53,3 @@ tags: [标签1, 标签2]
 - 宽度不超过 1200px
 - 文件名用语义化英文，格式为 `文章-slug-语义.png`（如 `context-engineering-cover.png`），不要保留 `图片 1.png` 这类原始名
 - 重命名后同步更新正文中的图片引用路径
-
----
-
-## 中英文引号
-
-中文语境下的引号使用：
-
-- **用中文引号 `""` `''`**：正文中的词汇引用、比喻、对话——替换英文引号 `""` `''`
-- **保留英文引号**：YAML front matter、HTML 属性、Markdown 链接、代码块、纯英文术语
