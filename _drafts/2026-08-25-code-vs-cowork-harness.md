@@ -6,11 +6,11 @@ tags: [ Claude Code, Cowork, Agent SDK, Harness, System Prompt ]
 description: "Cowork 和 Claude Code 用的是同一个模型、同一套 Agent SDK，用起来却是两个产品。抓包对比两者的请求体，看看差异到底藏在哪一层。"
 ---
 
-用 Claude 桌面端比较多的朋友可能注意到，里面有两个能干活的入口：Code 和 Cowork。Code 面向你自己的项目，写代码、改文件、跑命令；Cowork 更像一个通用助手，你说"帮我做份周报""整理一下这个文件夹"，它也会去写代码、操作文件。
+经常用 Claude 桌面端的朋友可能注意到，里面有两个能干活的入口：Code 和 Cowork。Code 面向你自己的项目，写代码、改文件、跑命令；Cowork 更像一个通用助手，你说“帮我做份周报”“整理一下这个文件夹”，它也会去写代码、操作文件。
 
 我好奇的点比较朴素：这俩底层是不是一套东西？如果是，为什么用起来完全是两个产品？
 
-回答这类问题，最直接的办法是把请求体抓下来看：在客户端和 Anthropic API 之间加一层代理，把两边发给 Messages API 的完整请求各存一份，从 System Prompt 开始，一块一块对着看。之前那篇《拆解 Claude Code：它发给模型的请求，到底长什么样？》用的就是这套方法，这次照旧。
+最直接的办法是抓包：在客户端和 Anthropic API 之间加一层代理，把两边的完整请求各存一份，逐块对比。上一篇《拆解 Claude Code：它发给模型的请求，到底长什么样？》用的就是这招。
 
 ---
 
@@ -35,7 +35,7 @@ software engineering tasks，开门见山，任务域直接定死。整个主体
 # Context management   上下文快满会被摘要续接，别提前收尾
 ```
 
-通篇是"怎么干活"：输出用 Markdown、能用专用工具就别用 shell、代码风格贴着现有代码写、git 状态快照放在这、上下文快满了会被自动摘要续接不用慌。一份很紧凑的工程手册。
+通篇在讲“怎么干活”：输出用 Markdown、能用专用工具就别用 shell、代码风格贴着现有代码写。一份很紧凑的工程手册。
 
 Cowork 的主体开头则是一段自报家门：
 
@@ -54,38 +54,39 @@ Claude 构建于 Claude Code 和 Claude Agent SDK 之上，但 Claude 不是 Cla
 官方在 prompt 里白纸黑字承认了构建于 Claude Code 之上，同时严格要求模型别自称 Claude Code。自报家门之后，才是 68KB 的主体——十倍于 Code 的体量。目录节选：
 
 ```text
-<application_details>      我运行在桌面 App 的沙箱里
+<application_details>       我运行在桌面 App 的沙箱里
 <claude_behavior>
-  <tone_and_formatting>    语气和排版
-  <user_wellbeing>         用户身心健康
-  <evenhandedness>         观点中立
-  <refusal_handling>       怎么拒绝用户
-<ask_user_question_tool>   什么时候该反问用户
-<todo_list_tool>           任务清单
-<citation_requirements>    引用要求
+  <product_information>     产品与部署信息
+  <tone_and_formatting>     语气和排版
+  <user_wellbeing>          用户身心健康
+  <evenhandedness>          观点中立
+  <refusal_handling>        怎么拒绝用户
+<ask_user_question_tool>    什么时候该反问用户
+<todo_list_tool>            任务清单
+<citation_requirements>     引用要求
 <computer_use>
-  <artifacts>              怎么写 HTML/React 组件
-  <file_handling_rules>    文件放哪、怎么交付
-  <sharing_files>          交付文件时的措辞
+  <artifacts>               怎么写 HTML/React 组件
+  <file_handling_rules>     文件放哪、怎么交付
+  <sharing_files>           交付文件时的措辞
 ```
 
-把这份目录读一遍就会发现，它教的不是"怎么干活"，而是"怎么当一个面向普通用户的助手"：语气怎么拿捏、列表怎么用、什么时候该拒绝、怎么照顾用户情绪、文件怎么体面地交到用户手上。`<product_information>` 一节也写得直白——Claude 运行在 Claude 桌面应用里，做的是文件与任务管理的自动化。一份完整的产品化助手人格包。
+把这份目录读一遍就会发现，它教的不是“怎么干活”，而是“怎么当一个面向普通用户的助手”：语气怎么拿捏、什么时候该拒绝、怎么照顾用户情绪、文件怎么体面地交到用户手上。`<product_information>` 一节也写得直白——Claude 运行在 Claude 桌面应用里，做的是文件与任务管理的自动化。一份完整的产品化助手人格包。
 
 有两个细节我觉得挺能说明问题。
 
-一个是任务清单。Cowork 规定几乎所有涉及工具调用的任务都必须用任务清单工具，理由是：
+一个是任务清单。Cowork 要求几乎所有涉及工具调用的任务都得先列清单，理由是：
 
 > This is because the task list is nicely rendered as a widget to users in the desktop app.
 > （因为任务清单会在桌面 App 里渲染成一个好看的挂件。）
 
 用不用任务清单不是从任务管理效果出发的，是从界面呈现出发的。
 
-另一个是交付文件的措辞。Code 和 Cowork 都管到了"怎么把文件交给用户"，但方向完全不同：
+另一个是交付文件的措辞。两边都管到了“怎么把文件交给用户”，但方向完全不同：
 
 | | Code 的关注点 | Cowork 的关注点 |
 | --- | --- | --- |
-| 文件引用 | 用 `file_path:line_number` 格式，可点击跳转 | 链接文案用 "view"，不用 "download" |
-| 路径暴露 | 直接给出完整路径 | 内部路径（`/sessions/...`）绝不露出，"看起来像后端基础设施，会让人困惑" |
+| 文件引用 | 用 `file_path:line_number` 格式，可点击跳转 | 链接文案用 “view”，不用 “download” |
+| 路径暴露 | 直接给出完整路径 | 内部路径（`/sessions/...`）绝不露出，“看起来像后端基础设施，会让人困惑” |
 | 服务对象 | 工程师的导航效率 | 普通用户的观感 |
 
 68KB 和 6.9KB 的差距，大致就是这个差别的积累。
@@ -118,7 +119,7 @@ persists on the user's actual computer.
 
 ## 三、🧰 Tools：54 个与 31 个
 
-工具清单最能看出"同一内核、不同装配"。按层拆开：
+工具清单最能看出“同一内核、不同装配”。按层拆开：
 
 | 层 | Desktop Code（54 个） | Cowork（31 个） |
 | --- | --- | --- |
@@ -137,13 +138,13 @@ Cowork 的 mcp__workspace__bash（MCP 工具）：
 不保留 cwd 和环境变量，请使用绝对路径
 ```
 
-同一个能力，一边是持久化终端，一边是沙箱里的一次性命令行。对模型来说都叫"我能跑命令"，但名字换了、运行时换了、权限模型换了。54 减 31 减掉的全是工程场景，加上的全是产品场景。
+同一个能力，一边是持久化终端，一边是沙箱里的一次性命令行。对模型来说都叫“我能跑命令”，但名字换了、运行时换了、权限模型换了。对比下来，Code 独有的全是工程场景，Cowork 独有的全是产品场景。
 
 ---
 
-## 四、💬 Messages：血缘鉴定
+## 四、💬 Messages：最后一块拼图
 
-Messages 层先摊开看一眼。上一篇说过，第一条 user 消息内部是两个 content block（system-reminder + 用户输入）；放大到整个数组，messages 装的是三类信息：
+把 messages 摊开看，装的是三类信息：
 
 ```text
 messages = [
@@ -153,15 +154,9 @@ messages = [
 ]
 ```
 
-两边在这一层的差异不在机制，只在第②步注入的清单内容：
+这一层两边几乎是复制粘贴：②里注入的 Agent 类型——claude、Explore、general-purpose、Plan——逐字一致，差别只在 Skill 清单：Code 挂的是 docx、pptx 这些文档技能，Cowork 挂的是 `anthropic-skills:` 命名空间的产品技能。
 
-| | Desktop Code | Cowork |
-| --- | --- | --- |
-| 注入机制 | `role: system` 中间消息 | 一模一样 |
-| Agent 类型 | claude、Explore、general-purpose、Plan、claude-code-guide... | **几乎逐字一致** |
-| Skill 清单 | docx、pdf、pptx、xlsx 等文档技能 | `anthropic-skills:` 命名空间的产品技能 |
-
-再看请求头：两边的 User-Agent 都带着 `claude-cli` 和 `agent-sdk`，同属一个 2.1.x 版本系列，区别只在入口标识——Code 是 `claude-desktop-3p`，Cowork 是 `local-agent`。到这里基本可以下判断了，两者共享同一个 Claude Code 内核：
+到这里证据凑齐了：请求结构一样、内核工具一样、Agent 注册表一样。结论只有一个——两者共享同一个 Claude Code 内核，差别全在外围的装配：
 
 ```text
 Desktop Code = Claude Code 内核 + 工程增强工具 + 桌面集成
@@ -174,6 +169,16 @@ Cowork       = Claude Code 内核 + 消费级助手人格包 + 沙箱运行时 +
 
 **Prompt 的篇幅花在哪，产品立场就在哪。** Code 的 6.9KB 全在讲怎么把活干对，Cowork 的 68KB 有大半在讲怎么让用户舒服。想知道一个产品把谁当目标用户，看它的 prompt 在什么事上花的 token 最多。
 
-**差异的根源是信任模型不同。** Code 假设你盯着每条确认弹窗、看得懂终端输出，所以只教方法；Cowork 假设没人监督、用户未必看得懂，所以必须立规矩——多出来的 60 多 KB 不是工程手册的大白话版，而是人格、安全、交付三个全新的层。用户越不在场，prompt 就越要从"教方法"变成"立规矩"。
+**差异的根源是信任模型不同。** Code 假设你盯着每条确认弹窗、看得懂终端输出，所以只教方法；Cowork 假设没人监督、用户未必看得懂，所以必须立规矩——多出来的 60 多 KB 不是工程手册的大白话版，而是人格、安全、交付三个全新的层。用户越不在场，prompt 就越要从“教方法”变成“立规矩”。
 
-**模型是引擎，Harness 是车。** 同一个模型、同一份 Agent 注册表，因为信任模型不同，装配出了两种产品。做 Agent 纠结"用哪个模型"之前，先想清楚"Harness 怎么设计"。
+**模型是引擎，Harness 是车。** 同一个模型、同一份 Agent 注册表，因为信任模型不同，装配出了两种产品。做 Agent 纠结“用哪个模型”之前，先想清楚“Harness 怎么设计”。
+
+---
+
+## 六、🎯 所以，该用哪个？
+
+先说本质：**Code 是工具，Cowork 是服务。** 前者把你放在驾驶位，看得见每条命令、每次改动；后者只管下单收成品，过程被刻意藏起来（草稿目录不可见、内部路径不暴露）。
+
+建议很直接：**写代码的活，用 Code。** 持久 shell、产物进 git，脚本和模板沉淀下来可复现——做 PPT 也同理，要的是“生成 PPT 的能力”，脚本留下，换数据重跑就行。Cowork 适合另一头：跟代码无关的一次性交付，比如周报、整理文件夹，或者你压根不想让 AI 直接碰真机的时候。
+
+一句话收束：内核决定能力的上限，Harness 决定产品的形态。
