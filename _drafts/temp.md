@@ -1,7 +1,0 @@
-可以分别概括成两段：
-
-**System Prompt 层面：** Claude Desktop Code 和 Claude Code CLI 使用的是高度一致的 Claude Code Agent Harness，包括安全策略、编码规范、Memory、Context management、Git 状态注入、Skill、Plan Mode 等核心机制，因此两者本质上属于同一套 Claude Code Agent 架构。区别主要来自运行环境和版本配置：Desktop 会额外注入桌面 UI、文件链接、部分终端命令不可用等约束；CLI 则更强调终端交互，例如 `! <command>`。另外，两次请求中的模型标识、Claude 模型列表和部分规则不同，说明 system prompt 是由“基础 Harness + 前端特定规则 + 当前模型/环境 + Git 状态 + 产品配置”动态拼装的，并且 Desktop 与 CLI 可能存在版本或灰度发布不同步的情况。
-
-**Tools 层面：** 两者的核心编码工具基本一致，CLI 中的 30 个核心工具在 Desktop 中也都存在，包括文件读写、Bash、搜索、Agent、Workflow、Plan Mode、Task、Web、Cron 等；但 Desktop 额外增加了一批面向桌面应用的 MCP 工具，例如目录授权、跨 Session 管理、浏览器 Preview/DevTools 和持久化 Scheduled Tasks。因此可以理解为 **Desktop = Claude Code 核心工具集 + Desktop 产品集成能力**。同时，Desktop 的文件系统访问更偏向按目录授权：默认主要访问当前工作区，访问其他目录时需要通过 `request_directory` 请求用户许可；CLI 则更接近终端进程权限模型，通常能在系统用户和 Claude Code 权限策略允许的范围内直接访问更多本地路径。整体上，CLI 的本地文件系统权限面更宽，而 Desktop 的权限边界更收敛，但增加了更多 GUI 和应用级能力。
-
-**Messages 层面：** Claude Desktop Code 和 Claude Code CLI 的消息结构同样高度一致，都会在会话过程中通过额外的 system message 动态注入当前可用的 Agent 类型和 Skill 列表，而不是把这些能力全部固定写在最初的基础 System Prompt 中。从你提供的内容看，两边的 Agent 类型基本一致，包括 claude、Explore、general-purpose、Plan 等，说明 Agent 注册机制属于共同的 Claude Code Core；Skill 列表则会根据运行环境、产品集成和版本动态变化，例如 Desktop 多出 anthropic-skills:*、Cowork、Schedule、Frontend Design 等产品相关能力，而 CLI 出现 dataviz 等不同 Skill。整体上可以理解为：Messages 负责把当前 Session 实际可用的 Agent、Skill 和其他运行时能力动态告诉模型，因此 Desktop 与 CLI 的消息协议基本一致，真正变化的是运行时注入的能力清单和部分描述内容。s
