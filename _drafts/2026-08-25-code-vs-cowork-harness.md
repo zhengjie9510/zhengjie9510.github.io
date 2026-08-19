@@ -10,7 +10,7 @@ description: "Cowork 和 Claude Code 用的是同一个模型、同一套 Agent 
 
 我好奇的点比较朴素：这俩底层是不是一套东西？如果是，为什么用起来完全是两个产品？
 
-还是上次那个办法，抓包。把两边发给 Messages API 的请求体各存了一份，从 System Prompt 开始，一块一块对着看。
+回答这类问题，最直接的办法是把请求体抓下来看：在客户端和 Anthropic API 之间加一层代理，把两边发给 Messages API 的完整请求各存一份，从 System Prompt 开始，一块一块对着看。之前那篇《拆解 Claude Code：它发给模型的请求，到底长什么样？》用的就是这套方法，这次照旧。
 
 ---
 
@@ -143,7 +143,17 @@ Cowork 的 mcp__workspace__bash（MCP 工具）：
 
 ## 四、💬 Messages：血缘鉴定
 
-Messages 层反而没什么可吵的，两边用的是同一套机制：会话开始后，通过一条 `role: system` 的中间消息，动态注入当前可用的 Agent 类型和 Skill 清单。
+Messages 层先摊开看一眼。上一篇说过，第一条 user 消息内部是两个 content block（system-reminder + 用户输入）；放大到整个数组，messages 装的是三类信息：
+
+```text
+messages = [
+  ① user            运行时上下文（system-reminder）+ 用户输入
+  ② system          Agent / Skill 动态清单
+  ③ user/assistant  真实对话流，逐轮累积
+]
+```
+
+两边在这一层的差异不在机制，只在第②步注入的清单内容：
 
 | | Desktop Code | Cowork |
 | --- | --- | --- |
@@ -162,10 +172,8 @@ Cowork       = Claude Code 内核 + 消费级助手人格包 + 沙箱运行时 +
 
 ## 五、💡 几点启示
 
-**模型是引擎，Harness 是车。** 同一个模型、同一套 SDK、同一份 Agent 注册表，只因为 System Prompt 的取向、工具集的取舍、运行环境不同，就做出了一个开发者工具和一个大众产品。做 Agent 应用选型时，"用哪个模型"之外，更值得花时间的是"Harness 怎么设计"。
+**Prompt 的篇幅花在哪，产品立场就在哪。** Code 的 6.9KB 全在讲怎么把活干对，Cowork 的 68KB 有大半在讲怎么让用户舒服。想知道一个产品把谁当目标用户，看它的 prompt 在什么事上花的 token 最多。
 
-**Prompt 的篇幅花在哪，产品立场就在哪。** Code 的 6.9KB 全在讲怎么把活干对；Cowork 的 68KB 里有相当篇幅在讲怎么让用户舒服——任务清单要渲染成挂件、交付文件要说 view 不说 download、内部路径不能露出来。想知道一个 Agent 产品把谁当目标用户，看它的 prompt 在什么事上花的 token 最多。
+**差异的根源是信任模型不同。** Code 假设你盯着每条确认弹窗、看得懂终端输出，所以只教方法；Cowork 假设没人监督、用户未必看得懂，所以必须立规矩——多出来的 60 多 KB 不是工程手册的大白话版，而是人格、安全、交付三个全新的层。用户越不在场，prompt 就越要从"教方法"变成"立规矩"。
 
-**沙箱的厚度是对用户的评估。** Code 跑在真机上、权限面宽，因为它假设用户看得懂风险；Cowork 关进 Linux VM、删文件都要二次授权，因为它假设用户看不懂。权限边界画在哪，取决于你相信用户能看懂多复杂的确认弹窗——这道边界的拿捏，比多接几个工具难。
-
-最后回到开头那句话：Cowork 在 prompt 里特意强调"Claude is NOT Claude Code"。但把整个请求体拆完会发现，正是这句否认本身，说明了两者关系有多近——需要专门写一条规则来划清界限的，从来都是一家人。
+**模型是引擎，Harness 是车。** 同一个模型、同一份 Agent 注册表，因为信任模型不同，装配出了两种产品。做 Agent 纠结"用哪个模型"之前，先想清楚"Harness 怎么设计"。
