@@ -4,6 +4,7 @@ title: "同一个内核，两种产品：拆解 Claude Code 和 Cowork 的 Harne
 categories: [ AI Agent ]
 tags: [ Claude Code, Cowork, Agent SDK, Harness, System Prompt ]
 description: "Cowork 和 Claude Code 用的是同一个模型、同一套 Agent SDK，用起来却是两个产品。抓包对比两者的请求体，看看差异到底藏在哪一层。"
+image: /assets/img/posts/code-vs-cowork-harness-cover.png
 ---
 
 经常用 Claude 桌面端的朋友可能注意到，里面有两个能干活的入口：Code 和 Cowork。Code 面向你自己的项目，写代码、改文件、跑命令；Cowork 更像一个通用助手，你说“帮我做份周报”“整理一下这个文件夹”，它也会去写代码、操作文件。
