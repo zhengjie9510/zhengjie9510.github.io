@@ -3,7 +3,8 @@ layout: post
 title: "同一个内核，两种产品：拆解 Claude Code 和 Cowork 的 Harness 差异"
 categories: [ AI Agent ]
 tags: [ Claude Code, Cowork, Agent SDK, Harness, System Prompt ]
-description: "Cowork 和 Claude Code 用的是同一个模型、同一套 Agent SDK，用起来却是两个产品。抓包对比两者的请求体，看看差异到底藏在哪一层。"
+description: "
+"
 image: /assets/img/posts/code-vs-cowork-harness-cover.png
 ---
 
