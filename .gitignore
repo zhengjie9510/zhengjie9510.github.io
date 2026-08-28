@@ -30,5 +30,6 @@ assets/js/dist
 .DS_Store
 
 # Python / uv
+.venv
 pyproject.toml
 uv.lock
