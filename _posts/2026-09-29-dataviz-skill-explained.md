@@ -1,12 +1,11 @@
 ---
 layout: post
-title: "如何教 AI 做好一张数据图表？我拆了一个 Skill，找到了这 4 个关键"
+title: "如何教 AI 做好一张图？我拆了一个 Skill，找到了 4 个关键"
 categories: [AI 工具]
 tags: [Claude, 技能解读, 数据可视化]
 description: "从选图、用色到检查成图，看看 dataviz 技能怎样把人的制图经验，变成 AI 可以执行的具体方法。"
+image: /assets/img/posts/wechat-dataviz-cover.png
 ---
-
-> 我拆开了一个“教 AI 做图”的技能，发现它真正教的不是配色，而是一套完整的制图工作方式。
 
 AI 画的图，常常有一种奇怪的感觉。
 
