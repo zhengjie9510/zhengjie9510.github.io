@@ -1,14 +1,15 @@
 ---
 layout: post
 title: "我写了个 Zotero Skill，以后找论文直接问 AI"
-categories: [AI 工具]
-tags: [Zotero, Skill, Claude Code]
+categories: [ AI 工具 ]
+tags: [ Zotero, Skill, Claude Code ]
 description: "用一个简单的 Skill，让 AI 直接查询、整理 Zotero 文献库，找论文不必再自己反复搜索。"
+image: /assets/img/posts/zotero-skill-cover.png
 ---
 
 如果你平时经常看论文，应该对 Zotero 不陌生。它确实很好用，收藏论文、管理 PDF、整理笔记都很方便。但时间一长，文献越攒越多，想找之前收藏的某篇论文，有时候还得翻上半天。
 
-我就在想：**既然现在 AI 已经可以帮我们处理各种任务，能不能直接让它操作 Zotero？**
+我就在想： **既然现在 AI 已经可以帮我们处理各种任务，能不能直接让它操作 Zotero？**
 
 于是，我写了一个 **Zotero Skill**，让 Claude Code 等 AI Agent 可以直接查询和管理本地 Zotero 文献库。
 
@@ -24,21 +25,24 @@ AI 就会自动查询文献库，把相关论文整理出来。如果接着问�
 
 **以前需要自己在 Zotero 里反复搜索、点击，现在可以直接用自然语言完成。**
 
+![AI 使用 Zotero Skill 查询文献的演示示意图](/assets/img/posts/zotero-skill-search-demo.png)
+
 ## 🔧 一个文件就够了
 
 其实，Zotero 本身就提供了 **Local API**，允许其他程序访问本地文献库。
 
 我只是把这些接口的使用方法写成了一份 Skill，让 AI 知道该怎么调用。
 
-整个 Skill 只有一个 `SKILL.md` 文件，不需要安装额外的 Zotero 插件，也不用配置 MCP Server 或编写 Python 脚本。AI 直接通过 `curl` 命令与 Zotero 通信即可。
+整个 Skill 只有一个 `SKILL.md` 文件，不需要安装额外的 Zotero 插件，也不用配置 MCP Server 或编写 Python 脚本。AI 直接通过
+`curl` 命令与 Zotero 通信即可。
 
-另外，我还做了一个小优化：**需要什么信息，就只保留什么信息。**
+另外，我还做了一个小优化： **需要什么信息，就只保留什么信息。**
 
 比如，搜索论文时先返回标题，需要了解内容时再获取摘要，确实要分析全文时才进一步读取。这样既能减少无关信息，也能节省 Token。
 
 ## 🚀 怎么使用？
 
-首先，在 Zotero 的**设置 → 高级**中开启“允许此计算机上的其他应用程序与 Zotero 通信”。
+首先，在 Zotero 的 **设置 → 高级**中开启“允许此计算机上的其他应用程序与 Zotero 通信”。
 
 然后，下载 Skill 文件，直接交给 Claude Code，让它帮忙安装：
 
