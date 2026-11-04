@@ -1,9 +1,9 @@
 ---
 layout: post
 title: "给你的 AI 接上滴答清单，让计划不止停留在纸面上"
-categories: [AI 实践]
-tags: [Claude Code, MCP, 滴答清单, Agent, 效率工具]
-description: "将滴答清单 MCP 接入 Claude Code，让项目讨论与工作计划自然转化为可跟踪的待办任务，并探索 Agent 参与日常工作流的方式。"
+categories: [AI 工具]
+tags: [AI 助手, MCP, 滴答清单, Agent, 效率工具]
+description: "通过 MCP 让 AI 助手连接滴答清单，将讨论与计划转化为可跟踪的待办任务，减少重复整理的工作。"
 image: /assets/img/posts/claude-code-ticktick-mcp-cover.png
 ---
 
@@ -13,21 +13,15 @@ image: /assets/img/posts/claude-code-ticktick-mcp-cover.png
 
 **既然 AI 已经参与了讨论和规划，能否让它顺势完成后续的任务创建？**
 
-最近，我尝试将滴答清单官方 MCP 接入 Claude Code，发现这恰好是 Agent 值得发挥作用的场景。
+最近，我尝试将滴答清单官方 MCP 接入 AI 助手，发现这恰好是 Agent 值得发挥作用的场景。
 
 ---
 
 ## 🔌 01｜让 AI 连接任务管理工具
 
-滴答清单已经提供 MCP Server，我们可以直接将它接入 Claude Code，无需自行开发接口。
+滴答清单已经提供官方 MCP 服务，可以接入支持远程 MCP 的 AI 助手，无需自行开发接口。
 
-在终端执行：
-
-```bash
-claude mcp add --transport http dida365 https://mcp.dida365.com
-```
-
-随后启动 Claude Code，输入 `/mcp`，按照提示完成浏览器授权，即可让 Agent 获得相应的任务管理能力。
+具体配置可以按照[滴答清单官方教程](https://help.dida365.com/articles/7438132116019216384)，将 MCP 服务接入你使用的 AI 助手，并完成账号授权。
 
 连接完成后，可以先用一个简单的请求验证：
 
@@ -43,7 +37,7 @@ MCP 的意义在于打通 Agent 与外部工具之间的边界。模型负责理
 
 相比让 AI 创建一个简单提醒，我更感兴趣的是将任务管理嵌入已有的工作流程。
 
-例如，在 Claude Code 中分析一个项目，经过几轮交流，最终形成了一份实施计划，明确了需要完成的功能、推进顺序和预期时间。
+例如，和 AI 助手一起讨论一个项目，经过几轮交流，最终形成了一份实施计划，明确了需要完成的事项、推进顺序和预期时间。
 
 过去，这些内容通常会停留在 Markdown 文档中。要真正开始执行，还得重新打开滴答清单，将其中的行动事项逐条创建。
 
