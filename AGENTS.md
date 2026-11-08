@@ -6,6 +6,7 @@
 |------|------|
 | `_posts/` | 已发布文章 |
 | `_drafts/` | 草稿，不会被 Jekyll 构建 |
+| `_rednote/` | 小红书风格的文章内容 |
 | `assets/img/posts/` | 文章配图 |
 
 ---
