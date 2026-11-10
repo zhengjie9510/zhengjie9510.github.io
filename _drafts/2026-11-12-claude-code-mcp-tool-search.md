@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "MCP 有 58 个工具，为什么 Claude Code 只加载了 3 个？"
+title: "面试官问：Claude Code 是如何避免 MCP 工具撑爆上下文的？"
 categories: [AI Agent]
 tags: [MCP, Claude Code, Tool Search, Context Engineering]
-description: "通过一次真实请求，观察 Claude Code 如何用 Tool Search 从 58 个 MCP 工具中按需加载 3 个，减少上下文开销。"
+description: "如果面试官问：Agent 接入的 MCP 工具越来越多，怎么避免撑爆上下文？Claude Code 的答案是 Tool Search——58 个 MCP 工具，初始 0 个完整定义，搜索后只加载 3 个。本文用真实请求日志还原了全过程。"
 image: /assets/img/posts/mcp-tool-search-cover.png
 ---
 
