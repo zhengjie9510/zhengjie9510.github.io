@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "大模型为什么能稳定输出 JSON？答案藏在每一步的 Token 约束里"
-categories: [AI 原理]
-tags: [结构化输出, JSON Schema, Constrained Decoding, vLLM, XGrammar]
+categories: [ AI 原理 ]
+tags: [ 结构化输出, JSON Schema, Constrained Decoding, vLLM, XGrammar ]
 description: "大模型为什么能稳定返回 JSON？本文从 Prompt、JSON Mode、JSON Schema 一路讲到 Constrained Decoding，拆解每一步如何把概率文本约束成程序可用的结构，并给出 vLLM + Qwen 的落地示例。"
 ---
 
@@ -33,7 +33,8 @@ description: "大模型为什么能稳定返回 JSON？本文从 Prompt、JSON M
 
 对于普通聊天，这些问题可能无伤大雅；但对于业务系统来说，后续程序通常依赖固定的字段和类型。模型少返回一个字段，就可能导致解析失败。
 
-问题的根源在于：**程序需要确定的数据结构，而大模型默认生成的是具有概率性的文本。** 如何在保留模型理解和生成能力的同时，让输出满足程序约定的格式？这就是结构化输出（Structured Outputs）要解决的问题。
+问题的根源在于：**程序需要确定的数据结构，而大模型默认生成的是具有概率性的文本。**
+如何在保留模型理解和生成能力的同时，让输出满足程序约定的格式？这就是结构化输出（Structured Outputs）要解决的问题。
 
 ---
 
@@ -63,12 +64,13 @@ description: "大模型为什么能稳定返回 JSON？本文从 Prompt、JSON M
 为了减少这类问题，模型服务开始提供 JSON Mode。以 OpenAI API 为例，可以通过下面的参数要求模型返回 JSON：
 
 ```python
-response_format={
-    "type": "json_object"
+response_format = {
+  "type": "json_object"
 }
 ```
 
-与单纯依赖 Prompt 不同，JSON Mode 不只是提醒模型“请输出 JSON”，服务端还会施加格式约束，确保在正常完成的情况下，输出一定是合法 JSON。
+与单纯依赖 Prompt 不同，JSON Mode 不只是提醒模型“请输出 JSON”，服务端还会施加格式约束，确保在正常完成的情况下，输出一定是合法
+JSON。
 
 但 JSON Mode 仍然没有解决字段和类型的问题。
 
@@ -93,7 +95,8 @@ response_format={
 
 这段内容语法上是合法 JSON，但字段名称、数据类型和字段数量都不符合业务要求。
 
-所以，JSON Mode 解决的是“能不能解析成 JSON”，而不是“是不是我们想要的那种 JSON”。如果还要约束字段名称、字段类型、必填项和枚举值，就需要更明确的结构描述——JSON Schema。
+所以，JSON Mode 解决的是“能不能解析成 JSON”，而不是“是不是我们想要的那种 JSON”。如果还要约束字段名称、字段类型、必填项和枚举值，就需要更明确的结构描述——JSON
+Schema。
 
 ## 二、📋 JSON Schema：把输出要求变成一份数据协议
 
@@ -116,7 +119,11 @@ JSON Schema 是一种描述和校验 JSON 数据结构的规范。它可以规�
       "type": "string"
     }
   },
-  "required": ["name", "age", "city"],
+  "required": [
+    "name",
+    "age",
+    "city"
+  ],
   "additionalProperties": false
 }
 ```
@@ -127,14 +134,18 @@ JSON Schema 是一种描述和校验 JSON 数据结构的规范。它可以规�
 
 这里要区分两件事：Prompt 负责说明“要完成什么任务”，Schema 负责规定“结果必须长什么样”。
 
-| 角色 | 负责什么 | 举例 |
-|---|---|---|
-| Prompt | 任务目标与业务规则 | 从文本中提取用户信息；信息缺失时不要猜测 |
+| 角色        | 负责什么           | 举例                                             |
+|-------------|--------------------|--------------------------------------------------|
+| Prompt      | 任务目标与业务规则 | 从文本中提取用户信息；信息缺失时不要猜测         |
 | JSON Schema | 结果结构与字段约束 | 有哪些字段、什么类型、是否必填、是否允许额外字段 |
 
 **任务指令和输出协议各司其职，不需要在 Prompt 里反复强调 JSON 格式。**
 
-不过，Schema 是如何真正影响模型生成的？模型又怎么知道下一个 Token 能不能生成？这就进入结构化输出最核心的技术：Constrained Decoding。
+顺带一提，在原生 Structured Outputs 普及之前，LangChain 先后尝试过 Prompt + Output Parser（输出解析器）和 Function Calling
+等不同路径来实现结构化输出。
+
+不过，Schema 是如何真正影响模型生成的？模型又怎么知道下一个 Token 能不能生成？这就进入结构化输出最核心的技术：Constrained
+Decoding。
 
 ## 三、🔒 Constrained Decoding：在生成过程中约束 Token
 
@@ -149,16 +160,18 @@ JSON Schema 是一种描述和校验 JSON 数据结构的规范。它可以规�
 
 接下来，模型需要预测下一个 Token。在普通生成模式下，它会根据上下文计算候选 Token 的概率分布。候选内容可能包括数字、字符串、数组开头，或者其他符号。
 
-但如果 Schema 已经规定 `age` 必须是整数，那么当前这个位置就不应该生成字符串或数组。约束解码机制会根据当前生成状态，判断哪些 Token 可以继续生成，并屏蔽不符合约束的候选项。
+但如果 Schema 已经规定 `age` 必须是整数，那么当前这个位置就不应该生成字符串或数组。约束解码机制会根据当前生成状态，判断哪些
+Token 可以继续生成，并屏蔽不符合约束的候选项。
 
-这通常被称为 Token Masking。可以用一个简化的公式表示：
+这通常被称为 Token Masking。可以用一个简化的规则表示：
 
 ```text
-z'_i = z_i       如果 Token i 当前允许生成
-z'_i = -∞        如果 Token i 当前不允许生成
+z_i' = z_i       如果 Token i 当前允许生成
+z_i' = -∞        如果 Token i 当前不允许生成
 ```
 
-这里的 $z_i$ 是模型输出的原始 Logit，$z'_i$ 是施加约束后的 Logit。经过 Mask 之后，不合法 Token 的概率会变成 0，模型再从剩余候选中选择下一个 Token。
+这里的 `z_i` 是模型输出的原始 Logit，`z_i'` 是施加约束后的 Logit。经过 Mask 之后，不合法 Token 的概率会变成
+0，模型再从剩余候选中选择下一个 Token。
 
 因此，模型不再是在所有可能的 Token 中自由选择，而是在当前结构约束允许的范围内生成。
 
@@ -167,11 +180,13 @@ z'_i = -∞        如果 Token i 当前不允许生成
 - **后处理校验**发生在输出之后，发现错误只能报错或让模型重试；
 - **Constrained Decoding** 在生成的每一步参与解码，尽可能避免模型走上不合法的输出路径。
 
-当然，真实实现并不是简单地逐字符过滤。大模型使用的是 Tokenizer，一个 Token 可能对应多个字符，约束引擎需要判断某个 Token 加入当前前缀后，是否仍然存在生成完整合法结果的可能。这也是约束解码需要专门工程实现的原因。
+当然，真实实现并不是简单地逐字符过滤。大模型使用的是 Tokenizer，一个 Token 可能对应多个字符，约束引擎需要判断某个 Token
+加入当前前缀后，是否仍然存在生成完整合法结果的可能。这也是约束解码需要专门工程实现的原因。
 
 ## 四、⚙️ JSON Schema 如何变成模型可以执行的约束？
 
-JSON Schema 描述的是数据结构，而 Token Masking 需要知道当前语法状态下哪些 Token 合法。两者之间还需要一个转换过程：把 Schema 编译成机器可以执行的语法规则。
+JSON Schema 描述的是数据结构，而 Token Masking 需要知道当前语法状态下哪些 Token 合法。两者之间还需要一个转换过程：把 Schema
+编译成机器可以执行的语法规则。
 
 例如，下面这份 Schema 要求 `status` 只能是两个枚举值之一，`count` 必须是整数：
 
@@ -181,13 +196,19 @@ JSON Schema 描述的是数据结构，而 Token Masking 需要知道当前语�
   "properties": {
     "status": {
       "type": "string",
-      "enum": ["success", "failed"]
+      "enum": [
+        "success",
+        "failed"
+      ]
     },
     "count": {
       "type": "integer"
     }
   },
-  "required": ["status", "count"],
+  "required": [
+    "status",
+    "count"
+  ],
   "additionalProperties": false
 }
 ```
@@ -234,95 +255,25 @@ LLM Decoder
 
 需要注意的是，不同约束引擎支持的 JSON Schema 子集可能不同。复杂的 Schema 也不意味着所有字段约束都能被所有推理框架完整支持，实际使用时仍要核对框架文档。
 
-## 五、🧰 不只有 JSON Schema：Regex、Grammar 和 Choice
-
-JSON Schema 适合描述对象、数组、字段和类型，但并不是所有结构化输出都需要一个 JSON 对象。有些任务只需要固定选项，有些任务只需要匹配某种文本格式，还有些任务需要自定义语法。
-
-以 vLLM 的 Structured Outputs 为例，除了 JSON Schema，也支持 Choice、Regex 和 Grammar 等约束形式。
-
-如果任务是情感分类，只允许模型返回 `positive`、`negative` 或 `neutral`，就可以使用 Choice。它表达的是一个有限的候选集合，适合分类、意图识别等场景。
-
-如果任务要求输出固定格式的日期，可以使用 Regex：
-
-```python
-extra_body={
-    "structured_outputs": {
-        "regex": r"\d{4}-\d{2}-\d{2}"
-    }
-}
-```
-
-这样可以限制输出匹配 `YYYY-MM-DD` 这种文本形式。不过，正则匹配不等于业务有效：例如 `2026-99-99` 也可能通过这个简单表达式，日期是否真实有效还需要额外校验。
-
-如果需要描述更复杂、甚至不是 JSON 的输出结构，可以使用 Grammar。例如：
-
-```text
-root ::= "yes" | "no"
-```
-
-它规定模型只能输出 `yes` 或 `no`。
-
-把这几种方式放在一起看：
-
-| 约束方式 | 适合的场景 | 示例 |
-|---|---|---|
-| Choice | 固定候选的分类、意图识别 | `positive` / `negative` / `neutral` |
-| Regex | 固定文本格式 | `YYYY-MM-DD` |
-| Grammar | 自定义语法、非 JSON 结构 | `yes` / `no` |
-| JSON Schema | 对象、数组、字段和类型 | 带 `name`、`age` 的用户信息 |
-
-这些方式并不互斥。JSON Schema 也可以被编译成语法规则，再交给约束解码引擎执行。区别主要在于：我们用什么方式描述允许生成的内容，以及具体的推理框架如何实现这些约束。
-
-## 六、🤖 Function Calling：结构化输出在 Agent 中的应用
-
-在 AI Agent 开发中，还有一种经常和结构化输出一起出现的能力：Function Calling，也就是工具调用。
-
-例如，我们定义一个天气查询工具，它需要一个 `city` 参数：
-
-```json
-{
-  "type": "function",
-  "function": {
-    "name": "get_weather",
-    "description": "查询指定城市的天气",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "city": {
-          "type": "string"
-        }
-      },
-      "required": ["city"]
-    }
-  }
-}
-```
-
-当用户说“帮我查一下北京的天气”时，模型需要判断是否调用这个工具，并生成相应的参数。Agent 框架拿到工具名称和参数后，再执行真正的天气查询函数，并把结果返回给模型。
-
-这里同样需要结构化的参数，因为工具函数要求输入符合约定的数据结构。
-
-但 Function Calling 和普通 JSON Schema 输出的目的并不相同：前者是让模型**选择工具并生成调用参数**，后者是让模型**直接返回符合协议的数据**。两者可以共享 Schema 和约束解码等底层机制，但在应用层承担的职责不同。
-
-因此，Function Calling 可以看作结构化输出在 Agent 工具交互场景中的重要应用，而不是另一种与 JSON Schema 完全平行的 Schema 定义语言。
-
-## 七、🚀 落到工程实践：vLLM + Qwen 怎么实现？
+## 五、🚀 落到工程实践：vLLM + Qwen 怎么实现？
 
 理解了这些概念，再看实际开发就简单多了。
 
-如果使用 vLLM 部署 Qwen 等开源模型，不需要自己实现 Schema Compiler、Grammar Parser 或 Token Masking。vLLM 已经集成了 Structured Outputs 能力，可以通过 API 把约束传给推理服务，并使用 XGrammar 或 Guidance 等后端执行约束解码。
+如果使用 vLLM 部署 Qwen 等开源模型，不需要自己实现 Schema Compiler、语法解析或 Token Masking。vLLM 已经集成了 Structured
+Outputs 能力，可以通过 API 把约束传给推理服务，并使用 XGrammar 或 Guidance 等后端执行约束解码。
 
 先用 Pydantic 定义数据结构：
 
 ```python
 from pydantic import BaseModel, ConfigDict, Field
 
-class UserInfo(BaseModel):
-    model_config = ConfigDict(extra="forbid")
 
-    name: str = Field(description="用户姓名")
-    age: int | None = Field(description="用户年龄，未知时为 null")
-    city: str | None = Field(description="用户所在城市，未知时为 null")
+class UserInfo(BaseModel):
+  model_config = ConfigDict(extra="forbid")
+
+  name: str = Field(description="用户姓名")
+  age: int | None = Field(description="用户年龄，未知时为 null")
+  city: str | None = Field(description="用户所在城市，未知时为 null")
 ```
 
 Pydantic 可以根据模型定义生成 JSON Schema：
@@ -338,31 +289,31 @@ print(schema)
 from openai import OpenAI
 
 client = OpenAI(
-    base_url="http://localhost:8000/v1",
-    api_key="EMPTY"
+  base_url="http://localhost:8000/v1",
+  api_key="EMPTY"
 )
 
 model = client.models.list().data[0].id
 
 response = client.chat.completions.create(
-    model=model,
-    messages=[
-        {
-            "role": "system",
-            "content": "从用户文本中提取姓名、年龄和城市。未明确提及的信息填写 null，不要猜测。"
-        },
-        {
-            "role": "user",
-            "content": "我叫张三，今年25岁，住在北京。"
-        }
-    ],
-    response_format={
-        "type": "json_schema",
-        "json_schema": {
-            "name": "user_info",
-            "schema": UserInfo.model_json_schema()
-        }
+  model=model,
+  messages=[
+    {
+      "role": "system",
+      "content": "从用户文本中提取姓名、年龄和城市。未明确提及的信息填写 null，不要猜测。"
+    },
+    {
+      "role": "user",
+      "content": "我叫张三，今年25岁，住在北京。"
     }
+  ],
+  response_format={
+    "type": "json_schema",
+    "json_schema": {
+      "name": "user_info",
+      "schema": UserInfo.model_json_schema()
+    }
+  }
 )
 
 print(response.choices[0].message.content)
@@ -385,7 +336,7 @@ vllm serve <model-path> \
 
 这样就完成了从数据结构定义到受约束生成的整个过程。对于已经使用 vLLM 部署 Qwen 的开发者来说，这通常不需要修改模型权重，也不需要额外训练模型。
 
-## 八、⚠️ 结构正确，不代表内容一定正确
+## 六、⚠️ 结构正确，不代表内容一定正确
 
 最后还要强调一个容易被忽略的问题：结构化输出解决的是格式和结构约束，并不保证模型填入的数据在语义上一定正确。
 
@@ -404,30 +355,21 @@ vllm serve <model-path> \
 
 ## 📝 写在最后
 
-从最初依靠 Prompt 要求模型返回 JSON，到 JSON Mode 保证语法合法，再到 JSON Schema 约束字段和类型，结构化输出的演进，反映了 LLM 应用对结果可靠性的要求越来越高。
+从最初依靠 Prompt 要求模型返回 JSON，到 JSON Mode 保证语法合法，再到 JSON Schema 约束字段和类型，结构化输出的演进，反映了
+LLM 应用对结果可靠性的要求越来越高。
 
-而 Constrained Decoding 是其中非常关键的一环。它不只是让模型“尽量遵守指令”，而是在生成过程中引入语法约束，动态限制模型可以选择的 Token。
+而 Constrained Decoding 是其中非常关键的一环。它不只是让模型“尽量遵守指令”，而是在生成过程中引入语法约束，动态限制模型可以选择的
+Token。
 
 落到具体选择上：
 
-| 需求 | 可用的方式 |
-|---|---|
-| 简单说明输出格式 | Prompt |
-| 只要求合法 JSON | JSON Mode |
+| 需求             | 可用的方式  |
+|------------------|-------------|
+| 简单说明输出格式 | Prompt      |
+| 只要求合法 JSON  | JSON Mode   |
 | 固定业务数据结构 | JSON Schema |
-| 限制特定文本格式 | Regex |
-| 自定义语法 | Grammar |
-| 与外部工具交互 | Function Calling |
 
-> **结构化输出真正的价值，不只是让大模型返回一个 JSON，而是让模型生成的内容能够更可靠地进入软件系统，成为程序可以理解、校验和处理的数据。**
+> **结构化输出真正的价值，不只是让大模型返回一个
+> JSON，而是让模型生成的内容能够更可靠地进入软件系统，成为程序可以理解、校验和处理的数据。**
 
 这也是大模型从聊天工具走向真正业务应用过程中，一项重要的工程能力。
-
----
-
-**参考资料**
-
-- vLLM Structured Outputs：https://docs.vllm.ai/en/latest/features/structured_outputs/
-- OpenAI Structured Outputs：https://platform.openai.com/docs/guides/structured-outputs
-- XGrammar：https://github.com/mlc-ai/xgrammar
-- Pydantic：https://docs.pydantic.dev/
