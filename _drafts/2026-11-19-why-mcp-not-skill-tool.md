@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "为什么用 MCP，而不是 Skill、Tool？"
+title: "面试官问：有了 Tool，为什么还需要 MCP 和 Skill？"
 categories: [AI 原理]
 tags: [MCP, Skill, Tool, Agent]
-description: "从安排一周日程的日常场景出发，理解 Tool、Skill 和 MCP 分别解决什么问题，以及它们之间的区别。"
+description: "Tool、Skill、MCP 都能扩展 AI Agent 的能力，但它们究竟有什么区别？为什么有了 Tool，还需要 MCP 和 Skill？本文从一个安排一周日程的实际场景出发，拆解三者的核心定位、工作方式与适用场景，帮你理清 AI Agent 的能力扩展体系。"
+image: /assets/img/posts/why-mcp-not-skill-tool-cover.png
 ---
 
 假设你想让 AI 帮你安排下周的日程：工作会议、健身、看牙，还有周末的朋友聚餐。
