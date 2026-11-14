@@ -4,6 +4,7 @@ title: "让 Agent 动手做事：通过 MCP 接入 Docker 工作空间"
 categories: [AI 工具]
 tags: [MCP, Docker, Dify, Sandbox, AI Agent]
 description: "以 langchain-docker-backend 为例，介绍如何通过 MCP，为 Agent 接入可读写文件、执行命令的 Docker 工作空间。"
+status: 写作中
 ---
 
 用 Agent 处理日常工作时，我们往往希望它能直接整理表格、分析数据，最后生成一份可以使用的 Excel 报表。

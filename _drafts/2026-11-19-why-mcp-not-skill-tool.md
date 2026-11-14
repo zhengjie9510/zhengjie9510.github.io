@@ -5,6 +5,7 @@ categories: [AI 原理]
 tags: [MCP, Skill, Tool, Agent]
 description: "Tool、Skill、MCP 都能扩展 AI Agent 的能力，但它们究竟有什么区别？为什么有了 Tool，还需要 MCP 和 Skill？本文从一个安排一周日程的实际场景出发，拆解三者的核心定位、工作方式与适用场景，帮你理清 AI Agent 的能力扩展体系。"
 image: /assets/img/posts/why-mcp-not-skill-tool-cover.png
+status: 已完成
 ---
 
 假设你想让 AI 帮你安排下周的日程：工作会议、健身、看牙，还有周末的朋友聚餐。

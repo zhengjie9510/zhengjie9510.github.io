@@ -4,6 +4,7 @@ title: "Auto Mode：不用你再反复确认，AI 是如何判断能不能做的
 categories: [ AI Agent ]
 tags: [ Claude Code, Auto Mode, AI Agent, Agent Safety, Prompt Injection ]
 description: "不用你反复点「允许」，Claude Code 也能继续干活。Auto Mode 在执行前多加了一道 AI 审批：它怎么判断哪些操作能放行？这篇拆开它的判断过程，看看其中的逻辑。"
+status: 写作中
 ---
 
 用 Claude Code 写代码，经常会被权限确认打断。执行一条命令、修改一个文件，都可能要先点一下「允许」。

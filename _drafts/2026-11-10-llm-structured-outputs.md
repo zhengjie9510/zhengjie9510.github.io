@@ -4,6 +4,7 @@ title: "大模型为什么能稳定输出 JSON？答案藏在每一步的 Token 
 categories: [ AI 原理 ]
 tags: [ 结构化输出, JSON Schema, Constrained Decoding, vLLM, XGrammar ]
 description: "大模型为什么能稳定返回 JSON？本文从 Prompt、JSON Mode、JSON Schema 一路讲到 Constrained Decoding，拆解每一步如何把概率文本约束成程序可用的结构，并给出 vLLM + Qwen 的落地示例。"
+status: 写作中
 ---
 
 在开发大模型应用时，我们经常会遇到这样一种需求：希望模型从用户输入中提取信息，再按照固定的数据结构返回结果，方便后续程序直接使用。
@@ -183,83 +184,11 @@ z_i' = -∞        如果 Token i 当前不允许生成
 当然，真实实现并不是简单地逐字符过滤。大模型使用的是 Tokenizer，一个 Token 可能对应多个字符，约束引擎需要判断某个 Token
 加入当前前缀后，是否仍然存在生成完整合法结果的可能。这也是约束解码需要专门工程实现的原因。
 
-## 四、⚙️ JSON Schema 如何变成模型可以执行的约束？
-
-JSON Schema 描述的是数据结构，而 Token Masking 需要知道当前语法状态下哪些 Token 合法。两者之间还需要一个转换过程：把 Schema
-编译成机器可以执行的语法规则。
-
-例如，下面这份 Schema 要求 `status` 只能是两个枚举值之一，`count` 必须是整数：
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "status": {
-      "type": "string",
-      "enum": [
-        "success",
-        "failed"
-      ]
-    },
-    "count": {
-      "type": "integer"
-    }
-  },
-  "required": [
-    "status",
-    "count"
-  ],
-  "additionalProperties": false
-}
-```
-
-它可以被转换成类似这样的语法描述：
-
-```text
-Object :=
-  {
-    "status": Status,
-    "count": Integer
-  }
-
-Status :=
-  "success" | "failed"
-
-Integer :=
-  -?(0|[1-9][0-9]*)
-```
-
-这里的 Grammar（语法）描述了允许生成的文本结构。约束引擎会维护一个语法状态：当前等待对象开始、字段名称、冒号、枚举值、整数，还是对象结束。
-
-每生成一个 Token，语法状态就随之推进。如果某个 Token 会让当前前缀无法继续形成合法结果，约束引擎就会将它排除。
-
-整个过程可以概括为：
-
-```text
-JSON Schema
-    ↓
-Schema Compiler
-    ↓
-Grammar / 语法状态
-    ↓
-Constraint Engine
-    ↓
-Token Masking
-    ↓
-LLM Decoder
-    ↓
-符合约束的 JSON
-```
-
-从这个过程可以看出，结构化输出并不只是 Prompt 技巧。它借鉴了编译器的思路：先描述规则，再把规则转换成可执行的约束，最后在生成过程中根据当前状态判断下一步是否合法。
-
-需要注意的是，不同约束引擎支持的 JSON Schema 子集可能不同。复杂的 Schema 也不意味着所有字段约束都能被所有推理框架完整支持，实际使用时仍要核对框架文档。
-
-## 五、🚀 落到工程实践：vLLM + Qwen 怎么实现？
+## 四、🚀 落到工程实践：vLLM + Qwen 怎么实现？
 
 理解了这些概念，再看实际开发就简单多了。
 
-如果使用 vLLM 部署 Qwen 等开源模型，不需要自己实现 Schema Compiler、语法解析或 Token Masking。vLLM 已经集成了 Structured
+如果使用 vLLM 部署 Qwen 等开源模型，不需要自己实现语法解析、Token Masking 这些底层机制。vLLM 已经集成了 Structured
 Outputs 能力，可以通过 API 把约束传给推理服务，并使用 XGrammar 或 Guidance 等后端执行约束解码。
 
 先用 Pydantic 定义数据结构：
@@ -336,7 +265,7 @@ vllm serve <model-path> \
 
 这样就完成了从数据结构定义到受约束生成的整个过程。对于已经使用 vLLM 部署 Qwen 的开发者来说，这通常不需要修改模型权重，也不需要额外训练模型。
 
-## 六、⚠️ 结构正确，不代表内容一定正确
+## 五、⚠️ 结构正确，不代表内容一定正确
 
 最后还要强调一个容易被忽略的问题：结构化输出解决的是格式和结构约束，并不保证模型填入的数据在语义上一定正确。
 
